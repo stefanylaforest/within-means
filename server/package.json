@@ -1,0 +1,26 @@
+{
+  "name": "within-means",
+  "version": "1.0.0",
+  "description": "An online platform for small business owners/entrepreneurs to swap their skill set in return for another utilizing the concept of bartering.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stefanylaforest/Within-Means.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stefanylaforest/Within-Means/issues"
+  },
+  "homepage": "https://github.com/stefanylaforest/Within-Means#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7"
+  }
+}
