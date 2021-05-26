@@ -19,9 +19,14 @@
   },
   "homepage": "https://github.com/stefanylaforest/Within-Means#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "file-system": "^1.2.2",
+    "moment": "^2.29.1",
+    "mongodb": "^3.6.8",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "uuidv4": "^6.2.8"
   }
 }
