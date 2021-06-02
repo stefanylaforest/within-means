@@ -63,7 +63,7 @@ const SearchBar = styled.input`
   margin: 0 auto;
   width: 90%;
   border: none;
-  font-size: 16px;
+  font-size: 14px;
   &:focus {
     outline: none;
   }
@@ -86,7 +86,7 @@ const Suggested = styled.div`
 `;
 
 const SuggestedBtn = styled.button`
-  border: 1.5px solid ${colors.darkPurple};
+  border: 2px solid ${colors.darkPurple};
   border-radius: 40px;
   padding: 0px 10px;
   margin: 10px;

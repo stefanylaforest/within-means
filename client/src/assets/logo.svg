@@ -39,32 +39,32 @@
             <feColorMatrix values="0 0 0 0 0.799837676   0 0 0 0 0.602153201   0 0 0 0 1  0 0 0 0.15 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
         </filter>
     </defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="Desktop-HD-Copy" transform="translate(-38.000000, -53.000000)">
             <g id="blue-logo" transform="translate(46.000000, 53.000000)">
                 <g id="Path-5">
                     <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
-                    <use fill="#8087EF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    <use fill="#8087EF" fillRule="evenodd" xlink:href="#path-1"></use>
                 </g>
                 <g id="Rectangle" transform="translate(26.187832, 39.934652) rotate(42.000000) translate(-26.187832, -39.934652) ">
                     <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
-                    <use fill="#8087EF" fill-rule="evenodd" xlink:href="#path-3"></use>
+                    <use fill="#8087EF" fillRule="evenodd" xlink:href="#path-3"></use>
                 </g>
                 <g id="Rectangle-Copy" transform="translate(33.109842, 45.160891) rotate(42.000000) translate(-33.109842, -45.160891) ">
                     <use fill="black" fill-opacity="1" filter="url(#filter-6)" xlink:href="#path-5"></use>
-                    <use fill="#8087EF" fill-rule="evenodd" xlink:href="#path-5"></use>
+                    <use fill="#8087EF" fillRule="evenodd" xlink:href="#path-5"></use>
                 </g>
                 <g id="Path-2">
                     <use fill="black" fill-opacity="1" filter="url(#filter-8)" xlink:href="#path-7"></use>
-                    <use fill="#8087EF" fill-rule="evenodd" xlink:href="#path-7"></use>
+                    <use fill="#8087EF" fillRule="evenodd" xlink:href="#path-7"></use>
                 </g>
                 <g id="Path-3">
                     <use fill="black" fill-opacity="1" filter="url(#filter-10)" xlink:href="#path-9"></use>
-                    <use fill="#3641E7" fill-rule="evenodd" xlink:href="#path-9"></use>
+                    <use fill="#3641E7" fillRule="evenodd" xlink:href="#path-9"></use>
                 </g>
                 <g id="Path-4">
                     <use fill="black" fill-opacity="1" filter="url(#filter-12)" xlink:href="#path-11"></use>
-                    <use fill="#8087EF" fill-rule="evenodd" xlink:href="#path-11"></use>
+                    <use fill="#8087EF" fillRule="evenodd" xlink:href="#path-11"></use>
                 </g>
                 <polygon id="Star" fill="#6236FF" points="79.8066298 40.25 78.1991508 41.0225425 78.506152 39.3862712 77.2056742 38.2274575 79.0028903 37.9887288 79.8066298 36.5 80.6103693 37.9887288 82.4075855 38.2274575 81.1071077 39.3862712 81.4141088 41.0225425"></polygon>
                 <polygon id="Star-Copy" fill="#6236FF" points="21.1325967 3.75 19.5251177 4.52254249 19.8321189 2.88627124 18.531641 1.72745751 20.3288572 1.48872876 21.1325967 0 21.9363362 1.48872876 23.7335524 1.72745751 22.4330745 2.88627124 22.7400757 4.52254249"></polygon>

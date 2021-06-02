@@ -23,8 +23,8 @@ app.get("/hello", (req, res) => {
   res.json({ message: "Hello Stef, this is a test from server!" });
 });
 
-app.post("/users", addUser);
-app.get("/users", getUsers);
+app.post("/api/register", addUser);
+app.get("/api/users", getUsers);
 
 // //---------------
 // //endpoints ^
