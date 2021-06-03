@@ -1,9 +1,37 @@
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
 import { colors } from "../GlobalStyles";
 import { BsSearch } from "react-icons/bs";
+import { UsersContext } from "./UsersContext";
 
 const Search = () => {
+  const { users } = useContext(UsersContext);
+  const [query, setQuery] = useState("");
+  const [matchedUsers, setMatchedUsers] = useState([]);
+
+  const queryHandler = (e) => {
+    e.preventDefault();
+    const matches = users.map((user) => {
+      let matchSkill = false;
+      user.skills.forEach((userSkill) => {
+        if (userSkill.toLowerCase().includes(query.toLowerCase())) {
+          matchSkill = true;
+        } else {
+          matchSkill = false;
+        }
+      });
+      if (
+        matchSkill === true ||
+        user.bio.toLowerCase().includes(query.toLowerCase())
+      ) {
+        return user;
+      }
+    });
+    const matchedFilter = matches.filter((match) => match !== undefined);
+    setMatchedUsers(matchedFilter);
+  };
+
+  // console.log(matchedUsers);
   return (
     <div>
       <Container>
@@ -16,8 +44,18 @@ const Search = () => {
       <Form>
         <InputGroup>
           <StyledSearchIcon />
-          <SearchBar type="text" placeholder={`Type "I Need a Brand Design"`} />
-          <SearchBtn>Search</SearchBtn>
+          <SearchBar
+            type="text"
+            placeholder={`Type "Brand Design"`}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <SearchBtn
+            onClick={(e) => {
+              queryHandler(e);
+            }}
+          >
+            Search
+          </SearchBtn>
         </InputGroup>
         <Suggested>
           <p>Popular: </p>
@@ -79,6 +117,10 @@ const SearchBtn = styled.button`
   padding: 0px 18px;
   flex-wrap: wrap;
   cursor: pointer;
+  &:hover {
+    background-color: ${colors.darkPurple};
+    color: white;
+  }
 `;
 
 const Suggested = styled.div`
