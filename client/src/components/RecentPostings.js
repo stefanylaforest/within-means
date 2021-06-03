@@ -4,7 +4,6 @@ import { colors } from "../GlobalStyles";
 import { HiOutlineHeart, HiHeart } from "react-icons/hi";
 
 const RecentPostings = ({ user }) => {
-  console.log("recentpostings", user);
   return (
     <Wrapper>
       <LikeContainer>
@@ -12,7 +11,7 @@ const RecentPostings = ({ user }) => {
       </LikeContainer>
       <Avatar src={user.avatar} />
       {user.status ? (
-        <h3>{user.status}</h3>
+        <h3>{user.status.slice(0, 62)}...</h3>
       ) : (
         <Status>I need help with my social media</Status>
       )}

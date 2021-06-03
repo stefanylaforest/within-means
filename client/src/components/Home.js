@@ -6,7 +6,7 @@ import styled from "styled-components";
 import RecentPostLoading from "../assets/RecentPostLoading";
 
 const Home = () => {
-  const [users, setUsers] = useState(null);
+  const [users, setUsers] = useState([]);
   const [status, setStatus] = useState("loading");
 
   useEffect(() => {
@@ -19,7 +19,11 @@ const Home = () => {
       });
   }, []);
 
-  console.log("from whole state ", users);
+  const sortUsersByMostRecentStatus = users.sort((a, b) => {
+    let dateTwo = Date.parse(a.statusDate);
+    let dateOne = Date.parse(b.statusDate);
+    return dateOne - dateTwo;
+  });
 
   return (
     <div>
@@ -29,10 +33,10 @@ const Home = () => {
       {status === "idle" ? (
         <RecentPostingUl>
           {users &&
-            users.slice(0, 3).map((user) => {
+            sortUsersByMostRecentStatus.slice(0, 3).map((user) => {
               console.log("from map", user);
               return (
-                <RecentPostLi key={`recentPost-${user._id}`}>
+                <RecentPostLi key={`user-${user._id}`}>
                   <RecentPostings user={user} />
                 </RecentPostLi>
               );

@@ -4,27 +4,20 @@ require("dotenv").config();
 var assert = require("assert");
 const { v4: uuidv4 } = require("uuid");
 const { MONGO_URI } = process.env;
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 };
 
-// const addUser = async (req, res) => {
-//   const client = await MongoClient(MONGO_URI, options);
-//   await client.connect();
-//   const db = client.db("WithinMeans");
-//   const result = await db.collection("users").insertOne(req.body);
-//   assert.equal(1, result.insertedCount);
-//   res.status(201).json({ status: 201, data: req.body });
-//   client.close();
-// };
-
 const addUser = async (req, res) => {
   const { _id, name, email } = req.body;
   const client = await MongoClient(MONGO_URI, options);
   await client.connect();
   const db = client.db("WithinMeans");
+  const chosenPassword = await bcrypt.hash(req.body.password, saltRounds);
   const checkIfUserExists = await db
     .collection("users")
     .findOne({ email: email });
@@ -34,24 +27,69 @@ const addUser = async (req, res) => {
       message: `${email} is already in use. Please sign in.`,
     });
   } else {
-    const result = await db.collection("users").insertOne({
+    const newUser = await db.collection("users").insertOne({
       _id: uuidv4(),
       name: name,
       email: email,
+      password: chosenPassword,
       title: null,
       skills: null,
       avatar: null,
       website: null,
       bio: null,
       status: null,
+      statusDate: null,
       saved: null,
       swaps: null,
       rating: null,
-      messages: null,
+      inbox: null,
     });
-    assert.equal(1, result.insertedCount);
-    res.status(201).json({ status: 201, data: req.body });
+    assert.strictEqual(1, newUser.insertedCount);
+    res
+      .status(201)
+      .json({ status: 201, message: `welcome ${name}`, data: req.body });
     client.close();
+  }
+};
+
+const authenticateUser = async (req, res) => {
+  const client = await MongoClient(MONGO_URI, options);
+  try {
+    await client.connect();
+    const db = client.db("WithinMeans");
+    const user = await db
+      .collection("users")
+      .findOne({ email: req.body.email });
+    console.log(user);
+    if (user) {
+      const checkForMatchingPw = await bcrypt.compare(
+        req.body.password,
+        user.password
+      );
+      if (checkForMatchingPw) {
+        res.status(200).json({
+          status: 200,
+          message: "User Authentication Successful",
+          data: user,
+        });
+      } else {
+        res.status(401).json({
+          status: 401,
+          message: "Incorrect Email or Password",
+          data: user,
+        });
+      }
+    } else {
+      res.status(401).json({
+        status: 401,
+        message: "Incorrect Email or Password",
+        data: user,
+      });
+    }
+    client.close();
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("internal server error :(");
   }
 };
 
@@ -75,7 +113,109 @@ const getUsers = async (req, res) => {
   }
 };
 
+const getSingleUser = async (req, res) => {
+  const { userId } = req.params;
+  const client = await MongoClient(MONGO_URI, options);
+  await client.connect();
+  const db = client.db("WithinMeans");
+  const user = await db.collection("users").findOne({ _id: userId });
+  if (user) {
+    res
+      .status(200)
+      .json({ status: 200, message: `user ${userId} found`, data: user });
+  } else {
+    res.status(404).json({ status: 404, message: `user ${userId} not found` });
+  }
+
+  client.close();
+};
+
+const updateStatus = async (req, res) => {
+  const { userId } = req.params;
+  const { status } = req.body;
+  const client = await MongoClient(MONGO_URI, options);
+  await client.connect();
+  const db = client.db("WithinMeans");
+  let updatedStatus = await db.collection("users").findOneAndUpdate(
+    { _id: userId },
+    {
+      $set: {
+        status: status,
+        statusDate: new Date(),
+      },
+    }
+  );
+  res
+    .status(200)
+    .json({ status: 200, message: `status updated`, data: updatedStatus });
+
+  client.close();
+};
+
+const editProfile = async (req, res) => {
+  const { userId } = req.params;
+  const { title, name, email, skills, avatar, website, bio } = req.body;
+  const client = await MongoClient(MONGO_URI, options);
+  await client.connect();
+  const db = client.db("WithinMeans");
+  const chosenPassword = await bcrypt.hash(req.body.password, saltRounds);
+  let updatedProfile = await db.collection("users").findOneAndUpdate(
+    { _id: userId },
+    {
+      $set: {
+        name: name,
+        email: email,
+        password: chosenPassword,
+        title: title,
+        skills: skills,
+        avatar: avatar,
+        website: website,
+        bio: bio,
+      },
+    }
+  );
+  res
+    .status(200)
+    .json({ status: 200, message: `profile update`, data: updatedProfile });
+
+  client.close();
+};
+
+// const saveToFavorites = async (req, res) => {
+//   try {
+//     const { saved } = req.body;
+//      const {userId} = req.params;
+//     const favoriteUser = data.users[req.params._id];
+//     const client = await MongoClient(MONGO_URI, options);
+//     await client.connect();
+//     const db = client.db("WithinMeans");
+
+//     if (!req.body) {
+//       res.status(404).json({
+//         status: 404,
+//         message: "an error occured, could not add to favorites",
+//       });
+//     }
+
+//     res.status(200).json({
+//       status: 200,
+//       message: "added to favorites",
+//       data: updatedRecord,
+//     });
+//     client.close();
+//   } catch (error) {
+//     res.status(404).json({
+//       status: 404,
+//       message: "an error occured, could not add to favorites",
+//     });
+//   }
+// };
+
 module.exports = {
   addUser,
   getUsers,
+  authenticateUser,
+  getSingleUser,
+  updateStatus,
+  editProfile,
 };

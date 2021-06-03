@@ -8,7 +8,8 @@ const Search = () => {
     <div>
       <Container>
         <p>
-          Break all barriers that are stopping you from growing your business.
+          Break all the barriers that are stopping you from growing your
+          business.
         </p>
         <Heading>Trade Talent on Within Means</Heading>
       </Container>
@@ -86,7 +87,7 @@ const Suggested = styled.div`
 `;
 
 const SuggestedBtn = styled.button`
-  border: 2px solid ${colors.darkPurple};
+  border: 3px solid ${colors.darkPurple};
   border-radius: 40px;
   padding: 0px 10px;
   margin: 10px;

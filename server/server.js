@@ -4,7 +4,14 @@ const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 
-const { addUser, getUsers } = require("./handlers");
+const {
+  addUser,
+  getUsers,
+  authenticateUser,
+  getSingleUser,
+  updateStatus,
+  editProfile,
+} = require("./handlers");
 
 // // const users = require("./data/users.json");
 
@@ -25,6 +32,11 @@ app.get("/hello", (req, res) => {
 
 app.post("/api/register", addUser);
 app.get("/api/users", getUsers);
+// app.patch("/api/:userId/users", saveToFavorites);
+app.post("/api/login", authenticateUser);
+app.get("/api/users/:userId", getSingleUser);
+app.patch("/api/users/:userId/update-status", updateStatus);
+app.patch("/api/users/:userId/edit", editProfile);
 
 // //---------------
 // //endpoints ^

@@ -9,7 +9,7 @@ export const colors = {
 
 const GlobalStyles = createGlobalStyle`
   body {
-    margin: 0 auto;
+    margin: 0;
     padding: 0;
     background: rgb(237, 238, 255); //temporary
     /* font-family: 'Open Sans', sans-serif; */
