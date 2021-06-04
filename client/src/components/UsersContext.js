@@ -5,9 +5,11 @@ export const UsersContext = createContext();
 export const UsersProvider = ({ children }) => {
   //all the users
   const [users, setUsers] = useState([]);
+  const [userStatus, setUserStatus] = useState("loading");
   //matched users based on the query
   const [matchedUsers, setMatchedUsers] = useState([]);
-  const [status, setStatus] = useState("loading");
+
+  const [queryStatus, setQueryStatus] = useState("loading");
 
   useEffect(() => {
     fetch("/api/users")
@@ -15,7 +17,7 @@ export const UsersProvider = ({ children }) => {
       .then((json) => {
         // console.log("success", data);
         setUsers(json.data);
-        setStatus("idle");
+        setUserStatus("idle");
       });
   }, []);
 
@@ -26,8 +28,10 @@ export const UsersProvider = ({ children }) => {
         setUsers,
         matchedUsers,
         setMatchedUsers,
-        status,
-        setStatus,
+        userStatus,
+        setUserStatus,
+        queryStatus,
+        setQueryStatus,
       }}
     >
       {children}

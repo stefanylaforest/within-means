@@ -1,32 +1,36 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { colors } from "../GlobalStyles";
-import { HiOutlineHeart, HiHeart } from "react-icons/hi";
+import { HiOutlineHeart } from "react-icons/hi";
 
 const UserCard = ({ user }) => {
+  let userId = user._id;
   return (
-    <Wrapper>
-      <LikeContainer>
-        <Heart />
-      </LikeContainer>
-      <Avatar src={user.avatar} />
-      {user.status ? (
-        <h3>{user.status.slice(0, 62)}...</h3>
-      ) : (
-        <Status>I need help with my social media</Status>
-      )}
-      <OfferedSkills>Skills I Can Offer:</OfferedSkills>
-      <ul>
-        {user.skills.map((skill, i) => {
-          return (
-            <SkillLi key={`id-${(skill, i)}`}>
-              {skill.charAt(0).toUpperCase() + skill.slice(1)}
-            </SkillLi>
-          );
-        })}
-      </ul>
-      <ViewBtn>View Listing</ViewBtn>
-    </Wrapper>
+    <Link exact to={`/users/${userId}`}>
+      <Wrapper>
+        <LikeContainer>
+          <Heart />
+        </LikeContainer>
+        <Avatar src={user.avatar} />
+        {user.status ? (
+          <h3>{user.status.slice(0, 62)}...</h3>
+        ) : (
+          <Status>I need help with my social media</Status>
+        )}
+        <OfferedSkills>Skills I Can Offer:</OfferedSkills>
+        <ul>
+          {user.skills.map((skill, i) => {
+            return (
+              <SkillLi key={`id-${(skill, i)}`}>
+                {skill.charAt(0).toUpperCase() + skill.slice(1)}
+              </SkillLi>
+            );
+          })}
+        </ul>
+        <ViewBtn>View Listing</ViewBtn>
+      </Wrapper>
+    </Link>
   );
 };
 

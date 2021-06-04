@@ -28,6 +28,7 @@ const GlobalStyles = createGlobalStyle`
     /* font-family: 'Open Sans', sans-serif; */
     font-family: 'Poppins', sans-serif;
     color: #151627;
+
   }
 
   input {
@@ -39,6 +40,12 @@ const GlobalStyles = createGlobalStyle`
       list-style: none;
       padding: 0;
       color: #151627;
+  }
+
+
+  a {
+    text-decoration: none;
+    color: ${colors.navy}
   }
 `;
 

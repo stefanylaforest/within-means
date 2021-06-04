@@ -2,15 +2,18 @@ import React from "react";
 import styled from "styled-components";
 import WithinMeansLogo from "../assets/WithinMeansLogo";
 import { colors } from "../GlobalStyles";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <LogoWrapper>
-      <h1>
-        <LogoSpan>
-          <WithinMeansLogo /> Within Means
-        </LogoSpan>
-      </h1>
+      <Link to="/">
+        <h1>
+          <LogoSpan>
+            <WithinMeansLogo /> Within Means
+          </LogoSpan>
+        </h1>
+      </Link>
       <SignUp>Start Swapping</SignUp>
     </LogoWrapper>
   );

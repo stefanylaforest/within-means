@@ -3,11 +3,11 @@ import Header from "./Header";
 import Search from "./Search";
 import UserCard from "./UserCard";
 import styled from "styled-components";
-import RecentPostLoading from "../assets/RecentPostLoading";
+import RecentPostLoading from "./Loaders/RecentPostLoading";
 import { UsersContext } from "./UsersContext";
 
 const Home = () => {
-  const { users, status } = useContext(UsersContext);
+  const { users, userStatus } = useContext(UsersContext);
 
   const sortUsersByMostRecentStatus = users.sort((a, b) => {
     let dateTwo = Date.parse(a.statusDate);
@@ -17,10 +17,9 @@ const Home = () => {
 
   return (
     <div>
-      <Header />
       <Search users={users} />
       <HeaderRecentPost>Recent Postings</HeaderRecentPost>
-      {status === "idle" ? (
+      {userStatus === "idle" ? (
         <RecentPostingUl>
           {users &&
             sortUsersByMostRecentStatus.slice(0, 3).map((user) => {

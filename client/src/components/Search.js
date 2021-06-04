@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
 import { colors } from "../GlobalStyles";
-import { BsSearch } from "react-icons/bs";
+import { ImSearch } from "react-icons/im";
 import { UsersContext } from "./UsersContext";
 import { useHistory, useParams } from "react-router-dom";
 
@@ -31,7 +31,7 @@ const Search = () => {
     });
     const matchedFilter = matches.filter((match) => match !== undefined);
     setMatchedUsers(matchedFilter);
-    history.push(`/search-results`);
+    history.push(`/search/${query}`);
   };
 
   // console.log(matchedUsers);
@@ -95,7 +95,7 @@ const InputGroup = styled.div`
   max-width: 584px;
 `;
 
-const StyledSearchIcon = styled(BsSearch)`
+const StyledSearchIcon = styled(ImSearch)`
   color: ${colors.darkPurple};
   font-size: 20px;
   margin: 0px 10px 0px 20px;
