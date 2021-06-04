@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { colors } from "../GlobalStyles";
 import { HiOutlineHeart, HiHeart } from "react-icons/hi";
 
-const RecentPostings = ({ user }) => {
+const UserCard = ({ user }) => {
   return (
     <Wrapper>
       <LikeContainer>
@@ -96,4 +96,4 @@ const ViewBtn = styled.button`
 
 const SkillLi = styled.li``;
 
-export default RecentPostings;
+export default UserCard;

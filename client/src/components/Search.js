@@ -3,11 +3,13 @@ import styled from "styled-components";
 import { colors } from "../GlobalStyles";
 import { BsSearch } from "react-icons/bs";
 import { UsersContext } from "./UsersContext";
+import { useHistory, useParams } from "react-router-dom";
 
 const Search = () => {
-  const { users } = useContext(UsersContext);
+  const { users, matchedUsers, setMatchedUsers } = useContext(UsersContext);
   const [query, setQuery] = useState("");
-  const [matchedUsers, setMatchedUsers] = useState([]);
+  const history = useHistory();
+  // let { userQuery } = useParams();
 
   const queryHandler = (e) => {
     e.preventDefault();
@@ -29,6 +31,7 @@ const Search = () => {
     });
     const matchedFilter = matches.filter((match) => match !== undefined);
     setMatchedUsers(matchedFilter);
+    history.push(`/search-results`);
   };
 
   // console.log(matchedUsers);

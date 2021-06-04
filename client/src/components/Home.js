@@ -1,23 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Header from "./Header";
 import Search from "./Search";
-import RecentPostings from "./RecentPostings";
+import UserCard from "./UserCard";
 import styled from "styled-components";
 import RecentPostLoading from "../assets/RecentPostLoading";
+import { UsersContext } from "./UsersContext";
 
 const Home = () => {
-  const [users, setUsers] = useState([]);
-  const [status, setStatus] = useState("loading");
-
-  useEffect(() => {
-    fetch("/api/users")
-      .then((res) => res.json())
-      .then((json) => {
-        // console.log("success", data);
-        setUsers(json.data);
-        setStatus("idle");
-      });
-  }, []);
+  const { users, status } = useContext(UsersContext);
 
   const sortUsersByMostRecentStatus = users.sort((a, b) => {
     let dateTwo = Date.parse(a.statusDate);
@@ -37,7 +27,7 @@ const Home = () => {
               console.log("from map", user);
               return (
                 <RecentPostLi key={`user-${user._id}`}>
-                  <RecentPostings user={user} />
+                  <UserCard user={user} />
                 </RecentPostLi>
               );
             })}
