@@ -18,7 +18,8 @@ const Search = () => {
     history.push(`/search/${query}`);
   };
 
-  // console.log(matchedUsers);
+  console.log("query", query);
+
   return (
     <div>
       <Container>
@@ -45,9 +46,33 @@ const Search = () => {
         </InputGroup>
         <Suggested>
           <p>Popular: </p>
-          <SuggestedBtn>photo editing</SuggestedBtn>
-          <SuggestedBtn>copy writing</SuggestedBtn>
-          <SuggestedBtn>digital marketing</SuggestedBtn>
+          <SuggestedBtn
+            onClick={(e) => {
+              e.preventDefault();
+              setQuery("photo editing");
+              history.push(`/search/photo%20editing`);
+            }}
+          >
+            photo editing
+          </SuggestedBtn>
+          <SuggestedBtn
+            onClick={(e) => {
+              e.preventDefault();
+              setQuery("copy writing");
+              history.push(`/search/copy%20writing`);
+            }}
+          >
+            copy writing
+          </SuggestedBtn>
+          <SuggestedBtn
+            onClick={(e) => {
+              e.preventDefault();
+              setQuery("digital marketing");
+              history.push(`/search/digital%20marketing`);
+            }}
+          >
+            digital marketing
+          </SuggestedBtn>
         </Suggested>
       </Form>
     </div>
