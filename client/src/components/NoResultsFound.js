@@ -5,7 +5,7 @@ import styled from "styled-components";
 import Loading from "./Loaders/Loading";
 import NoResultsSvg from "../assets/NoResultsFoundSvg";
 
-const NoResultsFound = ({ user }) => {
+const NoResultsFound = () => {
   const { users, userStatus } = useContext(UsersContext);
   return (
     <div>
