@@ -2,25 +2,69 @@ import React, { useState, useEffect, useContext } from "react";
 import { UsersContext } from "./UsersContext";
 import UserCard from "./UserCard";
 import styled from "styled-components";
+import { SearchContext } from "./SearchContext";
+import { useParams } from "react-router-dom";
+import Loading from "./Loaders/Loading";
+import NoResultsFound from "./NoResultsFound";
 
 const SearchResults = () => {
-  const { matchedUsers, setMatchedUsers } = useContext(UsersContext);
-  console.log(matchedUsers);
+  const { users } = useContext(UsersContext);
+  const {
+    query,
+    setQuery,
+    matchedUsers,
+    setMatchedUsers,
+    matchedCount,
+    setMatchedCount,
+    queryStatus,
+    setQueryStatus,
+  } = useContext(SearchContext);
 
-  return (
-    <div>
-      <p>Search results for </p>
-      <SearchResultsUl>
-        {matchedUsers.map((user) => {
-          return (
-            <Li>
-              <UserCard user={user} />
-            </Li>
-          );
-        })}
-      </SearchResultsUl>
-    </div>
-  );
+  let { searchQuery } = useParams();
+
+  useEffect(() => {
+    setQuery(searchQuery);
+    const matches = users.map((user) => {
+      let matchSkill = false;
+      user.skills.forEach((userSkill) => {
+        if (userSkill.toLowerCase().includes(query.toLowerCase())) {
+          matchSkill = true;
+        } else {
+          matchSkill = false;
+        }
+      });
+      if (
+        matchSkill === true ||
+        user.bio.toLowerCase().includes(query.toLowerCase())
+      ) {
+        return user;
+      }
+    });
+    const matchedFilter = matches.filter((match) => match !== undefined);
+    setMatchedUsers(matchedFilter);
+    setQueryStatus("idle");
+  }, []);
+
+  // console.log(matchedUsers);
+
+  if (matchedUsers.length === 0 && queryStatus === "idle") {
+    return <NoResultsFound />;
+  } else {
+    return (
+      <div>
+        <p>Search results for "{query}"</p>
+        <SearchResultsUl>
+          {matchedUsers.map((user) => {
+            return (
+              <Li>
+                <UserCard user={user} />
+              </Li>
+            );
+          })}
+        </SearchResultsUl>
+      </div>
+    );
+  }
 };
 
 const SearchResultsUl = styled.ul`
@@ -28,6 +72,7 @@ const SearchResultsUl = styled.ul`
   flex-direction: row;
   justify-content: center;
   margin-top: 40px;
+  flex-wrap: wrap;
 `;
 
 const Li = styled.li`

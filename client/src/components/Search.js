@@ -3,34 +3,18 @@ import styled from "styled-components";
 import { colors } from "../GlobalStyles";
 import { ImSearch } from "react-icons/im";
 import { UsersContext } from "./UsersContext";
+import { SearchContext } from "./SearchContext";
 import { useHistory, useParams } from "react-router-dom";
 
 const Search = () => {
-  const { users, matchedUsers, setMatchedUsers } = useContext(UsersContext);
-  const [query, setQuery] = useState("");
+  const { users } = useContext(UsersContext);
+  const { query, setQuery, matchedUsers, setMatchedUsers } =
+    useContext(SearchContext);
   const history = useHistory();
   // let { userQuery } = useParams();
 
   const queryHandler = (e) => {
     e.preventDefault();
-    const matches = users.map((user) => {
-      let matchSkill = false;
-      user.skills.forEach((userSkill) => {
-        if (userSkill.toLowerCase().includes(query.toLowerCase())) {
-          matchSkill = true;
-        } else {
-          matchSkill = false;
-        }
-      });
-      if (
-        matchSkill === true ||
-        user.bio.toLowerCase().includes(query.toLowerCase())
-      ) {
-        return user;
-      }
-    });
-    const matchedFilter = matches.filter((match) => match !== undefined);
-    setMatchedUsers(matchedFilter);
     history.push(`/search/${query}`);
   };
 
@@ -39,8 +23,7 @@ const Search = () => {
     <div>
       <Container>
         <p>
-          Break all the barriers that are stopping you from growing your
-          business.
+          Break the barriers that are stopping you from growing your business.
         </p>
         <Heading>Trade Talent on Within Means</Heading>
       </Container>
@@ -146,3 +129,21 @@ const SuggestedBtn = styled.button`
 `;
 
 export default Search;
+// const matches = users.map((user) => {
+//   let matchSkill = false;
+//   user.skills.forEach((userSkill) => {
+//     if (userSkill.toLowerCase().includes(query.toLowerCase())) {
+//       matchSkill = true;
+//     } else {
+//       matchSkill = false;
+//     }
+//   });
+//   if (
+//     matchSkill === true ||
+//     user.bio.toLowerCase().includes(query.toLowerCase())
+//   ) {
+//     return user;
+//   }
+// });
+// const matchedFilter = matches.filter((match) => match !== undefined);
+// setMatchedUsers(matchedFilter);

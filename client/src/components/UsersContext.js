@@ -7,9 +7,6 @@ export const UsersProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
   const [userStatus, setUserStatus] = useState("loading");
   //matched users based on the query
-  const [matchedUsers, setMatchedUsers] = useState([]);
-
-  const [queryStatus, setQueryStatus] = useState("loading");
 
   useEffect(() => {
     fetch("/api/users")
@@ -26,12 +23,8 @@ export const UsersProvider = ({ children }) => {
       value={{
         users,
         setUsers,
-        matchedUsers,
-        setMatchedUsers,
         userStatus,
         setUserStatus,
-        queryStatus,
-        setQueryStatus,
       }}
     >
       {children}
