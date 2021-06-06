@@ -1,19 +1,52 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import WithinMeansLogo from "../assets/WithinMeansLogo";
 import { colors } from "../GlobalStyles";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
+import { ImSearch, ImArrowRight2 } from "react-icons/im";
+import { SearchContext } from "./SearchContext";
 
 const Header = () => {
+  const [newQuery, setNewQuery] = useState("");
+  const { query, setQuery } = useContext(SearchContext);
+  const location = useLocation();
+  const history = useHistory();
+
+  const headerQueryHandler = (e) => {
+    e.preventDefault();
+    setQuery(newQuery);
+    if (location.pathname !== "/search/:searchQuery") {
+      history.push(`/search/${newQuery}`);
+    }
+  };
+
   return (
     <LogoWrapper>
       <Link to="/">
         <h1>
           <LogoSpan>
-            <WithinMeansLogo /> Within Means
+            <WithinMeansLogo />{" "}
+            {location.pathname === "/" && <span>Within Means</span>}
           </LogoSpan>
         </h1>
       </Link>
+      {location.pathname !== "/" && (
+        <InputDiv>
+          <StyledSearchIcon />
+          <SearchBar
+            type="text"
+            placeholder="search services"
+            onChange={(e) => setNewQuery(e.target.value)}
+          />
+          <SearchBtn
+            onClick={(e) => {
+              headerQueryHandler(e);
+            }}
+          >
+            <ImArrowRight2 />
+          </SearchBtn>
+        </InputDiv>
+      )}
       <SignUp>Start Swapping</SignUp>
     </LogoWrapper>
   );
@@ -23,6 +56,7 @@ const LogoWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   margin: 10px;
 `;
 
@@ -34,8 +68,9 @@ const LogoSpan = styled.div`
 `;
 
 const SignUp = styled.button`
-  margin: 20px;
+  margin: 0px 20px;
   border-radius: 6px;
+  padding: 15px 10px;
   border: none;
   cursor: pointer;
   background-color: ${colors.darkPurple};
@@ -53,6 +88,46 @@ const SignUp = styled.button`
     );
     color: white;
   }
+`;
+
+const InputDiv = styled.div`
+  margin: 0 auto;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 40px;
+  background: white;
+  width: 400px;
+`;
+
+const StyledSearchIcon = styled(ImSearch)`
+  color: ${colors.darkPurple};
+  font-size: 20px;
+  margin: 0px 10px 0px 20px;
+`;
+
+const SearchBar = styled.input`
+  margin: 0 auto;
+  width: 90%;
+  border: none;
+  font-size: 14px;
+  &:focus {
+    outline: none;
+  }
+`;
+
+const SearchBtn = styled.button`
+  height: 100%;
+  border: none;
+  color: white;
+  padding-right: 15px;
+  font-size: inherit;
+  cursor: pointer;
+  background-color: transparent;
+  color: ${colors.darkPurple};
+  display: flex;
+  align-items: center;
 `;
 
 export default Header;

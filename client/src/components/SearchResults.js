@@ -21,6 +21,7 @@ const SearchResults = () => {
   } = useContext(SearchContext);
 
   let { searchQuery } = useParams();
+  console.log("query", query);
 
   useEffect(() => {
     setQuery(searchQuery);
@@ -43,7 +44,11 @@ const SearchResults = () => {
     const matchedFilter = matches.filter((match) => match !== undefined);
     setMatchedUsers(matchedFilter);
     setQueryStatus("idle");
-  }, []);
+
+    if (query !== searchQuery) {
+      setQuery(query);
+    }
+  }, [query]);
 
   // console.log(matchedUsers);
 

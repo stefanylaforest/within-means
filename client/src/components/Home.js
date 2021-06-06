@@ -5,9 +5,11 @@ import UserCard from "./UserCard";
 import styled from "styled-components";
 import RecentPostLoading from "./Loaders/RecentPostLoading";
 import { UsersContext } from "./UsersContext";
+import { SearchContext } from "./SearchContext";
 
 const Home = () => {
   const { users, userStatus } = useContext(UsersContext);
+  const { query, setQuery } = useContext(SearchContext);
 
   const sortUsersByMostRecentStatus = users.sort((a, b) => {
     let dateTwo = Date.parse(a.statusDate);

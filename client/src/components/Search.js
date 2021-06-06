@@ -11,11 +11,12 @@ const Search = () => {
   const { query, setQuery, matchedUsers, setMatchedUsers } =
     useContext(SearchContext);
   const history = useHistory();
-  // let { userQuery } = useParams();
 
-  const queryHandler = (e) => {
+  const mainQueryHandler = (e) => {
     e.preventDefault();
-    history.push(`/search/${query}`);
+    if (query) {
+      history.push(`/search/${query}`);
+    }
   };
 
   console.log("query", query);
@@ -38,7 +39,7 @@ const Search = () => {
           />
           <SearchBtn
             onClick={(e) => {
-              queryHandler(e);
+              mainQueryHandler(e);
             }}
           >
             Search
