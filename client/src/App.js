@@ -5,6 +5,7 @@ import SearchResults from "./components/SearchResults";
 import Header from "./components/Header";
 import UserDetails from "./components/UserDetails";
 import Login from "./components/Login";
+import Signup from "./components/Signup";
 
 function App() {
   const location = useLocation();
@@ -17,6 +18,9 @@ function App() {
         </Route>
         <Route exact path="/login">
           <Login />
+        </Route>
+        <Route exact path="/register">
+          <Signup />
         </Route>
         <Route exact path="/users/:userId">
           <UserDetails />
