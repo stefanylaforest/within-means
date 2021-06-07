@@ -117,9 +117,10 @@ const authenticateUser = async (req, res) => {
       .findOne({ email: req.body.email });
     console.log(user);
 
-    if (user === null) {
-      return res.status(401).json({
-        status: 401,
+    if (!user) {
+      console.log(res.status);
+      return res.status(404).json({
+        status: 404,
         message: "no account to this email",
         data: user,
       });

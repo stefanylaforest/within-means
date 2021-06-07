@@ -5,17 +5,20 @@ import { BrowserRouter } from "react-router-dom";
 import GlobalStyles from "./GlobalStyles";
 import { UsersProvider } from "./components/UsersContext";
 import { SearchProvider } from "./components/SearchContext";
+import { LoggedInUserProvider } from "./components/LoggedInUserContext";
 
 ReactDOM.render(
-  <SearchProvider>
-    <UsersProvider>
-      <React.StrictMode>
-        <GlobalStyles />
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </React.StrictMode>
-    </UsersProvider>
-  </SearchProvider>,
+  <LoggedInUserProvider>
+    <SearchProvider>
+      <UsersProvider>
+        <React.StrictMode>
+          <GlobalStyles />
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </React.StrictMode>
+      </UsersProvider>
+    </SearchProvider>
+  </LoggedInUserProvider>,
   document.getElementById("root")
 );

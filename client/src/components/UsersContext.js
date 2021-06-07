@@ -12,7 +12,6 @@ export const UsersProvider = ({ children }) => {
     fetch("/api/users")
       .then((res) => res.json())
       .then((json) => {
-        // console.log("success", data);
         setUsers(json.data);
         setUserStatus("idle");
       });
