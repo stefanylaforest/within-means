@@ -4,11 +4,15 @@ import WithinMeansLogo from "../assets/WithinMeansLogo";
 import { colors } from "../GlobalStyles";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import { ImSearch, ImArrowRight2 } from "react-icons/im";
+import { FaUserCircle } from "react-icons/fa";
 import { SearchContext } from "./SearchContext";
+import { LoggedInUserContext } from "./LoggedInUserContext";
+import DropdownMenu from "../components/HeaderComponents/DropdownMenu";
 
 const Header = () => {
   const [newQuery, setNewQuery] = useState("");
   const { query, setQuery } = useContext(SearchContext);
+  const { currentLoggedInUser, loggedIn } = useContext(LoggedInUserContext);
   const location = useLocation();
   const history = useHistory();
 
@@ -19,6 +23,8 @@ const Header = () => {
       history.push(`/search/${newQuery}`);
     }
   };
+
+  console.log(loggedIn);
 
   return (
     <LogoWrapper>
@@ -51,7 +57,41 @@ const Header = () => {
           </SearchBtn>
         </InputDiv>
       )}
-      {location.pathname !== "/login" && <SignUp>Start Swapping</SignUp>}
+      {location.pathname !== "/login" && !loggedIn && (
+        <SignUp>Start Swapping</SignUp>
+      )}
+      {location.pathname !== "/login" &&
+        location.pathname !== "/signup" &&
+        loggedIn && (
+          <>
+            <LoggedInDisplay>
+              <p>Hi, {currentLoggedInUser.name}</p>
+              {currentLoggedInUser.avatar !== null ? (
+                <div>
+                  <Wrapper>
+                    <Hover>
+                      <Profile src={currentLoggedInUser.avatar} />
+                      <DropdownBox>
+                        <DropdownMenu />
+                      </DropdownBox>
+                    </Hover>
+                  </Wrapper>
+                </div>
+              ) : (
+                <div>
+                  <Wrapper>
+                    <Hover>
+                      <StyledFaUserCircle />
+                      <DropdownBox>
+                        <DropdownMenu />
+                      </DropdownBox>
+                    </Hover>
+                  </Wrapper>
+                </div>
+              )}
+            </LoggedInDisplay>
+          </>
+        )}
     </LogoWrapper>
   );
 };
@@ -92,6 +132,58 @@ const SignUp = styled.button`
     );
     color: white;
   }
+`;
+
+const Wrapper = styled.div`
+  margin: 0px;
+  position: relative;
+`;
+
+const LoggedInDisplay = styled.div`
+  display: flex;
+  flex-direction: row;
+  /* margin-right: 60px; */
+`;
+
+const DropdownBox = styled.div`
+  margin-top: -5px;
+  margin-right: 100px;
+  background-color: white;
+  border-radius: 25px;
+  width: 100%;
+  position: absolute;
+  left: -55px;
+  display: none;
+  z-index: 1;
+  padding: 10px 20px;
+`;
+
+const Hover = styled.div`
+  &:hover {
+    ${DropdownBox} {
+      display: block;
+    }
+  }
+`;
+
+const Profile = styled.img`
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  margin: 0px 20px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  z-index: 1;
+`;
+
+const StyledFaUserCircle = styled(FaUserCircle)`
+  font-size: 50px;
+  fill: ${colors.mediumPurple};
+  cursor: pointer;
+  margin: 0px 20px;
+  border-radius: 50%;
+  z-index: 1;
 `;
 
 const InputDiv = styled.div`

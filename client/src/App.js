@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import UserDetails from "./components/UserDetails";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import EditProfile from "./components/EditProfile";
 
 function App() {
   const location = useLocation();
@@ -24,6 +25,9 @@ function App() {
         </Route>
         <Route exact path="/users/:userId">
           <UserDetails />
+        </Route>
+        <Route exact path="/users/:userId/edit">
+          <EditProfile />
         </Route>
         <Route exact path="/search/:searchQuery">
           <SearchResults />

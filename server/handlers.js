@@ -211,24 +211,16 @@ const updateStatus = async (req, res) => {
 
 const editProfile = async (req, res) => {
   const { userId } = req.params;
-  const { title, name, email, skills, avatar, website, bio } = req.body;
   const client = await MongoClient(MONGO_URI, options);
   await client.connect();
   const db = client.db("WithinMeans");
-  const chosenPassword = await bcrypt.hash(req.body.password, saltRounds);
+  // const chosenPassword = await bcrypt.hash(req.body.password, saltRounds);
+  const updateRequest = req.body;
+
   let updatedProfile = await db.collection("users").findOneAndUpdate(
     { _id: userId },
     {
-      $set: {
-        name: name,
-        email: email,
-        password: chosenPassword,
-        title: title,
-        skills: skills,
-        avatar: avatar,
-        website: website,
-        bio: bio,
-      },
+      $set: updateRequest,
     }
   );
   res

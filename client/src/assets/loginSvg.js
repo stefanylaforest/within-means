@@ -1,11 +1,12 @@
 import React from "react";
 
-const loginsvg = () => {
+const loginSvg = () => {
   return (
     <div>
       <svg
         id="ff866e24-ed1c-4c82-964a-ad574d8b702d"
         data-name="Layer 1"
+        xmlns="http://www.w3.org/2000/svg"
         width="500"
         height="500"
         viewBox="0 0 930 609.87353"
@@ -264,4 +265,4 @@ const loginsvg = () => {
   );
 };
 
-export default loginsvg;
+export default loginSvg;

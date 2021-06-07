@@ -6,8 +6,10 @@ import LoginSvg from "../assets/loginSvg";
 import { LoggedInUserContext } from "./LoggedInUserContext";
 import { useHistory } from "react-router-dom";
 import { colors } from "../GlobalStyles";
+import Loading from "./Loaders/Loading";
 
 const Login = () => {
+  const [loadingComponent, setLoadingComponent] = useState(false);
   const {
     currentLoggedInUser,
     setCurrentLoggedInUser,
@@ -70,6 +72,7 @@ const Login = () => {
       .then((res) => res.json())
       .then((json) => {
         if (json.status === 200) {
+          setLoadingComponent(true);
           setCurrentLoggedInUser(json.data);
           setLoggedIn(true);
           history.push(`/`);
@@ -95,77 +98,79 @@ const Login = () => {
   console.log("errMsg", errMsg);
   console.log("logged in", loggedIn, "user:", currentLoggedInUser);
 
-  console.log(process.env.REACT_APP_GOOGLE_CLIENT_ID);
-
-  return (
-    <Container>
-      <LogInModal>
-        <h2>Log In</h2>
-        {errMsg !== "" && errMsg !== "No account found" ? (
-          <ErrorMessage>{errMsg}</ErrorMessage>
-        ) : errMsg !== "" && errMsg === "No account found" ? (
-          <ErrorMessage>
-            No account found with this email. Please sign up
-          </ErrorMessage>
-        ) : (
-          ""
-        )}
-        <Label for="password">Email</Label>
-        <Input
-          type="email"
-          id="email"
-          placeholder="email@email.com"
-          onChange={(e) => {
-            setEmail(e.target.value);
-            setErrMsg("");
-          }}
-        />
-        <Label for="password">Password</Label>
-        <Input
-          type="password"
-          placeholder="Your Password"
-          id="password"
-          onChange={(e) => {
-            setPassword(e.target.value);
-            setErrMsg("");
-          }}
-        />
-        <LoginBtn type="submit" onClick={regularLogInHandler}>
-          Log In
-        </LoginBtn>
-        <Seperator>or</Seperator>
-        <GoogleLogin
-          clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-          // render={(renderProps) => (
-          //   <button onClick={renderProps.onClick} disabled={renderProps.disabled}>
-          //     Login with Google
-          //   </button>
-          // )}
-          buttonText="Continue with Google"
-          onSuccess={handleLoginSuccess}
-          onFailure={handleLoginFailure}
-          cookiePolicy={"single_host_origin"}
-        />
-        <SignUp>
-          Not a member yet?{" "}
-          <StyledLink exact to="/register">
-            Sign up
-          </StyledLink>
-        </SignUp>
-      </LogInModal>
-      <GraphicsDiv>
-        <h1>
-          Connect with real professionals and make your entrepreneurial journey
-          less lonely
-        </h1>
-        <p>
-          Within Means' platform allows you to connect with like-minded people
-          and trade expertise for free! No money exchanged ever.
-        </p>
-        <LoginSvg />
-      </GraphicsDiv>
-    </Container>
-  );
+  if (loadingComponent) {
+    return <Loading />;
+  } else {
+    return (
+      <Container>
+        <LogInModal>
+          <h2>Log In</h2>
+          {errMsg !== "" && errMsg !== "No account found" ? (
+            <ErrorMessage>{errMsg}</ErrorMessage>
+          ) : errMsg !== "" && errMsg === "No account found" ? (
+            <ErrorMessage>
+              No account found with this email. Please sign up
+            </ErrorMessage>
+          ) : (
+            ""
+          )}
+          <Label for="password">Email</Label>
+          <Input
+            type="email"
+            id="email"
+            placeholder="email@email.com"
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setErrMsg("");
+            }}
+          />
+          <Label for="password">Password</Label>
+          <Input
+            type="password"
+            placeholder="Your Password"
+            id="password"
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setErrMsg("");
+            }}
+          />
+          <LoginBtn type="submit" onClick={regularLogInHandler}>
+            Log In
+          </LoginBtn>
+          <Seperator>or</Seperator>
+          <GoogleLogin
+            clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+            // render={(renderProps) => (
+            //   <button onClick={renderProps.onClick} disabled={renderProps.disabled}>
+            //     Login with Google
+            //   </button>
+            // )}
+            buttonText="Continue with Google"
+            onSuccess={handleLoginSuccess}
+            onFailure={handleLoginFailure}
+            cookiePolicy={"single_host_origin"}
+          />
+          <SignUp>
+            Not a member yet?{" "}
+            <StyledLink exact to="/register">
+              Sign up
+            </StyledLink>
+          </SignUp>
+        </LogInModal>
+        <GraphicsDiv>
+          <h1>
+            Connect with real professionals and make your entrepreneurial
+            journey less lonely
+          </h1>
+          <p>
+            Within Means' platform allows you to connect with like-minded people
+            and trade expertise for free! No money exchanged ever.
+          </p>
+          <LoginSvg />
+        </GraphicsDiv>
+      </Container>
+    );
+  }
 };
 
 const Container = styled.div`
