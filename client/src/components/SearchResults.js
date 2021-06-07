@@ -27,18 +27,21 @@ const SearchResults = () => {
     setQuery(searchQuery);
     const matches = users.map((user) => {
       let matchSkill = false;
-      user.skills.forEach((userSkill) => {
-        if (userSkill.toLowerCase().includes(query.toLowerCase())) {
-          matchSkill = true;
-        } else {
-          matchSkill = false;
+      //filtering out the ones that didn't complete their profiles
+      if (user.skills !== null) {
+        user.skills.forEach((userSkill) => {
+          if (userSkill.toLowerCase().includes(query.toLowerCase())) {
+            matchSkill = true;
+          } else {
+            matchSkill = false;
+          }
+        });
+        if (
+          matchSkill === true ||
+          user.bio.toLowerCase().includes(query.toLowerCase())
+        ) {
+          return user;
         }
-      });
-      if (
-        matchSkill === true ||
-        user.bio.toLowerCase().includes(query.toLowerCase())
-      ) {
-        return user;
       }
     });
     const matchedFilter = matches.filter((match) => match !== undefined);
@@ -51,7 +54,6 @@ const SearchResults = () => {
   }, [query]);
 
   // console.log(matchedUsers);
-
   if (matchedUsers.length === 0 && queryStatus === "idle") {
     return <NoResultsFound />;
   } else {

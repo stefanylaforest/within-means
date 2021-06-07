@@ -11,6 +11,7 @@ const {
   getSingleUser,
   updateStatus,
   editProfile,
+  googleLogin,
 } = require("./handlers");
 
 // // const users = require("./data/users.json");
@@ -34,6 +35,7 @@ app.post("/api/register", addUser);
 app.get("/api/users", getUsers);
 // app.patch("/api/:userId/users", saveToFavorites);
 app.post("/api/login", authenticateUser);
+app.post("/api/googlelogin", googleLogin);
 app.get("/api/users/:userId", getSingleUser);
 app.patch("/api/users/:userId/update-status", updateStatus);
 app.patch("/api/users/:userId/edit", editProfile);

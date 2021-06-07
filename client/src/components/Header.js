@@ -26,11 +26,15 @@ const Header = () => {
         <h1>
           <LogoSpan>
             <WithinMeansLogo />{" "}
-            {location.pathname === "/" && <span>Within Means</span>}
+            {location.pathname === "/" || location.pathname === "/login" ? (
+              <span>Within Means</span>
+            ) : (
+              ""
+            )}
           </LogoSpan>
         </h1>
       </Link>
-      {location.pathname !== "/" && (
+      {location.pathname !== "/" && location.pathname !== "/login" && (
         <InputDiv>
           <StyledSearchIcon />
           <SearchBar
@@ -47,7 +51,7 @@ const Header = () => {
           </SearchBtn>
         </InputDiv>
       )}
-      <SignUp>Start Swapping</SignUp>
+      {location.pathname !== "/login" && <SignUp>Start Swapping</SignUp>}
     </LogoWrapper>
   );
 };

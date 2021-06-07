@@ -4,6 +4,8 @@ require("dotenv").config();
 var assert = require("assert");
 const { v4: uuidv4 } = require("uuid");
 const { MONGO_URI } = process.env;
+const { CLIENT_ID } = process.env;
+const { OAuth2Client } = require("google-auth-library");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
@@ -11,6 +13,8 @@ const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 };
+
+const googleClient = new OAuth2Client(process.env.CLIENT_ID);
 
 const addUser = async (req, res) => {
   const { _id, name, email } = req.body;
@@ -52,6 +56,57 @@ const addUser = async (req, res) => {
   }
 };
 
+const googleLogin = async (req, res) => {
+  const { token } = req.body;
+  const client = await MongoClient(MONGO_URI, options);
+  await client.connect();
+  const db = client.db("WithinMeans");
+  const ticket = await googleClient.verifyIdToken({
+    idToken: token,
+    audience: process.env.CLIENT_ID,
+  });
+  const { email_verified, name, email, picture } = ticket.getPayload();
+
+  if (email_verified) {
+    const user = await db.collection("users").findOne({ email: email });
+    if (user) {
+      res.status(201).json({
+        status: 201,
+        message: `welcome back ${name}`,
+        data: user,
+      });
+      console.log("existing user", user);
+      console.log("res", ticket.getPayload());
+    } else {
+      const newPassword = bcrypt.hash(email + uuidv4(), saltRounds);
+      const newUser = db.collection("users").insertOne({
+        _id: uuidv4(),
+        name: name,
+        email: email,
+        password: newPassword,
+        title: null,
+        skills: null,
+        avatar: picture,
+        website: null,
+        bio: null,
+        status: null,
+        statusDate: null,
+        saved: null,
+        swaps: null,
+        rating: null,
+        inbox: null,
+      });
+      assert.strictEqual(1, newUser.insertedCount);
+      res
+        .status(201)
+        .json({ status: 201, message: `welcome ${name}`, data: newUser });
+
+      console.log("new user", newUser);
+      console.log("res", ticket.getPayload());
+    }
+  }
+};
+
 const authenticateUser = async (req, res) => {
   const client = await MongoClient(MONGO_URI, options);
   try {
@@ -61,6 +116,14 @@ const authenticateUser = async (req, res) => {
       .collection("users")
       .findOne({ email: req.body.email });
     console.log(user);
+
+    if (user === null) {
+      return res.status(401).json({
+        status: 401,
+        message: "no account to this email",
+        data: user,
+      });
+    }
     if (user) {
       const checkForMatchingPw = await bcrypt.compare(
         req.body.password,
@@ -76,15 +139,8 @@ const authenticateUser = async (req, res) => {
         res.status(401).json({
           status: 401,
           message: "Incorrect Email or Password",
-          data: user,
         });
       }
-    } else {
-      res.status(401).json({
-        status: 401,
-        message: "Incorrect Email or Password",
-        data: user,
-      });
     }
     client.close();
   } catch (error) {
@@ -218,4 +274,5 @@ module.exports = {
   getSingleUser,
   updateStatus,
   editProfile,
+  googleLogin,
 };

@@ -24,6 +24,7 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "file-system": "^1.2.2",
+    "google-auth-library": "^7.1.1",
     "moment": "^2.29.1",
     "mongodb": "^3.6.8",
     "morgan": "^1.10.0",

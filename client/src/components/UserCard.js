@@ -12,7 +12,7 @@ const UserCard = ({ user }) => {
         <LikeContainer>
           <Heart />
         </LikeContainer>
-        <Avatar src={user.avatar} />
+        <Avatar src={user?.avatar} />
         {user.status ? (
           <h3>{user.status.slice(0, 62)}...</h3>
         ) : (
@@ -20,13 +20,14 @@ const UserCard = ({ user }) => {
         )}
         <OfferedSkills>Skills I Can Offer:</OfferedSkills>
         <ul>
-          {user.skills.map((skill, i) => {
-            return (
-              <SkillLi key={`id-${(skill, i)}`}>
-                {skill.charAt(0).toUpperCase() + skill.slice(1)}
-              </SkillLi>
-            );
-          })}
+          {user.skills !== null &&
+            user.skills.map((skill, i) => {
+              return (
+                <SkillLi key={`id-${(skill, i)}`}>
+                  {skill.charAt(0).toUpperCase() + skill.slice(1)}
+                </SkillLi>
+              );
+            })}
         </ul>
         <ViewBtn>View Listing</ViewBtn>
       </Wrapper>
