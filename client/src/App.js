@@ -9,6 +9,7 @@ import Signup from "./components/Signup";
 import MyProfile from "./components/MyProfile";
 import Offers from "./components/Offers";
 import SignInHeader from "./components/SignInHeader";
+import Saved from "./components/Saved";
 import { LoggedInUserContext } from "./components/LoggedInUserContext";
 
 function App() {
@@ -36,6 +37,9 @@ function App() {
         </Route>
         <Route exact path="/users/:userId/offers">
           <Offers />
+        </Route>
+        <Route exact path="/users/:userId/saved">
+          <Saved />
         </Route>
         <Route exact path="/search/:searchQuery">
           <SearchResults />

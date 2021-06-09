@@ -1,29 +1,60 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { colors } from "../GlobalStyles";
-import { HiOutlineHeart } from "react-icons/hi";
+import { HiOutlineHeart, HiHeart } from "react-icons/hi";
+import { LoggedInUserContext } from "./LoggedInUserContext";
 
 const UserCard = ({ user }) => {
   let userId = user._id;
+
+  const { currentLoggedInUser, setCurrentLoggedInUser } =
+    useContext(LoggedInUserContext);
+
+  const handleSave = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    fetch(`/api/users/${currentLoggedInUser._id}/save`, {
+      method: "PATCH",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        saved: userId,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("success", data);
+        setCurrentLoggedInUser(data.data);
+      });
+  };
+
   return (
     <Link exact to={`/users/${userId}`}>
       <Wrapper>
-        <LikeContainer>
-          <Heart />
-        </LikeContainer>
+        <object>
+          <LikeContainer onClick={handleSave}>
+            {currentLoggedInUser.saved.includes(userId) ? (
+              <FilledHeart />
+            ) : (
+              <EmptyHeart />
+            )}
+          </LikeContainer>
+        </object>
         <Avatar src={user?.avatar} />
         {user.status ? (
-          <h3>{user.status.slice(0, 62)}...</h3>
+          <Status>{user.status.slice(0, 58)}...</Status>
         ) : (
           <Status>I need help with my social media</Status>
         )}
         <OfferedSkills>Skills I Can Offer:</OfferedSkills>
         <ul>
           {user.skills !== null &&
-            user.skills.map((skill, i) => {
+            user.skills.map((skill) => {
               return (
-                <SkillLi key={`id-${(skill, i)}`}>
+                <SkillLi key={`id-${skill}`}>
                   {skill.charAt(0).toUpperCase() + skill.slice(1)}
                 </SkillLi>
               );
@@ -70,11 +101,17 @@ const LikeContainer = styled.div`
   justify-content: flex-end;
 `;
 
-const Heart = styled(HiOutlineHeart)`
+const EmptyHeart = styled(HiOutlineHeart)`
   color: ${colors.coral};
   &:hover {
     fill: ${colors.coral};
   }
+`;
+
+const FilledHeart = styled(HiHeart)`
+  color: ${colors.coral};
+
+  /* fill: ${colors.coral}; */
 `;
 
 const Status = styled.h3`

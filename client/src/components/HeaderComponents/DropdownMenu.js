@@ -34,7 +34,7 @@ const DropdownMenu = () => {
             <StyledBsFillEnvelopeFill /> Offers
           </DropDownListItem>
         </Link>
-        <Link>
+        <Link exact to={`/users/${currentLoggedInUser._id}/saved`}>
           <DropDownListItem>
             <StyledHiOutlineHeart /> Saved
           </DropDownListItem>

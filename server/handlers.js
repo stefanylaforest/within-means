@@ -214,7 +214,6 @@ const editProfile = async (req, res) => {
   const client = await MongoClient(MONGO_URI, options);
   await client.connect();
   const db = client.db("WithinMeans");
-  // const chosenPassword = await bcrypt.hash(req.body.password, saltRounds);
   const updateRequest = req.body;
 
   let updatedProfile = await db.collection("users").findOneAndUpdate(
@@ -234,7 +233,6 @@ const sendMessage = async (req, res) => {
   const client = await MongoClient(MONGO_URI, options);
   await client.connect();
   const db = client.db("WithinMeans");
-  // const chosenPassword = await bcrypt.hash(req.body.password, saltRounds);
   const updateRequest = req.body;
   let updatedProfile = await db.collection("users").findOneAndUpdate(
     { _id: userId },
@@ -248,35 +246,45 @@ const sendMessage = async (req, res) => {
   client.close();
 };
 
-// const saveToFavorites = async (req, res) => {
-//   try {
-//     const { saved } = req.body;
-//      const {userId} = req.params;
-//     const favoriteUser = data.users[req.params._id];
-//     const client = await MongoClient(MONGO_URI, options);
-//     await client.connect();
-//     const db = client.db("WithinMeans");
+const addToFavorites = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const client = await MongoClient(MONGO_URI, options);
+    await client.connect();
+    const db = client.db("WithinMeans");
+    const updateRequest = req.body;
+    let updatedProfile = await db.collection("users").findOneAndUpdate(
+      { _id: userId },
+      {
+        $push: updateRequest,
+      }
+    );
+    const user = await db.collection("users").findOne({ _id: userId });
+    res.status(200).json({ status: 200, message: `message sent`, data: user });
+    client.close();
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("internal server error :(");
+  }
+};
 
-//     if (!req.body) {
-//       res.status(404).json({
-//         status: 404,
-//         message: "an error occured, could not add to favorites",
-//       });
-//     }
-
-//     res.status(200).json({
-//       status: 200,
-//       message: "added to favorites",
-//       data: updatedRecord,
-//     });
-//     client.close();
-//   } catch (error) {
-//     res.status(404).json({
-//       status: 404,
-//       message: "an error occured, could not add to favorites",
-//     });
-//   }
-// };
+const deleteMessage = async (req, res) => {
+  const { userId } = req.params;
+  const client = await MongoClient(MONGO_URI, options);
+  await client.connect();
+  const db = client.db("WithinMeans");
+  const updateRequest = req.body;
+  let updatedProfile = await db.collection("users").deleteOne(
+    { _id: userId },
+    {
+      $unset: updateRequest,
+    }
+  );
+  const user = await db.collection("users").findOne({ _id: userId });
+  console.log("AFTERDELETED", user);
+  res.status(200).json({ status: 200, message: `message deleted`, data: user });
+  client.close();
+};
 
 module.exports = {
   addUser,
@@ -287,4 +295,6 @@ module.exports = {
   editProfile,
   googleLogin,
   sendMessage,
+  deleteMessage,
+  addToFavorites,
 };

@@ -60,12 +60,12 @@ const UserDetails = () => {
         inbox: {
           message: message,
           date: new Date(),
-          senderId: currentUser._id,
-          senderName: currentUser.name,
-          senderAvatar: currentUser.avatar,
-          senderTitle: currentUser.title,
-          senderStatus: currentUser.status,
-          senderInbox: currentUser.inbox,
+          senderId: currentLoggedInUser._id,
+          senderName: currentLoggedInUser.name,
+          senderAvatar: currentLoggedInUser.avatar,
+          senderTitle: currentLoggedInUser.title,
+          senderStatus: currentLoggedInUser.status,
+          senderInbox: currentLoggedInUser.inbox,
         },
       }),
     })
@@ -84,6 +84,7 @@ const UserDetails = () => {
       });
   };
 
+  console.log("currentUser88", currentUser);
   if (currentUserStatus) {
     return (
       <div>

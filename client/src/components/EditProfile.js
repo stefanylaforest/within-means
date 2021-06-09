@@ -4,18 +4,8 @@ import styled from "styled-components";
 import { colors } from "../GlobalStyles";
 
 const EditProfile = () => {
-  const {
-    currentLoggedInUser,
-    setCurrentLoggedInUser,
-    loggedIn,
-    setLoggedIn,
-    errMsg,
-    setErrMsg,
-    email,
-    setEmail,
-    password,
-    setPassword,
-  } = useContext(LoggedInUserContext);
+  const { currentLoggedInUser, setCurrentLoggedInUser } =
+    useContext(LoggedInUserContext);
 
   let defaultValueOne = currentLoggedInUser.skills
     ? currentLoggedInUser.skills[0] !== null
