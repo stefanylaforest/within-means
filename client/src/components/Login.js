@@ -79,13 +79,9 @@ const Login = () => {
           return;
         } else if (json.status === 404) {
           setErrMsg("No account found");
-          setEmail("");
-          setPassword("");
           return;
         } else if (json.status === 401) {
           setErrMsg("Incorrect email or password");
-          setEmail("");
-          setPassword("");
           return;
         } else {
           setErrMsg("Internal server error");
@@ -153,7 +149,13 @@ const Login = () => {
           <SignUp>
             Not a member yet?{" "}
             <StyledLink exact to="/register">
-              Sign up
+              <span
+                onClick={() => {
+                  setErrMsg("");
+                }}
+              >
+                Sign up
+              </span>
             </StyledLink>
           </SignUp>
         </LogInModal>
@@ -183,11 +185,12 @@ const Container = styled.div`
 const LogInModal = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 600px;
   background-color: white;
-  /* align-items: center; */
+  margin: 0 auto;
+  margin-top: 100px;
   border-radius: 25px;
-  margin: 100px;
+  /* margin: 100px; */
   padding: 30px 50px;
   text-align: center;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
@@ -220,6 +223,16 @@ const Input = styled.input`
   font-size: 18px;
   border-radius: 10px;
   border: 1px solid ${colors.navy};
+  transition: 0.3s ease-in-out;
+  &:focus,
+  &:hover {
+    border: 1px solid ${colors.mediumPurple};
+    background: white;
+    -webkit-box-shadow: 0px 0px 0px 4px rgb(68, 78, 229, 15%);
+    -moz-box-shadow: 0px 0px 0px 4px rgb(68, 78, 229, 15%);
+    box-shadow: 0px 0px 0px 4px rgb(68, 78, 229, 15%);
+    outline: none;
+  }
 `;
 
 const LoginBtn = styled.button`
@@ -230,6 +243,7 @@ const LoginBtn = styled.button`
   cursor: pointer;
   border: none;
   border-radius: 10px;
+  transition: 0.3s ease-in-out;
   &:hover {
     background-color: ${colors.mediumPurple};
   }

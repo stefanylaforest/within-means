@@ -26,8 +26,8 @@ const addUser = async (req, res) => {
     .collection("users")
     .findOne({ email: email });
   if (checkIfUserExists) {
-    res.status(404).json({
-      status: 404,
+    res.status(401).json({
+      status: 401,
       message: `${email} is already in use. Please sign in.`,
     });
   } else {
@@ -46,7 +46,7 @@ const addUser = async (req, res) => {
       saved: null,
       swaps: null,
       rating: null,
-      inbox: null,
+      inbox: [],
     });
     assert.strictEqual(1, newUser.insertedCount);
     res
@@ -223,9 +223,27 @@ const editProfile = async (req, res) => {
       $set: updateRequest,
     }
   );
-  res
-    .status(200)
-    .json({ status: 200, message: `profile update`, data: updatedProfile });
+  const user = await db.collection("users").findOne({ _id: userId });
+  res.status(200).json({ status: 200, message: `profile update`, data: user });
+
+  client.close();
+};
+
+const sendMessage = async (req, res) => {
+  const { userId } = req.params;
+  const client = await MongoClient(MONGO_URI, options);
+  await client.connect();
+  const db = client.db("WithinMeans");
+  // const chosenPassword = await bcrypt.hash(req.body.password, saltRounds);
+  const updateRequest = req.body;
+  let updatedProfile = await db.collection("users").findOneAndUpdate(
+    { _id: userId },
+    {
+      $push: updateRequest,
+    }
+  );
+  const user = await db.collection("users").findOne({ _id: userId });
+  res.status(200).json({ status: 200, message: `message sent`, data: user });
 
   client.close();
 };
@@ -268,4 +286,5 @@ module.exports = {
   updateStatus,
   editProfile,
   googleLogin,
+  sendMessage,
 };

@@ -12,6 +12,7 @@ const {
   updateStatus,
   editProfile,
   googleLogin,
+  sendMessage,
 } = require("./handlers");
 
 // // const users = require("./data/users.json");
@@ -39,6 +40,7 @@ app.post("/api/googlelogin", googleLogin);
 app.get("/api/users/:userId", getSingleUser);
 app.patch("/api/users/:userId/update-status", updateStatus);
 app.patch("/api/users/:userId/edit", editProfile);
+app.patch("/api/users/:userId/message", sendMessage);
 
 // //---------------
 // //endpoints ^

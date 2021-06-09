@@ -1,18 +1,23 @@
 import React, { useContext } from "react";
-import { Switch, Route, useLocation } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Home from "./components/Home";
 import SearchResults from "./components/SearchResults";
 import Header from "./components/Header";
 import UserDetails from "./components/UserDetails";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
-import EditProfile from "./components/EditProfile";
+import MyProfile from "./components/MyProfile";
+import Offers from "./components/Offers";
+import SignInHeader from "./components/SignInHeader";
+import { LoggedInUserContext } from "./components/LoggedInUserContext";
 
 function App() {
-  const location = useLocation();
+  const { currentLoggedInUser, loggedIn } = useContext(LoggedInUserContext);
+
   return (
     <div>
-      <Header />
+      {currentLoggedInUser !== "" ? <Header /> : <SignInHeader />}
+
       <Switch>
         <Route exact path="/">
           <Home />
@@ -27,7 +32,10 @@ function App() {
           <UserDetails />
         </Route>
         <Route exact path="/users/:userId/edit">
-          <EditProfile />
+          <MyProfile />
+        </Route>
+        <Route exact path="/users/:userId/offers">
+          <Offers />
         </Route>
         <Route exact path="/search/:searchQuery">
           <SearchResults />

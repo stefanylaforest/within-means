@@ -9,7 +9,7 @@ import { SearchContext } from "./SearchContext";
 import { LoggedInUserContext } from "./LoggedInUserContext";
 import DropdownMenu from "../components/HeaderComponents/DropdownMenu";
 
-const Header = () => {
+const SignInHeader = () => {
   const [newQuery, setNewQuery] = useState("");
   const { query, setQuery } = useContext(SearchContext);
   const { currentLoggedInUser, loggedIn } = useContext(LoggedInUserContext);
@@ -27,7 +27,7 @@ const Header = () => {
   console.log(loggedIn);
 
   return (
-    <LogoWrapper>
+    <Container>
       <Link to="/">
         <h1>
           <LogoSpan>
@@ -35,56 +35,52 @@ const Header = () => {
           </LogoSpan>
         </h1>
       </Link>
-      {location.pathname !== "/" && location.pathname !== "/login" && (
-        <InputDiv>
-          <StyledSearchIcon />
-          <SearchBar
-            type="text"
-            placeholder="search services"
-            onChange={(e) => setNewQuery(e.target.value)}
-          />
-          <SearchBtn
-            onClick={(e) => {
-              headerQueryHandler(e);
-            }}
-          >
-            <ImArrowRight2 />
-          </SearchBtn>
-        </InputDiv>
+      {location.pathname !== "/" &&
+        location.pathname !== "/login" &&
+        location.pathname !== "/register" && (
+          <InputDiv>
+            <StyledSearchIcon />
+            <SearchBar
+              type="text"
+              placeholder="search services"
+              onChange={(e) => setNewQuery(e.target.value)}
+            />
+            <SearchBtn
+              onClick={(e) => {
+                headerQueryHandler(e);
+              }}
+            >
+              <ImArrowRight2 />
+            </SearchBtn>
+          </InputDiv>
+        )}
+      {location.pathname !== "/login" && location.pathname !== "/register" && (
+        <div>
+          <Link exact to="/login">
+            <SignIn>Sign In</SignIn>
+          </Link>
+          <Link exact to="/register">
+            <SignUp>Start Swapping</SignUp>
+          </Link>
+        </div>
       )}
 
-      <LoggedInDisplay>
-        <Greeting>Hi, {currentLoggedInUser.name}</Greeting>
+      {location.pathname === "/login" && (
+        <Link exact to="/register">
+          <SignUp>Start Swapping</SignUp>
+        </Link>
+      )}
 
-        {currentLoggedInUser.avatar !== null ? (
-          <div>
-            <Wrapper>
-              <Hover>
-                <Profile src={currentLoggedInUser.avatar} />
-                <DropdownBox>
-                  <DropdownMenu />
-                </DropdownBox>
-              </Hover>
-            </Wrapper>
-          </div>
-        ) : (
-          <div>
-            <Wrapper>
-              <Hover>
-                <StyledFaUserCircle />
-                <DropdownBox>
-                  <DropdownMenu />
-                </DropdownBox>
-              </Hover>
-            </Wrapper>
-          </div>
-        )}
-      </LoggedInDisplay>
-    </LogoWrapper>
+      {location.pathname === "/register" && (
+        <Link exact to="/login">
+          <SignIn>Sign In</SignIn>
+        </Link>
+      )}
+    </Container>
   );
 };
 
-const LogoWrapper = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -109,6 +105,40 @@ const Greeting = styled.p`
   @media screen and (max-width: 1000px) {
     display: none;
   }
+`;
+
+const SignUp = styled.button`
+  margin: 0px 20px;
+  border-radius: 6px;
+  padding: 15px 10px;
+  border: none;
+  cursor: pointer;
+  background-color: ${colors.darkPurple};
+  color: white;
+  font-weight: bold;
+  transition: 1s ease;
+  background-size: 200% auto;
+  &:hover {
+    background-position: right center;
+    background-image: linear-gradient(
+      to right,
+      #3641e7 0%,
+      #7279de 51%,
+      #3641e7 100%
+    );
+    color: white;
+  }
+`;
+
+const SignIn = styled.button`
+  margin: 0px 10px;
+  border-radius: 6px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  color: ${colors.darkPurple};
+  font-weight: bold;
 `;
 
 const Wrapper = styled.div`
@@ -174,16 +204,6 @@ const InputDiv = styled.div`
   border-radius: 40px;
   background: white;
   width: 400px;
-  border: 1px solid white;
-  transition: 0.3s ease-in-out;
-  &:hover {
-    border: 1px solid ${colors.mediumPurple};
-    background: white;
-    -webkit-box-shadow: 0px 0px 0px 4px rgb(68, 78, 229, 15%);
-    -moz-box-shadow: 0px 0px 0px 4px rgb(68, 78, 229, 15%);
-    box-shadow: 0px 0px 0px 4px rgb(68, 78, 229, 15%);
-    outline: none;
-  }
 `;
 
 const StyledSearchIcon = styled(ImSearch)`
@@ -215,4 +235,4 @@ const SearchBtn = styled.button`
   align-items: center;
 `;
 
-export default Header;
+export default SignInHeader;

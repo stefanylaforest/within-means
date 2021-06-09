@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
-import { UsersContext } from "./UsersContext";
+import { LoggedInUserContext } from "./LoggedInUserContext";
 import { useParams, useHistory } from "react-router-dom";
 import { colors } from "../GlobalStyles";
 import Loading from "./Loaders/Loading";
@@ -12,14 +12,15 @@ const UserDetails = () => {
   const [currentUser, setCurrentUser] = useState([]);
   const [userSkills, setUserSkills] = useState([]);
   const [currentUserStatus, setCurrentUserStatus] = useState(true);
-  const [error, setError] = useState();
+  const [alert, setAlert] = useState(null);
+  const [toggleMsgInput, setToggleMsgInput] = useState(false);
+  const [message, setMessage] = useState(null);
+
+  const { currentLoggedInUser, setCurrentLoggedInUser } =
+    useContext(LoggedInUserContext);
 
   const history = useHistory();
   let { userId } = useParams();
-
-  //   let today = new Date();
-  //   let lastUpdatedStatus = Date.parse(currentUser.statusDate);
-  //   console.log("date::", today - lastUpdatedStatus);
 
   const goBackHandler = () => {
     history.goBack();
@@ -35,12 +36,53 @@ const UserDetails = () => {
         setUserSkills(json.data.skills);
       })
       .catch((err) => {
-        setError(err);
+        setAlert(err);
       });
   }, []);
 
   console.log("viewing user", currentUser);
   console.log("skills", userSkills);
+
+  const handleSendMessageInput = () => {
+    setToggleMsgInput(!toggleMsgInput);
+  };
+
+  console.log("msg", message);
+
+  const sendMessageHandler = () => {
+    fetch(`/api/users/${userId}/message`, {
+      method: "PATCH",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        inbox: {
+          message: message,
+          date: new Date(),
+          senderId: currentUser._id,
+          senderName: currentUser.name,
+          senderAvatar: currentUser.avatar,
+          senderTitle: currentUser.title,
+          senderStatus: currentUser.status,
+          senderInbox: currentUser.inbox,
+        },
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("success", data);
+        setCurrentUser(data.data);
+        setToggleMsgInput(!toggleMsgInput);
+        setAlert("message sent!");
+        setTimeout(() => {
+          setAlert(null);
+        }, 5000);
+      })
+      .catch((err) => {
+        //history push to error page
+      });
+  };
 
   if (currentUserStatus) {
     return (
@@ -93,7 +135,25 @@ const UserDetails = () => {
         </UserSpecs>
         <Bio>Bio</Bio>
         <p>{currentUser.bio}</p>
-        <SendOfferBtn>Send an offer to {currentUser.name}</SendOfferBtn>
+        {toggleMsgInput ? (
+          <>
+            <Textarea
+              placeholder={`type your message to ${currentUser.name}`}
+              onChange={(e) => setMessage(e.target.value)}
+            ></Textarea>
+            <SendMsgBtnDiv>
+              <Cancel onClick={handleSendMessageInput}>cancel</Cancel>
+              <SendMsgBtn onClick={sendMessageHandler}>Send</SendMsgBtn>
+            </SendMsgBtnDiv>
+          </>
+        ) : (
+          <>
+            <SendOfferBtn onClick={handleSendMessageInput}>
+              Send an offer to {currentUser.name}
+            </SendOfferBtn>
+            {alert !== null && <Alert>{alert}</Alert>}
+          </>
+        )}
       </Wrapper>
     </div>
   );
@@ -196,7 +256,69 @@ const SendOfferBtn = styled.button`
   padding: 10px;
   cursor: pointer;
   &:hover {
+    background-color: ${colors.mediumPurple};
   }
+`;
+
+const Textarea = styled.textarea`
+  background: #f0f0f0;
+  border-radius: 10px;
+  border: 1px solid #f0f0f0;
+  margin-bottom: 30px;
+  margin-top: 3px;
+  font-size: 16px;
+  padding: 10px 16px;
+  transition: 0.3s ease-in-out;
+  height: 120px;
+  &:focus,
+  &:hover {
+    border: 1px solid ${colors.mediumPurple};
+    background: white;
+    -webkit-box-shadow: 0px 0px 0px 4px rgb(68, 78, 229, 15%);
+    -moz-box-shadow: 0px 0px 0px 4px rgb(68, 78, 229, 15%);
+    box-shadow: 0px 0px 0px 4px rgb(68, 78, 229, 15%);
+    outline: none;
+  }
+`;
+
+const SendMsgBtnDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+const SendMsgBtn = styled.button`
+  margin: 10px;
+  background-color: #53bb8f;
+  color: white;
+  border: none;
+  border-radius: 26px;
+  font-size: 1em;
+  padding: 10px;
+  cursor: pointer;
+  width: 100px;
+  &:hover {
+    background-color: #5b9e82;
+  }
+`;
+
+const Cancel = styled.button`
+  margin: 10px;
+  background-color: ${colors.coral};
+  color: white;
+  border: none;
+  border-radius: 26px;
+  font-size: 1em;
+  padding: 10px;
+  cursor: pointer;
+  width: 100px;
+  &:hover {
+    background-color: #ee7257;
+  }
+`;
+
+const Alert = styled.p`
+  color: #53bb8f;
 `;
 
 export default UserDetails;

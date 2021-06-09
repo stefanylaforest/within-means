@@ -24,7 +24,7 @@ const GlobalStyles = createGlobalStyle`
     color: #151627;
   }
 
-  p {
+  p, textarea {
     /* font-family: 'Open Sans', sans-serif; */
     font-family: 'Poppins', sans-serif;
     color: #151627;

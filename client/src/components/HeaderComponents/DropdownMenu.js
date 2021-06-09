@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { BsFillEnvelopeFill } from "react-icons/bs";
 import { HiOutlineHeart } from "react-icons/hi";
+import { MdSettings, MdPowerSettingsNew } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { colors } from "../../GlobalStyles";
 import { LoggedInUserContext } from "../LoggedInUserContext";
@@ -24,16 +25,24 @@ const DropdownMenu = () => {
     <div>
       <ul>
         <Link exact to={`/users/${currentLoggedInUser._id}/edit`}>
-          <DropDownListItem>My Profile</DropDownListItem>
-        </Link>
-        <Link>
           <DropDownListItem>
-            Offers <StyledBsFillEnvelopeFill />
+            <StyledMdSettings /> Profile
+          </DropDownListItem>
+        </Link>
+        <Link exact to={`/users/${currentLoggedInUser._id}/offers`}>
+          <DropDownListItem>
+            <StyledBsFillEnvelopeFill /> Offers
           </DropDownListItem>
         </Link>
         <Link>
           <DropDownListItem>
-            Saved <StyledHiOutlineHeart />
+            <StyledHiOutlineHeart /> Saved
+          </DropDownListItem>
+        </Link>
+
+        <Link exact to="/">
+          <DropDownListItem onClick={() => setCurrentLoggedInUser("")}>
+            <StyledMdPowerSettingsNew /> Log out
           </DropDownListItem>
         </Link>
       </ul>
@@ -44,6 +53,8 @@ const DropdownMenu = () => {
 const DropDownListItem = styled.li`
   cursor: pointer;
   border: none;
+  display: flex;
+  align-items: center;
   background: transparent;
   width: 100%;
   padding: 8px;
@@ -53,14 +64,28 @@ const DropDownListItem = styled.li`
   }
 `;
 
+const StyledMdSettings = styled(MdSettings)`
+  fill: ${colors.coral};
+  color: ${colors.coral};
+  margin-right: 5px;
+`;
+
 const StyledHiOutlineHeart = styled(HiOutlineHeart)`
   fill: ${colors.coral};
   color: ${colors.coral};
+  margin-right: 5px;
 `;
 
 const StyledBsFillEnvelopeFill = styled(BsFillEnvelopeFill)`
   fill: ${colors.coral};
   color: ${colors.coral};
+  margin-right: 5px;
+`;
+
+const StyledMdPowerSettingsNew = styled(MdPowerSettingsNew)`
+  fill: ${colors.coral};
+  color: ${colors.coral};
+  margin-right: 5px;
 `;
 
 export default DropdownMenu;

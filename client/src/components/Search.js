@@ -155,21 +155,3 @@ const SuggestedBtn = styled.button`
 `;
 
 export default Search;
-// const matches = users.map((user) => {
-//   let matchSkill = false;
-//   user.skills.forEach((userSkill) => {
-//     if (userSkill.toLowerCase().includes(query.toLowerCase())) {
-//       matchSkill = true;
-//     } else {
-//       matchSkill = false;
-//     }
-//   });
-//   if (
-//     matchSkill === true ||
-//     user.bio.toLowerCase().includes(query.toLowerCase())
-//   ) {
-//     return user;
-//   }
-// });
-// const matchedFilter = matches.filter((match) => match !== undefined);
-// setMatchedUsers(matchedFilter);
