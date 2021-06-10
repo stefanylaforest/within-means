@@ -26,7 +26,7 @@ const Login = () => {
 
   const handleLoginFailure = (response) => {};
 
-  const handleLoginSuccess = (response) => {
+  const handleLoginSuccess = async (response) => {
     console.log(response);
     fetch("/api/googlelogin", {
       method: "POST",
@@ -41,13 +41,17 @@ const Login = () => {
       .then((json) => {
         setCurrentLoggedInUser(json.data);
         setLoggedIn(true);
+        localStorage.setItem(
+          "currentLoggedInUser",
+          JSON.stringify(currentLoggedInUser)
+        );
         history.push(`/`);
       });
   };
 
-  const regularLogInHandler = (e) => {
+  const regularLogInHandler = async (e) => {
     e.preventDefault();
-
+    const currentLoggedInUser = { email, password };
     if (email.length === 0 && password.length === 0) {
       setErrMsg("Please enter your log in information");
       return;
@@ -75,6 +79,10 @@ const Login = () => {
           setLoadingComponent(true);
           setCurrentLoggedInUser(json.data);
           setLoggedIn(true);
+          localStorage.setItem(
+            "currentLoggedInUser",
+            JSON.stringify(json.data)
+          );
           history.push(`/`);
           return;
         } else if (json.status === 404) {

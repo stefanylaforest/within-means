@@ -21,6 +21,12 @@ const DropdownMenu = () => {
     setPassword,
   } = useContext(LoggedInUserContext);
 
+  const handleLogOut = (e) => {
+    e.preventDefault();
+    setCurrentLoggedInUser("");
+    localStorage.clear();
+  };
+
   return (
     <div>
       <ul>
@@ -41,7 +47,7 @@ const DropdownMenu = () => {
         </Link>
 
         <Link exact to="/">
-          <DropDownListItem onClick={() => setCurrentLoggedInUser("")}>
+          <DropDownListItem onClick={handleLogOut}>
             <StyledMdPowerSettingsNew /> Log out
           </DropDownListItem>
         </Link>

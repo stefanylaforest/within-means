@@ -19,6 +19,7 @@ const MyProfile = () => {
     setPassword,
   } = useContext(LoggedInUserContext);
 
+  console.log("type of", currentLoggedInUser._id);
   return (
     <Wrapper>
       <Sidebar>

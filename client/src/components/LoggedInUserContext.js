@@ -10,6 +10,15 @@ export const LoggedInUserProvider = ({ children }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("currentLoggedInUser");
+    console.log("loggedInuser", loggedInUser);
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      setCurrentLoggedInUser(foundUser);
+    }
+  }, []);
+
   return (
     <LoggedInUserContext.Provider
       value={{
