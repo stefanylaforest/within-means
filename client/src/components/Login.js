@@ -41,10 +41,7 @@ const Login = () => {
       .then((json) => {
         setCurrentLoggedInUser(json.data);
         setLoggedIn(true);
-        localStorage.setItem(
-          "currentLoggedInUser",
-          JSON.stringify(currentLoggedInUser)
-        );
+        localStorage.setItem("currentLoggedInUser", JSON.stringify(json.data));
         history.push(`/`);
       });
   };
