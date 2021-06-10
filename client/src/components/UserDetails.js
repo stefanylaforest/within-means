@@ -305,7 +305,7 @@ const SendOfferBtn = styled.button`
   background-color: ${colors.darkPurple};
   color: white;
   border: none;
-  border-radius: 26px;
+  border-radius: 10px;
   font-size: 1em;
   padding: 10px;
   cursor: pointer;
@@ -347,7 +347,7 @@ const SendMsgBtn = styled.button`
   background-color: #53bb8f;
   color: white;
   border: none;
-  border-radius: 26px;
+  border-radius: 10px;
   font-size: 1em;
   padding: 10px;
   cursor: pointer;
@@ -362,7 +362,7 @@ const Cancel = styled.button`
   background-color: ${colors.coral};
   color: white;
   border: none;
-  border-radius: 26px;
+  border-radius: 10px;
   font-size: 1em;
   padding: 10px;
   cursor: pointer;

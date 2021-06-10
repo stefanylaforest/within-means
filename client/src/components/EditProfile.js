@@ -148,7 +148,7 @@ const EditProfile = () => {
           />
         </BioWrapper>
       </BioAndSkillsWrapper>
-      <SaveBtn onClick={editProfile}>Save</SaveBtn>
+      <SaveBtn onClick={editProfile}>Save Profile</SaveBtn>
     </FormGroup>
   );
 };
@@ -156,7 +156,7 @@ const EditProfile = () => {
 const FormGroup = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 100px;
+  margin: 60px;
   background: white;
   padding: 20px 30px;
   border-radius: 20px;
@@ -262,6 +262,7 @@ const SaveBtn = styled.button`
 
 const Alert = styled.p`
   color: #53bb8f;
+  margin-top: -20px;
 `;
 
 export default EditProfile;

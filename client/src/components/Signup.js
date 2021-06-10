@@ -170,7 +170,7 @@ const LogInModal = styled.div`
   background-color: white;
   /* align-items: center; */
   border-radius: 25px;
-  margin: 100px;
+  margin: 60px;
   padding: 30px 50px;
   text-align: center;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,

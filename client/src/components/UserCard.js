@@ -39,9 +39,6 @@ const UserCard = ({ user }) => {
   const handleRemoveSave = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    // if (!currentLoggedInUser) {
-    //   return history.push(`/login`);
-    // }
     fetch(`/api/users/${currentLoggedInUser._id}/save/remove`, {
       method: "PATCH",
       headers: {
@@ -83,12 +80,12 @@ const UserCard = ({ user }) => {
           <Status>I need help with my social media</Status>
         )}
         <OfferedSkills>Skills I Can Offer:</OfferedSkills>
-        <ul>
+        <SkillsContainer>
           {user.skills.length > 0 &&
             user.skills?.map((skill) => {
               return <SkillLi key={`id-${skill}`}>{skill}</SkillLi>;
             })}
-        </ul>
+        </SkillsContainer>
         <ViewBtn>View Listing</ViewBtn>
       </Wrapper>
     </Link>
@@ -163,6 +160,10 @@ const ViewBtn = styled.button`
   align-self: center;
   width: 60%;
   margin-top: 20px;
+`;
+
+const SkillsContainer = styled.ul`
+  min-height: 72px;
 `;
 
 const SkillLi = styled.li`

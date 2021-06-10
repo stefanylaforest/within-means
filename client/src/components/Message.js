@@ -14,12 +14,12 @@ const Message = ({
   senderTitle,
   senderStatus,
   senderName,
+  setAlert,
 }) => {
-  const { currentLoggedInUser, setCurrentLoggedInUser } =
+  const { currentLoggedInUser, setCurrentLoggedInUser, updated, setUpdated } =
     useContext(LoggedInUserContext);
   const [clickReply, setClickReply] = useState(false);
   const [replyMessage, setReplyMessage] = useState(null);
-  const [alert, setAlert] = useState(null);
 
   const toggleClickReply = () => {
     setClickReply(!clickReply);
@@ -80,6 +80,7 @@ const Message = ({
         console.log("success", data);
         setAlert("message deleted!");
         localStorage.setItem("currentLoggedInUser", JSON.stringify(data.data));
+        setUpdated(!updated);
         setTimeout(() => {
           setAlert(null);
         }, 5000);
@@ -128,7 +129,6 @@ const Message = ({
           </SendMsgBtnDiv>
         </ReplyDiv>
       )}
-      {alert !== null && <Alert>{alert}</Alert>}
     </MessageWrapper>
   );
 };
@@ -276,10 +276,6 @@ const Textarea = styled.textarea`
   &:hover {
     outline: none;
   }
-`;
-
-const Alert = styled.p`
-  color: #53bb8f;
 `;
 
 const SendMsgBtnDiv = styled.div`

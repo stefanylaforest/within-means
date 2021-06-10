@@ -10,6 +10,7 @@ export const LoggedInUserProvider = ({ children }) => {
   //handle form values
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [updated, setUpdated] = useState(false);
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem("currentLoggedInUser");
@@ -19,15 +20,15 @@ export const LoggedInUserProvider = ({ children }) => {
       fetch(`/api/users/${foundUser._id}`)
         .then((rest) => rest.json())
         .then((json) => {
+          setFetching(false);
           setCurrentLoggedInUser(json.data);
           setLoggedIn(true);
-          setFetching(false);
         })
         .catch((err) => {
           console.log(err);
         });
     }
-  }, []);
+  }, [updated]);
 
   return (
     <LoggedInUserContext.Provider
@@ -44,6 +45,8 @@ export const LoggedInUserProvider = ({ children }) => {
         setPassword,
         fetching,
         setFetching,
+        updated,
+        setUpdated,
       }}
     >
       {children}

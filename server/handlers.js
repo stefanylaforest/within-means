@@ -189,22 +189,19 @@ const getSingleUser = async (req, res) => {
 
 const updateStatus = async (req, res) => {
   const { userId } = req.params;
-  const { status } = req.body;
   const client = await MongoClient(MONGO_URI, options);
   await client.connect();
   const db = client.db("WithinMeans");
-  let updatedStatus = await db.collection("users").findOneAndUpdate(
+  const updateRequest = req.body;
+
+  let updatedProfile = await db.collection("users").findOneAndUpdate(
     { _id: userId },
     {
-      $set: {
-        status: status,
-        statusDate: new Date(),
-      },
+      $set: updateRequest,
     }
   );
-  res
-    .status(200)
-    .json({ status: 200, message: `status updated`, data: updatedStatus });
+  const user = await db.collection("users").findOne({ _id: userId });
+  res.status(200).json({ status: 200, message: `profile update`, data: user });
 
   client.close();
 };
