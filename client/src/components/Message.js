@@ -79,6 +79,7 @@ const Message = ({
       .then((data) => {
         console.log("success", data);
         setAlert("message deleted!");
+        localStorage.setItem("currentLoggedInUser", JSON.stringify(data.data));
         setTimeout(() => {
           setAlert(null);
         }, 5000);

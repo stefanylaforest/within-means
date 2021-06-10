@@ -4,7 +4,7 @@ import { LoggedInUserContext } from "./LoggedInUserContext";
 import { useParams, useHistory } from "react-router-dom";
 import { colors } from "../GlobalStyles";
 import Loading from "./Loaders/Loading";
-import { HiOutlineHeart } from "react-icons/hi";
+import { HiOutlineHeart, HiHeart } from "react-icons/hi";
 import { ImArrowLeft2 } from "react-icons/im";
 import moment from "moment";
 
@@ -22,11 +22,6 @@ const UserDetails = () => {
   const history = useHistory();
   let { userId } = useParams();
 
-  const goBackHandler = () => {
-    history.goBack();
-    console.log(history);
-  };
-
   useEffect(() => {
     fetch(`/api/users/${userId}`)
       .then((rest) => rest.json())
@@ -36,9 +31,59 @@ const UserDetails = () => {
         setUserSkills(json.data.skills);
       })
       .catch((err) => {
-        setAlert(err);
+        console.log(err);
       });
   }, []);
+
+  const handleSave = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!currentLoggedInUser) {
+      return history.push(`/login`);
+    }
+    fetch(`/api/users/${currentLoggedInUser._id}/save`, {
+      method: "PATCH",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        saved: userId,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("success", data);
+        setCurrentLoggedInUser(data.data);
+        localStorage.setItem("currentLoggedInUser", JSON.stringify(data.data));
+      });
+  };
+
+  const handleRemoveSave = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    fetch(`/api/users/${currentLoggedInUser._id}/save/remove`, {
+      method: "PATCH",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        saved: userId,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("success", data);
+        setCurrentLoggedInUser(data.data);
+        localStorage.setItem("currentLoggedInUser", JSON.stringify(data.data));
+      });
+  };
+
+  const goBackHandler = () => {
+    history.goBack();
+    console.log(history);
+  };
 
   console.log("viewing user", currentUser);
   console.log("skills", userSkills);
@@ -72,7 +117,6 @@ const UserDetails = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log("success", data);
-        // setCurrentUser(data.data);
         setToggleMsgInput(!toggleMsgInput);
         setAlert("message sent!");
         setTimeout(() => {
@@ -102,7 +146,15 @@ const UserDetails = () => {
 
       <Wrapper>
         <SaveBtn>
-          <Heart />
+          <object>
+            {currentLoggedInUser &&
+            currentLoggedInUser.saved !== null &&
+            currentLoggedInUser.saved.includes(userId) ? (
+              <FilledHeart onClick={handleRemoveSave} />
+            ) : (
+              <EmptyHeart onClick={handleSave} />
+            )}
+          </object>
         </SaveBtn>
         <UserSpecs>
           <Avatar src={currentUser.avatar} />
@@ -123,11 +175,7 @@ const UserDetails = () => {
                 <ul>
                   {userSkills &&
                     userSkills.map((skill, i) => {
-                      return (
-                        <li key={`id-${(skill, i)}`}>
-                          {skill.charAt(0).toUpperCase() + skill.slice(1)}
-                        </li>
-                      );
+                      return <li key={`id-${(skill, i)}`}>{skill}</li>;
                     })}
                 </ul>
               </div>
@@ -186,6 +234,19 @@ const Wrapper = styled.div`
   border-radius: 25px;
 `;
 
+const EmptyHeart = styled(HiOutlineHeart)`
+  color: ${colors.coral};
+  &:hover {
+    fill: ${colors.coral};
+  }
+`;
+
+const FilledHeart = styled(HiHeart)`
+  color: ${colors.coral};
+
+  /* fill: ${colors.coral}; */
+`;
+
 const UserSpecs = styled.div`
   display: flex;
   flex-direction: row;
@@ -227,14 +288,6 @@ const SaveBtn = styled.div`
   font-size: 25px;
   display: flex;
   justify-content: flex-end;
-`;
-
-const Heart = styled(HiOutlineHeart)`
-  cursor: pointer;
-  color: ${colors.coral};
-  &:hover {
-    fill: ${colors.coral};
-  }
 `;
 
 const Avatar = styled.img`

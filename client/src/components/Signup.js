@@ -26,7 +26,7 @@ const Signup = () => {
 
   const handleLoginFailure = (response) => {};
 
-  const handleLoginSuccess = (response) => {
+  const handleLoginSuccess = async (response) => {
     console.log(response);
     fetch("/api/googlelogin", {
       method: "POST",
@@ -39,9 +39,18 @@ const Signup = () => {
     })
       .then((response) => response.json())
       .then((json) => {
-        setCurrentLoggedInUser(json.data);
-        setLoggedIn(true);
-        history.push(`/users/${currentLoggedInUser._id}/edit`);
+        //200 === user already exists
+        if (json.status === 200) {
+          history.push(`/login`);
+          setErrMsg("user already exists, please log in");
+        }
+        //200 === user doesn't exists
+        if (json.status === 201) {
+          setErrMsg("");
+          setCurrentLoggedInUser(json.data);
+          setLoggedIn(true);
+          history.push(`/users/${currentLoggedInUser._id}/edit`);
+        }
       });
   };
 
@@ -64,7 +73,7 @@ const Signup = () => {
     })
       .then((res) => res.json())
       .then((json) => {
-        if (json.status === 201) {
+        if (json.status === 200) {
           setCurrentLoggedInUser(json.data);
           setLoggedIn(true);
           history.push(`/users/${currentLoggedInUser._id}/edit`);

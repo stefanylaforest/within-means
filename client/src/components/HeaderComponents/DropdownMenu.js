@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { BsFillEnvelopeFill } from "react-icons/bs";
 import { HiOutlineHeart } from "react-icons/hi";
 import { MdSettings, MdPowerSettingsNew } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { colors } from "../../GlobalStyles";
 import { LoggedInUserContext } from "../LoggedInUserContext";
 
@@ -20,11 +20,14 @@ const DropdownMenu = () => {
     password,
     setPassword,
   } = useContext(LoggedInUserContext);
+  let history = useHistory();
 
   const handleLogOut = (e) => {
     e.preventDefault();
     setCurrentLoggedInUser("");
+    setLoggedIn(false);
     localStorage.clear();
+    history.push("/");
   };
 
   return (

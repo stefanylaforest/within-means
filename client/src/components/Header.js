@@ -24,8 +24,6 @@ const Header = () => {
     }
   };
 
-  console.log(loggedIn);
-
   return (
     <LogoWrapper>
       <Link to="/">
@@ -141,6 +139,9 @@ const Hover = styled.div`
   &:hover {
     ${DropdownBox} {
       display: block;
+      /* @media screen and (max-width: 650px) {
+        display: none;
+      } */
     }
   }
 `;

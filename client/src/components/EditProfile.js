@@ -25,11 +25,15 @@ const EditProfile = () => {
       : null
     : null;
 
+  //profile
   const [name, setName] = useState(currentLoggedInUser.name);
   const [newEmail, setNewEmail] = useState(currentLoggedInUser.email);
   const [title, setTitle] = useState(currentLoggedInUser.title);
   const [website, setWebsite] = useState(currentLoggedInUser.website);
   const [bio, setBio] = useState(currentLoggedInUser.bio);
+
+  //successfully edited on save alert
+  const [alert, setAlert] = useState();
 
   //skills
   const [skillOne, setSkillOne] = useState(defaultValueOne);
@@ -53,16 +57,25 @@ const EditProfile = () => {
       }),
     })
       .then((res) => res.json())
-      .then((data) => {
-        console.log("success", data);
-        setCurrentLoggedInUser(data.data);
+      .then((json) => {
+        console.log("success", json);
+        setCurrentLoggedInUser(json.data);
+        setAlert("Profile Updated Successfully");
+        localStorage.setItem("currentLoggedInUser", JSON.stringify(json.data));
+        window.scrollTo(0, 0);
+        setTimeout(() => {
+          setAlert(null);
+        }, 8000);
       });
   };
+
+  console.log(currentLoggedInUser.skills);
 
   return (
     <FormGroup>
       <h1>Edit Profile</h1>
       <Divider />
+      {alert !== null && <Alert>{alert}</Alert>}
       <label for="name">Name:</label>
       <Input
         type="text"
@@ -147,6 +160,9 @@ const FormGroup = styled.div`
   background: white;
   padding: 20px 30px;
   border-radius: 20px;
+  @media screen and (max-width: 950px) {
+    margin: 0px 50px 50px 50px;
+  }
 `;
 
 const Divider = styled.hr`
@@ -242,6 +258,10 @@ const SaveBtn = styled.button`
   &:hover {
     background-color: ${colors.mediumPurple};
   }
+`;
+
+const Alert = styled.p`
+  color: #53bb8f;
 `;
 
 export default EditProfile;

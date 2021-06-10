@@ -17,53 +17,67 @@ const MyProfile = () => {
     setEmail,
     password,
     setPassword,
+    fetching,
   } = useContext(LoggedInUserContext);
 
-  console.log("type of", currentLoggedInUser._id);
-  return (
-    <Wrapper>
-      <Sidebar>
-        <AvatarAndName>
-          {currentLoggedInUser.avatar !== null && currentLoggedInUser ? (
+  if (fetching) {
+    return <p>loading...</p>;
+  } else
+    return (
+      <Wrapper>
+        <Sidebar>
+          <AvatarAndName>
+            {currentLoggedInUser.avatar !== null && currentLoggedInUser ? (
+              <div>
+                <Profile src={currentLoggedInUser.avatar} />
+              </div>
+            ) : (
+              <div>
+                <StyledFaUserCircle />
+              </div>
+            )}
             <div>
-              <Profile src={currentLoggedInUser.avatar} />
+              <h2>{currentLoggedInUser.name}'s profile</h2>
+              <ProfileId>profile id: {currentLoggedInUser._id}</ProfileId>
             </div>
-          ) : (
-            <div>
-              <StyledFaUserCircle />
-            </div>
-          )}
-          <div>
-            <h2>{currentLoggedInUser.name}'s profile</h2>
-            <ProfileId>profile id: {currentLoggedInUser._id}</ProfileId>
-          </div>
-        </AvatarAndName>
-        <Menu>
-          <ul>
-            <li>Account Settings</li>
-            <li>Saved</li>
-            <li>Offers</li>
-          </ul>
-        </Menu>
-      </Sidebar>
-      <HalfContainer>
-        <EditProfile />
-      </HalfContainer>
-    </Wrapper>
-  );
+          </AvatarAndName>
+          <Menu>
+            <ul>
+              <li>Account Settings</li>
+              <li>Saved</li>
+              <li>Offers</li>
+            </ul>
+          </Menu>
+        </Sidebar>
+        <HalfContainer>
+          <EditProfile />
+        </HalfContainer>
+      </Wrapper>
+    );
 };
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
+
+  @media screen and (max-width: 950px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const HalfContainer = styled.div`
   width: 60%;
+  @media screen and (max-width: 950px) {
+    width: 100%;
+  }
 `;
 
 const Sidebar = styled.div`
   width: 40%;
+  @media screen and (max-width: 950px) {
+    width: 100%;
+  }
 `;
 
 const AvatarAndName = styled.div`
@@ -73,6 +87,9 @@ const AvatarAndName = styled.div`
   border-radius: 20px;
   display: flex;
   flex-direction: row;
+  @media screen and (max-width: 950px) {
+    margin: 10px 50px;
+  }
 `;
 
 const ProfileId = styled.p`
@@ -88,6 +105,9 @@ const Menu = styled.div`
   border-radius: 20px;
   display: flex;
   flex-direction: column;
+  @media screen and (max-width: 950px) {
+    margin: 10px 50px;
+  }
 `;
 
 const Profile = styled.img`

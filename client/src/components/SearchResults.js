@@ -28,9 +28,9 @@ const SearchResults = () => {
     const matches = users.map((user) => {
       let matchSkill = false;
       //filtering out the ones that didn't complete their profiles
-      if (user.skills !== null) {
+      if (user.skills.length > 0) {
         user.skills.forEach((userSkill) => {
-          if (userSkill.toLowerCase().includes(query.toLowerCase())) {
+          if (userSkill?.toLowerCase().includes(query.toLowerCase())) {
             matchSkill = true;
           } else {
             matchSkill = false;
@@ -38,7 +38,6 @@ const SearchResults = () => {
         });
         if (
           matchSkill === true ||
-          user.bio !== null ||
           user.bio.toLowerCase().includes(query.toLowerCase())
         ) {
           return user;

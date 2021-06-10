@@ -32,6 +32,7 @@ const UserCard = ({ user }) => {
       .then((data) => {
         console.log("success", data);
         setCurrentLoggedInUser(data.data);
+        localStorage.setItem("currentLoggedInUser", JSON.stringify(data.data));
       });
   };
 
@@ -55,6 +56,7 @@ const UserCard = ({ user }) => {
       .then((data) => {
         console.log("success", data);
         setCurrentLoggedInUser(data.data);
+        localStorage.setItem("currentLoggedInUser", JSON.stringify(data.data));
       });
   };
 
@@ -82,13 +84,9 @@ const UserCard = ({ user }) => {
         )}
         <OfferedSkills>Skills I Can Offer:</OfferedSkills>
         <ul>
-          {user.skills !== null &&
-            user.skills.map((skill) => {
-              return (
-                <SkillLi key={`id-${skill}`}>
-                  {skill.charAt(0).toUpperCase() + skill.slice(1)}
-                </SkillLi>
-              );
+          {user.skills.length > 0 &&
+            user.skills?.map((skill) => {
+              return <SkillLi key={`id-${skill}`}>{skill}</SkillLi>;
             })}
         </ul>
         <ViewBtn>View Listing</ViewBtn>
@@ -167,6 +165,8 @@ const ViewBtn = styled.button`
   margin-top: 20px;
 `;
 
-const SkillLi = styled.li``;
+const SkillLi = styled.li`
+  text-transform: capitalize;
+`;
 
 export default UserCard;

@@ -6,6 +6,7 @@ export const LoggedInUserProvider = ({ children }) => {
   const [currentLoggedInUser, setCurrentLoggedInUser] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [errMsg, setErrMsg] = useState("");
+  const [fetching, setFetching] = useState(true);
   //handle form values
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,7 +16,16 @@ export const LoggedInUserProvider = ({ children }) => {
     console.log("loggedInuser", loggedInUser);
     if (loggedInUser) {
       const foundUser = JSON.parse(loggedInUser);
-      setCurrentLoggedInUser(foundUser);
+      fetch(`/api/users/${foundUser._id}`)
+        .then((rest) => rest.json())
+        .then((json) => {
+          setCurrentLoggedInUser(json.data);
+          setLoggedIn(true);
+          setFetching(false);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }, []);
 
@@ -32,6 +42,8 @@ export const LoggedInUserProvider = ({ children }) => {
         setEmail,
         password,
         setPassword,
+        fetching,
+        setFetching,
       }}
     >
       {children}

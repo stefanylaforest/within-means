@@ -70,8 +70,8 @@ const googleLogin = async (req, res) => {
   if (email_verified) {
     const user = await db.collection("users").findOne({ email: email });
     if (user) {
-      res.status(201).json({
-        status: 201,
+      res.status(200).json({
+        status: 200,
         message: `welcome back ${name}`,
         data: user,
       });
