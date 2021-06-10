@@ -72,7 +72,7 @@ const UserDetails = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log("success", data);
-        setCurrentUser(data.data);
+        // setCurrentUser(data.data);
         setToggleMsgInput(!toggleMsgInput);
         setAlert("message sent!");
         setTimeout(() => {
@@ -256,6 +256,7 @@ const SendOfferBtn = styled.button`
   font-size: 1em;
   padding: 10px;
   cursor: pointer;
+  transition: 0.3s ease-in-out;
   &:hover {
     background-color: ${colors.mediumPurple};
   }
@@ -313,6 +314,7 @@ const Cancel = styled.button`
   padding: 10px;
   cursor: pointer;
   width: 100px;
+  transition: 0.3s ease-in-out;
   &:hover {
     background-color: #ee7257;
   }

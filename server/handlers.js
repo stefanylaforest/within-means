@@ -37,13 +37,13 @@ const addUser = async (req, res) => {
       email: email,
       password: chosenPassword,
       title: null,
-      skills: null,
-      avatar: null,
+      skills: [],
+      avatar: "/images/profile-pics/no-photo-selected.png",
       website: null,
       bio: null,
       status: null,
       statusDate: null,
-      saved: null,
+      saved: [],
       swaps: null,
       rating: null,
       inbox: [],
@@ -85,16 +85,16 @@ const googleLogin = async (req, res) => {
         email: email,
         password: newPassword,
         title: null,
-        skills: null,
+        skills: [],
         avatar: picture,
         website: null,
         bio: null,
         status: null,
         statusDate: null,
-        saved: null,
+        saved: [],
         swaps: null,
         rating: null,
-        inbox: null,
+        inbox: [],
       });
       assert.strictEqual(1, newUser.insertedCount);
       res
@@ -274,14 +274,32 @@ const deleteMessage = async (req, res) => {
   await client.connect();
   const db = client.db("WithinMeans");
   const updateRequest = req.body;
-  let updatedProfile = await db.collection("users").deleteOne(
+  let updatedProfile = await db.collection("users").updateOne(
     { _id: userId },
     {
-      $unset: updateRequest,
+      $pull: updateRequest,
     }
   );
   const user = await db.collection("users").findOne({ _id: userId });
   console.log("AFTERDELETED", user);
+  res.status(200).json({ status: 200, message: `message deleted`, data: user });
+  client.close();
+};
+
+const removeFromFavorites = async (req, res) => {
+  const { userId } = req.params;
+  const client = await MongoClient(MONGO_URI, options);
+  await client.connect();
+  const db = client.db("WithinMeans");
+  const updateRequest = req.body;
+  let updatedProfile = await db.collection("users").findOneAndUpdate(
+    { _id: userId },
+    {
+      $pull: updateRequest,
+    }
+  );
+  const user = await db.collection("users").findOne({ _id: userId });
+  console.log("AFTERREMOVED", user);
   res.status(200).json({ status: 200, message: `message deleted`, data: user });
   client.close();
 };
@@ -297,4 +315,5 @@ module.exports = {
   sendMessage,
   deleteMessage,
   addToFavorites,
+  removeFromFavorites,
 };

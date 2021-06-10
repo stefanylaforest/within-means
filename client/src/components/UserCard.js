@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { colors } from "../GlobalStyles";
 import { HiOutlineHeart, HiHeart } from "react-icons/hi";
 import { LoggedInUserContext } from "./LoggedInUserContext";
 
 const UserCard = ({ user }) => {
   let userId = user._id;
+  const history = useHistory();
 
   const { currentLoggedInUser, setCurrentLoggedInUser } =
     useContext(LoggedInUserContext);
@@ -14,7 +15,33 @@ const UserCard = ({ user }) => {
   const handleSave = (e) => {
     e.preventDefault();
     e.stopPropagation();
+    if (!currentLoggedInUser) {
+      return history.push(`/login`);
+    }
     fetch(`/api/users/${currentLoggedInUser._id}/save`, {
+      method: "PATCH",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        saved: userId,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("success", data);
+        setCurrentLoggedInUser(data.data);
+      });
+  };
+
+  const handleRemoveSave = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    // if (!currentLoggedInUser) {
+    //   return history.push(`/login`);
+    // }
+    fetch(`/api/users/${currentLoggedInUser._id}/save/remove`, {
       method: "PATCH",
       headers: {
         Accept: "application/json",
@@ -35,13 +62,17 @@ const UserCard = ({ user }) => {
     <Link exact to={`/users/${userId}`}>
       <Wrapper>
         <object>
-          <LikeContainer onClick={handleSave}>
-            {currentLoggedInUser.saved.includes(userId) ? (
+          {currentLoggedInUser &&
+          currentLoggedInUser.saved !== null &&
+          currentLoggedInUser.saved.includes(userId) ? (
+            <LikeContainer onClick={handleRemoveSave}>
               <FilledHeart />
-            ) : (
+            </LikeContainer>
+          ) : (
+            <LikeContainer onClick={handleSave}>
               <EmptyHeart />
-            )}
-          </LikeContainer>
+            </LikeContainer>
+          )}
         </object>
         <Avatar src={user?.avatar} />
         {user.status ? (

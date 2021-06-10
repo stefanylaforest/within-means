@@ -38,6 +38,7 @@ const SearchResults = () => {
         });
         if (
           matchSkill === true ||
+          user.bio !== null ||
           user.bio.toLowerCase().includes(query.toLowerCase())
         ) {
           return user;

@@ -270,6 +270,7 @@ const Textarea = styled.textarea`
   width: 95%;
   margin-right: 30px;
   background: white;
+  transition: 0.3s ease-in-out;
   &:focus,
   &:hover {
     outline: none;

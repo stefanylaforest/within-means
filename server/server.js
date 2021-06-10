@@ -15,6 +15,7 @@ const {
   sendMessage,
   deleteMessage,
   addToFavorites,
+  removeFromFavorites,
 } = require("./handlers");
 
 // // const users = require("./data/users.json");
@@ -44,6 +45,7 @@ app.patch("/api/users/:userId/edit", editProfile);
 app.patch("/api/users/:userId/message", sendMessage);
 app.patch("/api/users/:userId/message/delete", deleteMessage);
 app.patch("/api/users/:userId/save", addToFavorites);
+app.patch("/api/users/:userId/save/remove", removeFromFavorites);
 
 // //---------------
 // //endpoints ^

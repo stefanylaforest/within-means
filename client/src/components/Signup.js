@@ -10,8 +10,18 @@ import Loading from "./Loaders/Loading";
 
 const Signup = () => {
   const [loadingComponent, setLoadingComponent] = useState(false);
-  const { errMsg, setErrMsg, email, setEmail, password, setPassword } =
-    useContext(LoggedInUserContext);
+  const {
+    currentLoggedInUser,
+    setCurrentLoggedInUser,
+    loggedIn,
+    setLoggedIn,
+    errMsg,
+    setErrMsg,
+    email,
+    setEmail,
+    password,
+    setPassword,
+  } = useContext(LoggedInUserContext);
   let history = useHistory();
 
   const handleLoginFailure = (response) => {};
@@ -29,7 +39,9 @@ const Signup = () => {
     })
       .then((response) => response.json())
       .then((json) => {
-        history.push(`/`);
+        setCurrentLoggedInUser(json.data);
+        setLoggedIn(true);
+        history.push(`/users/${currentLoggedInUser._id}/edit`);
       });
   };
 
@@ -53,7 +65,9 @@ const Signup = () => {
       .then((res) => res.json())
       .then((json) => {
         if (json.status === 201) {
-          history.push("/login");
+          setCurrentLoggedInUser(json.data);
+          setLoggedIn(true);
+          history.push(`/users/${currentLoggedInUser._id}/edit`);
         }
 
         if (json.status === 401) {
