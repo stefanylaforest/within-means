@@ -7,10 +7,13 @@ export const LoggedInUserProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [errMsg, setErrMsg] = useState("");
   const [fetching, setFetching] = useState(true);
+  const [isSaved, setIsSaved] = useState(false);
   //handle form values
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [updated, setUpdated] = useState(false);
+
+  const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem("currentLoggedInUser");
@@ -47,6 +50,8 @@ export const LoggedInUserProvider = ({ children }) => {
         setFetching,
         updated,
         setUpdated,
+        isLiked,
+        setIsLiked,
       }}
     >
       {children}

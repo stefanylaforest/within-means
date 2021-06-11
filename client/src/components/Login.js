@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import GoogleLogin from "react-google-login";
 import styled from "styled-components";
-import LoginSvg from "../assets/loginSvg";
+import JumpSvg from "../assets/JumpSvg";
 import { LoggedInUserContext } from "./LoggedInUserContext";
 import { useHistory } from "react-router-dom";
 import { colors } from "../GlobalStyles";
@@ -173,7 +173,7 @@ const Login = () => {
             Within Means' platform allows you to connect with like-minded people
             and trade expertise for free! No money exchanged ever.
           </p>
-          <LoginSvg />
+          <JumpSvg />
         </GraphicsDiv>
       </Container>
     );
@@ -190,12 +190,11 @@ const Container = styled.div`
 const LogInModal = styled.div`
   display: flex;
   flex-direction: column;
-  width: 600px;
+  width: 100%;
   background-color: white;
-  margin: 0 auto;
-  margin-top: 100px;
+  /* align-items: center; */
   border-radius: 25px;
-  /* margin: 60px; */
+  margin: 60px;
   padding: 30px 50px;
   text-align: center;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,

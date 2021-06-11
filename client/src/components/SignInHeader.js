@@ -57,7 +57,7 @@ const SignInHeader = () => {
       {location.pathname !== "/login" && location.pathname !== "/register" && (
         <div>
           <Link exact to="/login">
-            <SignIn>Sign In</SignIn>
+            <SignIn>Log In</SignIn>
           </Link>
           <Link exact to="/register">
             <SignUp>Start Swapping</SignUp>
@@ -73,7 +73,7 @@ const SignInHeader = () => {
 
       {location.pathname === "/register" && (
         <Link exact to="/login">
-          <SignIn>Sign In</SignIn>
+          <SignIn>Log In</SignIn>
         </Link>
       )}
     </Container>

@@ -94,7 +94,7 @@ const Signup = () => {
   } else {
     return (
       <Container>
-        <LogInModal>
+        <SignUpModal>
           <h2>Sign Up To Within Means</h2>
           {errMsg !== "" && <ErrorMessage>{errMsg}</ErrorMessage>}
           <Label for="password">Email</Label>
@@ -117,9 +117,9 @@ const Signup = () => {
               setErrMsg("");
             }}
           />
-          <LoginBtn type="submit" onClick={regularSignUpHandler}>
+          <SignUpBtn type="submit" onClick={regularSignUpHandler}>
             Sign Up
-          </LoginBtn>
+          </SignUpBtn>
           <Seperator>or</Seperator>
           <GoogleLogin
             clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
@@ -139,7 +139,7 @@ const Signup = () => {
               Log In
             </StyledLink>
           </SignUp>
-        </LogInModal>
+        </SignUpModal>
         <GraphicsDiv>
           <h1>
             Connect with real professionals and make your entrepreneurial
@@ -163,7 +163,7 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const LogInModal = styled.div`
+const SignUpModal = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -214,7 +214,7 @@ const Input = styled.input`
   }
 `;
 
-const LoginBtn = styled.button`
+const SignUpBtn = styled.button`
   font-size: 18px;
   padding: 15px;
   background-color: ${colors.darkPurple};

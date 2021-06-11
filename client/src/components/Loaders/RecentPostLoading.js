@@ -71,7 +71,7 @@ const OfferedSkills = styled.h4`
 `;
 
 const ViewBtn = styled.button`
-  border-radius: 20px;
+  border-radius: 10px;
   border: none;
   background-color: #f3f3f3;
   color: #f3f3f3;

@@ -16,10 +16,16 @@ const options = {
 
 const googleClient = new OAuth2Client(process.env.CLIENT_ID);
 
+let client;
+const initMongo = async () => {
+  client = await MongoClient(MONGO_URI, options);
+  client.connect();
+};
+
+initMongo();
+
 const addUser = async (req, res) => {
   const { _id, name, email } = req.body;
-  const client = await MongoClient(MONGO_URI, options);
-  await client.connect();
   const db = client.db("WithinMeans");
   const chosenPassword = await bcrypt.hash(req.body.password, saltRounds);
   const checkIfUserExists = await db
@@ -52,14 +58,12 @@ const addUser = async (req, res) => {
     res
       .status(201)
       .json({ status: 201, message: `welcome ${name}`, data: req.body });
-    client.close();
   }
 };
 
 const googleLogin = async (req, res) => {
   const { token } = req.body;
-  const client = await MongoClient(MONGO_URI, options);
-  await client.connect();
+
   const db = client.db("WithinMeans");
   const ticket = await googleClient.verifyIdToken({
     idToken: token,
@@ -108,9 +112,7 @@ const googleLogin = async (req, res) => {
 };
 
 const authenticateUser = async (req, res) => {
-  const client = await MongoClient(MONGO_URI, options);
   try {
-    await client.connect();
     const db = client.db("WithinMeans");
     const user = await db
       .collection("users")
@@ -143,7 +145,6 @@ const authenticateUser = async (req, res) => {
         });
       }
     }
-    client.close();
   } catch (error) {
     console.log(error);
     res.status(500).send("internal server error :(");
@@ -152,8 +153,6 @@ const authenticateUser = async (req, res) => {
 
 const getUsers = async (req, res) => {
   try {
-    const client = await MongoClient(MONGO_URI, options);
-    await client.connect();
     const db = client.db("WithinMeans");
     const users = await db.collection("users").find().toArray();
     res.status(200).json({
@@ -161,7 +160,6 @@ const getUsers = async (req, res) => {
       message: "All Users",
       data: users,
     });
-    client.close();
   } catch {
     res.status(404).json({
       status: 404,
@@ -172,8 +170,6 @@ const getUsers = async (req, res) => {
 
 const getSingleUser = async (req, res) => {
   const { userId } = req.params;
-  const client = await MongoClient(MONGO_URI, options);
-  await client.connect();
   const db = client.db("WithinMeans");
   const user = await db.collection("users").findOne({ _id: userId });
   if (user) {
@@ -183,14 +179,10 @@ const getSingleUser = async (req, res) => {
   } else {
     res.status(404).json({ status: 404, message: `user ${userId} not found` });
   }
-
-  client.close();
 };
 
 const updateStatus = async (req, res) => {
   const { userId } = req.params;
-  const client = await MongoClient(MONGO_URI, options);
-  await client.connect();
   const db = client.db("WithinMeans");
   const updateRequest = req.body;
 
@@ -202,14 +194,10 @@ const updateStatus = async (req, res) => {
   );
   const user = await db.collection("users").findOne({ _id: userId });
   res.status(200).json({ status: 200, message: `profile update`, data: user });
-
-  client.close();
 };
 
 const editProfile = async (req, res) => {
   const { userId } = req.params;
-  const client = await MongoClient(MONGO_URI, options);
-  await client.connect();
   const db = client.db("WithinMeans");
   const updateRequest = req.body;
 
@@ -221,14 +209,10 @@ const editProfile = async (req, res) => {
   );
   const user = await db.collection("users").findOne({ _id: userId });
   res.status(200).json({ status: 200, message: `profile update`, data: user });
-
-  client.close();
 };
 
 const sendMessage = async (req, res) => {
   const { userId } = req.params;
-  const client = await MongoClient(MONGO_URI, options);
-  await client.connect();
   const db = client.db("WithinMeans");
   const updateRequest = req.body;
   let updatedProfile = await db.collection("users").findOneAndUpdate(
@@ -239,26 +223,25 @@ const sendMessage = async (req, res) => {
   );
   const user = await db.collection("users").findOne({ _id: userId });
   res.status(200).json({ status: 200, message: `message sent`, data: user });
-
-  client.close();
 };
 
 const addToFavorites = async (req, res) => {
   try {
     const { userId } = req.params;
-    const client = await MongoClient(MONGO_URI, options);
-    await client.connect();
     const db = client.db("WithinMeans");
     const updateRequest = req.body;
+    console.time("update");
     let updatedProfile = await db.collection("users").findOneAndUpdate(
       { _id: userId },
       {
         $push: updateRequest,
       }
     );
+    console.timeEnd("update");
+    console.time("getUser");
     const user = await db.collection("users").findOne({ _id: userId });
+    console.timeEnd("getUser");
     res.status(200).json({ status: 200, message: `message sent`, data: user });
-    client.close();
   } catch (error) {
     console.log(error);
     res.status(500).send("internal server error :(");
@@ -267,8 +250,6 @@ const addToFavorites = async (req, res) => {
 
 const deleteMessage = async (req, res) => {
   const { userId } = req.params;
-  const client = await MongoClient(MONGO_URI, options);
-  await client.connect();
   const db = client.db("WithinMeans");
   const updateRequest = req.body;
   let updatedProfile = await db.collection("users").updateOne(
@@ -278,15 +259,11 @@ const deleteMessage = async (req, res) => {
     }
   );
   const user = await db.collection("users").findOne({ _id: userId });
-  console.log("AFTERDELETED", user);
   res.status(200).json({ status: 200, message: `message deleted`, data: user });
-  client.close();
 };
 
 const removeFromFavorites = async (req, res) => {
   const { userId } = req.params;
-  const client = await MongoClient(MONGO_URI, options);
-  await client.connect();
   const db = client.db("WithinMeans");
   const updateRequest = req.body;
   let updatedProfile = await db.collection("users").findOneAndUpdate(
@@ -298,7 +275,6 @@ const removeFromFavorites = async (req, res) => {
   const user = await db.collection("users").findOne({ _id: userId });
   console.log("AFTERREMOVED", user);
   res.status(200).json({ status: 200, message: `message deleted`, data: user });
-  client.close();
 };
 
 module.exports = {

@@ -10,8 +10,8 @@ const options = {
 };
 
 const dbFunction = async () => {
-  const client = await MongoClient(MONGO_URI, options);
-  await client.connect();
+  // const client = await MongoClient(MONGO_URI, options);
+  // await client.connect();
   const db = client.db("WithinMeans");
   const result = await db
     .collection("users")

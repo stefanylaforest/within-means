@@ -15,6 +15,8 @@ const Message = ({
   senderStatus,
   senderName,
   setAlert,
+  isVisible,
+  setIsVisible,
 }) => {
   const { currentLoggedInUser, setCurrentLoggedInUser, updated, setUpdated } =
     useContext(LoggedInUserContext);
@@ -58,6 +60,7 @@ const Message = ({
   };
 
   const deleteMessageHandler = () => {
+    setIsVisible(!isVisible);
     fetch(`/api/users/${currentLoggedInUser._id}/message/delete`, {
       method: "PATCH",
       headers: {
@@ -112,8 +115,11 @@ const Message = ({
       <DateStamp>Sent on {moment(date).format("LLL")}</DateStamp>
       {!clickReply && (
         <IconWrapMobile>
-          <ReplyIcon onClick={toggleClickReply} />{" "}
-          <DeleteIcon onClick={deleteMessageHandler} />
+          <ReplyIcon aria-label="reply to message" onClick={toggleClickReply} />{" "}
+          <DeleteIcon
+            aria-label="delete message"
+            onClick={deleteMessageHandler}
+          />
         </IconWrapMobile>
       )}
       {clickReply && (
@@ -289,7 +295,7 @@ const SendBtn = styled.button`
   background-color: #53bb8f;
   color: white;
   border: none;
-  border-radius: 26px;
+  border-radius: 10px;
   font-size: 1em;
   padding: 10px;
   cursor: pointer;
@@ -304,7 +310,7 @@ const Cancel = styled.button`
   background-color: ${colors.coral};
   color: white;
   border: none;
-  border-radius: 26px;
+  border-radius: 10px;
   font-size: 1em;
   padding: 10px;
   cursor: pointer;

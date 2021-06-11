@@ -24,7 +24,7 @@ const Home = () => {
       {userStatus === "idle" ? (
         <RecentPostingUl>
           {users &&
-            sortUsersByMostRecentStatus.slice(0, 3).map((user) => {
+            sortUsersByMostRecentStatus.slice(0, 3).map((user, i) => {
               console.log("from map", user);
               return (
                 <RecentPostLi key={`user-${user._id}`}>
@@ -44,8 +44,8 @@ const Home = () => {
   );
 };
 
-const HeaderRecentPost = styled.p`
-  margin-top: 40px;
+const HeaderRecentPost = styled.h3`
+  margin-top: 50px;
   text-align: center;
 `;
 

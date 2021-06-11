@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import styled from "styled-components";
+import React, { useContext, useEffect } from "react";
+import styled, { keyframes } from "styled-components";
 import { Link, useHistory } from "react-router-dom";
 import { colors } from "../GlobalStyles";
 import { HiOutlineHeart, HiHeart } from "react-icons/hi";
@@ -8,8 +8,7 @@ import { LoggedInUserContext } from "./LoggedInUserContext";
 const UserCard = ({ user }) => {
   let userId = user._id;
   const history = useHistory();
-
-  const { currentLoggedInUser, setCurrentLoggedInUser } =
+  const { currentLoggedInUser, setCurrentLoggedInUser, setUpdated, updated } =
     useContext(LoggedInUserContext);
 
   const handleSave = (e) => {
@@ -30,7 +29,7 @@ const UserCard = ({ user }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("success", data);
+        // console.log("success", data);
         setCurrentLoggedInUser(data.data);
         localStorage.setItem("currentLoggedInUser", JSON.stringify(data.data));
       });
@@ -61,18 +60,17 @@ const UserCard = ({ user }) => {
     <Link exact to={`/users/${userId}`}>
       <Wrapper>
         <object>
-          {currentLoggedInUser &&
-          currentLoggedInUser.saved !== null &&
-          currentLoggedInUser.saved.includes(userId) ? (
-            <LikeContainer onClick={handleRemoveSave}>
-              <FilledHeart />
-            </LikeContainer>
-          ) : (
-            <LikeContainer onClick={handleSave}>
-              <EmptyHeart />
-            </LikeContainer>
-          )}
+          <LikeContainer>
+            {currentLoggedInUser &&
+            currentLoggedInUser.saved !== null &&
+            currentLoggedInUser.saved.includes(userId) ? (
+              <FilledHeart onClick={handleRemoveSave} />
+            ) : (
+              <EmptyHeart onClick={handleSave} />
+            )}
+          </LikeContainer>
         </object>
+
         <Avatar src={user?.avatar} />
         {user.status ? (
           <Status>{user.status.slice(0, 58)}...</Status>
@@ -103,6 +101,7 @@ const Wrapper = styled.div`
   border-radius: 15px;
   transition: 0.2s ease-in;
   cursor: pointer;
+  margin-top: 20px;
   &:hover {
     margin-top: -10px;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
@@ -120,6 +119,12 @@ const Avatar = styled.img`
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 `;
 
+const pulse = keyframes`
+  0% { box-shadow: 0 0 0 0 ${colors.coral}; }
+  50% { box-shadow: 0 0 0 0 ${colors.coral}; }
+  100% { box-shadow: 0 0 7 7 ${colors.coral}; }
+`;
+
 const LikeContainer = styled.div`
   cursor: pointer;
   font-size: 25px;
@@ -129,15 +134,20 @@ const LikeContainer = styled.div`
 
 const EmptyHeart = styled(HiOutlineHeart)`
   color: ${colors.coral};
+  border-radius: 50%;
+  transition: 0.25s;
   &:hover {
+    /* animation: ${pulse} 0.2s;
+    box-shadow: 0 0 0 2em rgba(0, 0, 0, 0); */
     fill: ${colors.coral};
   }
+  /* &:hover {
+    fill: ${colors.coral};
+  } */
 `;
 
 const FilledHeart = styled(HiHeart)`
   color: ${colors.coral};
-
-  /* fill: ${colors.coral}; */
 `;
 
 const Status = styled.h3`

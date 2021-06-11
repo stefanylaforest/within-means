@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
 import { colors } from "../GlobalStyles";
-import { ImSearch } from "react-icons/im";
+import { ImSearch, ImArrowRight2 } from "react-icons/im";
 import { UsersContext } from "./UsersContext";
 import { SearchContext } from "./SearchContext";
 import { useHistory, useParams } from "react-router-dom";
@@ -38,11 +38,12 @@ const Search = () => {
             onChange={(e) => setQuery(e.target.value)}
           />
           <SearchBtn
+            aria-label="search"
             onClick={(e) => {
               mainQueryHandler(e);
             }}
           >
-            Search
+            <ImArrowRight2 />
           </SearchBtn>
         </InputGroup>
         <Suggested>
@@ -88,6 +89,7 @@ const Container = styled.div`
 const Heading = styled.h2`
   color: ${colors.darkPurple};
   margin-bottom: 40px;
+  font-size: 30px;
 `;
 
 const Form = styled.form``;
@@ -121,17 +123,17 @@ const SearchBar = styled.input`
 `;
 
 const SearchBtn = styled.button`
-  background: ${colors.mediumPurple};
+  background-color: transparent;
   height: 100%;
   border: none;
-  color: white;
+  font-size: 18px;
+  color: ${colors.darkPurple};
   border-radius: 30px;
-  padding: 0px 18px;
-  flex-wrap: wrap;
+  padding: 5px 18px 0px 0px;
   cursor: pointer;
+  font-family: "Poppins", sans-serif;
   &:hover {
-    background-color: ${colors.darkPurple};
-    color: white;
+    color: ${colors.mediumPurple};
   }
 `;
 
@@ -143,11 +145,13 @@ const Suggested = styled.div`
 const SuggestedBtn = styled.button`
   border: 3px solid ${colors.darkPurple};
   border-radius: 40px;
+  font-size: 14px;
   padding: 0px 10px;
   margin: 10px;
   background-color: transparent;
   color: ${colors.darkPurple};
   cursor: pointer;
+  font-family: "Poppins", sans-serif;
   &:hover {
     background-color: ${colors.darkPurple};
     color: white;

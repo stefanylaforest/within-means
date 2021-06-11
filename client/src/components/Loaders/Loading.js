@@ -4,10 +4,10 @@ import styled, { keyframes } from "styled-components";
 
 const Loading = () => {
   return (
-    <div>
+    <LoadingDiv>
       <SVG
-        width="110px"
-        height="35px"
+        width="210px"
+        height="65px"
         viewBox="0 0 181 106"
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
@@ -64,9 +64,16 @@ const Loading = () => {
           ></polygon>
         </g>
       </SVG>
-    </div>
+    </LoadingDiv>
   );
 };
+
+const LoadingDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  height: 80vh;
+  align-items: center;
+`;
 
 const bounce = keyframes`
   0%, 100% { 

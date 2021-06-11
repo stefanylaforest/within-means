@@ -4,6 +4,7 @@ import EditProfile from "./EditProfile";
 import styled from "styled-components";
 import { FaUserCircle } from "react-icons/fa";
 import { colors } from "../GlobalStyles";
+import Loading from "./Loaders/Loading";
 
 const MyProfile = () => {
   const { currentLoggedInUser, setCurrentLoggedInUser, fetching } =
@@ -39,7 +40,7 @@ const MyProfile = () => {
   if (fetching) {
     return (
       <>
-        <p>loading...</p>
+        <Loading />
       </>
     );
   } else
