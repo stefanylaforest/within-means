@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { LoggedInUserContext } from "./LoggedInUserContext";
 import EditProfile from "./EditProfile";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { FaUserCircle } from "react-icons/fa";
 import { colors } from "../GlobalStyles";
 import Loading from "./Loaders/Loading";
@@ -64,7 +64,7 @@ const MyProfile = () => {
           </AvatarAndName>
           <StatusSection>
             <h2>
-              <label for="status">Update your status</label>
+              <label htmlFor="status">Update your status</label>
             </h2>
             <StatusTextArea
               defaultValue={currentLoggedInUser.status}
@@ -87,9 +87,22 @@ const MyProfile = () => {
     );
 };
 
+const fadeIn = keyframes`
+   0% {
+    opacity: 0;
+
+   }
+ 
+    100% {
+    opacity: 1;
+
+    }`;
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
+
+  animation: ${fadeIn} 0.3s ease-in;
 
   @media screen and (max-width: 950px) {
     display: flex;

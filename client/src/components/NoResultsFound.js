@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { UsersContext } from "./UsersContext";
 import { SearchContext } from "./SearchContext";
 import UserCard from "./UserCard";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Loading from "./Loaders/Loading";
 import NoResultsSvg from "../assets/NoResultsFoundSvg";
 import { useParams } from "react-router-dom";
@@ -54,7 +54,19 @@ const SearchResultsUl = styled.ul`
   flex-wrap: wrap;
 `;
 
+const fadeIn = keyframes`
+   0% {
+    opacity: 0;
+
+   }
+ 
+    100% {
+    opacity: 1;
+
+    }`;
+
 const Li = styled.li`
   margin: 20px;
+  animation: ${fadeIn} 0.3s ease-in;
 `;
 export default NoResultsFound;

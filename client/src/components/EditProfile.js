@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { LoggedInUserContext } from "./LoggedInUserContext";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { colors } from "../GlobalStyles";
 
 const EditProfile = () => {
@@ -76,14 +76,14 @@ const EditProfile = () => {
       <h1>Edit Profile</h1>
       <Divider />
       {alert !== null && <Alert>{alert}</Alert>}
-      <label for="name">Name:</label>
+      <label htmlFor="name">Name:</label>
       <Input
         type="text"
         defaultValue={currentLoggedInUser.name}
         onChange={(ev) => setName(ev.target.value)}
       />
 
-      <label for="email">Email:</label>
+      <label htmlFor="email">Email:</label>
       <Input
         type="email"
         contentEditable="true"
@@ -91,27 +91,27 @@ const EditProfile = () => {
         onChange={(ev) => setNewEmail(ev.target.value)}
       />
       {/* 
-      <label for="password">Password:</label>
+      <label htmlFor="password">Password:</label>
       <Input type="password" /> */}
 
-      <label for="title">Title:</label>
+      <label htmlFor="title">Title:</label>
       <Input
         type="text"
         defaultValue={currentLoggedInUser.title}
         onChange={(ev) => setTitle(ev.target.value)}
       />
-      <label for="website">Website:</label>
+      <label htmlFor="website">Website:</label>
       <Input
         type="text"
         defaultValue={currentLoggedInUser.website}
         onChange={(ev) => setWebsite(ev.target.value)}
       />
 
-      <label for="skills">Skills: (List 3)</label>
+      <label htmlFor="skills">List Your Skills: (List 3)</label>
       <BioAndSkillsWrapper>
         <SkillsWrapper>
           <LabelInputDiv>
-            <SkillsLabel for="skill-one">Skill 1</SkillsLabel>
+            <SkillsLabel htmlFor="skill-one">Skill 1</SkillsLabel>
             <Input
               name="skill-one"
               type="text"
@@ -120,7 +120,7 @@ const EditProfile = () => {
             />
           </LabelInputDiv>
           <LabelInputDiv>
-            <SkillsLabel for="skill-two">Skill 2</SkillsLabel>
+            <SkillsLabel htmlFor="skill-two">Skill 2</SkillsLabel>
             <Input
               name="skill-two"
               type="text"
@@ -129,7 +129,7 @@ const EditProfile = () => {
             />
           </LabelInputDiv>
           <LabelInputDiv>
-            <SkillsLabel for="skill-three">Skill 3</SkillsLabel>
+            <SkillsLabel htmlFor="skill-three">Skill 3</SkillsLabel>
             <Input
               name="skill-three"
               type="text"
@@ -139,7 +139,7 @@ const EditProfile = () => {
           </LabelInputDiv>
         </SkillsWrapper>
         <BioWrapper>
-          <label for="bio">
+          <label htmlFor="bio">
             Write a brief description about what you do or who you are:
           </label>
           <BioTextArea
@@ -153,6 +153,16 @@ const EditProfile = () => {
   );
 };
 
+const fadeIn = keyframes`
+   0% {
+    opacity: 0;
+   }
+ 
+    100% {
+    opacity: 1;
+
+    }`;
+
 const FormGroup = styled.div`
   display: flex;
   flex-direction: column;
@@ -160,6 +170,7 @@ const FormGroup = styled.div`
   background: white;
   padding: 20px 30px;
   border-radius: 20px;
+  animation: ${fadeIn} 0.3s ease-in;
   @media screen and (max-width: 950px) {
     margin: 0px 50px 50px 50px;
   }
@@ -194,7 +205,6 @@ const Input = styled.input`
   font-size: 16px;
   padding: 10px 16px;
   transition: 0.3s ease-in-out;
-
   &:focus,
   &:hover {
     border: 1px solid ${colors.mediumPurple};

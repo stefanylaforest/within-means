@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import WithinMeansLogo from "../assets/WithinMeansLogo";
 import { colors } from "../GlobalStyles";
@@ -24,6 +24,13 @@ const Header = () => {
     }
   };
 
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      return console.log("yo");
+      // headerQueryHandler();
+    }
+  };
+
   return (
     <LogoWrapper>
       <Link to="/">
@@ -42,6 +49,7 @@ const Header = () => {
             onChange={(e) => setNewQuery(e.target.value)}
           />
           <SearchBtn
+            onKeyDown={(e) => handleKeyPress(e)}
             onClick={(e) => {
               headerQueryHandler(e);
             }}

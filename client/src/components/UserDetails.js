@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { LoggedInUserContext } from "./LoggedInUserContext";
 import { useParams, useHistory } from "react-router-dom";
 import { colors } from "../GlobalStyles";
@@ -215,7 +215,7 @@ const GoBack = styled.p`
   color: ${colors.darkPurple};
   width: 200px;
   cursor: pointer;
-  margin: 0px 50px 50px 50px;
+  margin: 60px;
 `;
 
 const GoBackIcon = styled(ImArrowLeft2)`
@@ -223,6 +223,17 @@ const GoBackIcon = styled(ImArrowLeft2)`
   color: ${colors.darkPurple};
   margin-right: 15px;
 `;
+
+const fadeIn = keyframes`
+   0% {
+    opacity: 0;
+
+   }
+ 
+    100% {
+    opacity: 1;
+
+    }`;
 
 const Wrapper = styled.div`
   display: flex;
@@ -232,6 +243,7 @@ const Wrapper = styled.div`
   margin: 0 auto;
   background-color: white;
   border-radius: 25px;
+  animation: ${fadeIn} 0.3s ease-in;
 `;
 
 const EmptyHeart = styled(HiOutlineHeart)`
@@ -239,12 +251,22 @@ const EmptyHeart = styled(HiOutlineHeart)`
   &:hover {
     fill: ${colors.coral};
   }
+  &:active {
+    transform: scale(1.5);
+    fill: ${colors.coral};
+  }
+  &:active:after {
+    transform: scale(1.5);
+    fill: ${colors.coral};
+  }
 `;
 
 const FilledHeart = styled(HiHeart)`
   color: ${colors.coral};
 
-  /* fill: ${colors.coral}; */
+  &:active {
+    transform: scale(1.5);
+  }
 `;
 
 const UserSpecs = styled.div`

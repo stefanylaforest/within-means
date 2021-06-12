@@ -1,13 +1,14 @@
 import React, { useContext, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { colors } from "../GlobalStyles";
 import { HiOutlineHeart, HiHeart } from "react-icons/hi";
 import { LoggedInUserContext } from "./LoggedInUserContext";
 
-const UserCard = ({ user }) => {
+const UserCard = ({ user, setRemoveSaved }) => {
   let userId = user._id;
   const history = useHistory();
+  const location = useLocation();
   const { currentLoggedInUser, setCurrentLoggedInUser, setUpdated, updated } =
     useContext(LoggedInUserContext);
 
@@ -29,13 +30,16 @@ const UserCard = ({ user }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log("success", data);
         setCurrentLoggedInUser(data.data);
         localStorage.setItem("currentLoggedInUser", JSON.stringify(data.data));
       });
   };
 
   const handleRemoveSave = (e) => {
+    if (location.pathname.includes("save")) {
+      setRemoveSaved(user._id);
+    }
+
     e.preventDefault();
     e.stopPropagation();
     fetch(`/api/users/${currentLoggedInUser._id}/save/remove`, {
@@ -58,7 +62,14 @@ const UserCard = ({ user }) => {
 
   return (
     <Link exact to={`/users/${userId}`}>
-      <Wrapper>
+      <Wrapper
+        style={{
+          boxShadow:
+            location.pathname === `/users/${currentLoggedInUser._id}/saved`
+              ? "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px"
+              : " ",
+        }}
+      >
         <object>
           <LikeContainer>
             {currentLoggedInUser &&
@@ -99,11 +110,11 @@ const Wrapper = styled.div`
   width: 230px;
   padding: 25px;
   border-radius: 15px;
-  transition: 0.2s ease-in;
+  transition: 0.3s ease-in;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 30px;
   &:hover {
-    margin-top: -10px;
+    background-color: #f9f9f9;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
       rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   }
@@ -137,17 +148,24 @@ const EmptyHeart = styled(HiOutlineHeart)`
   border-radius: 50%;
   transition: 0.25s;
   &:hover {
-    /* animation: ${pulse} 0.2s;
-    box-shadow: 0 0 0 2em rgba(0, 0, 0, 0); */
     fill: ${colors.coral};
   }
-  /* &:hover {
+  &:active {
+    transform: scale(2);
     fill: ${colors.coral};
-  } */
+  }
+  &:active:after {
+    transform: scale(2);
+    fill: ${colors.coral};
+  }
 `;
 
 const FilledHeart = styled(HiHeart)`
   color: ${colors.coral};
+  transition: 0.25s;
+  &:active {
+    transform: scale(2);
+  }
 `;
 
 const Status = styled.h3`

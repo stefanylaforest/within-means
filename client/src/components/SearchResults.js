@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import { UsersContext } from "./UsersContext";
 import UserCard from "./UserCard";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { SearchContext } from "./SearchContext";
 import { useParams } from "react-router-dom";
-import Loading from "./Loaders/Loading";
 import NoResultsFound from "./NoResultsFound";
 
 const SearchResults = () => {
@@ -14,8 +13,6 @@ const SearchResults = () => {
     setQuery,
     matchedUsers,
     setMatchedUsers,
-    matchedCount,
-    setMatchedCount,
     queryStatus,
     setQueryStatus,
   } = useContext(SearchContext);
@@ -53,26 +50,39 @@ const SearchResults = () => {
     }
   }, [query]);
 
-  // console.log(matchedUsers);
   if (matchedUsers.length === 0 && queryStatus === "idle") {
     return <NoResultsFound />;
   } else {
     return (
-      <div>
+      <Wrapper>
         <p>Search results for "{query}"</p>
         <SearchResultsUl>
           {matchedUsers.map((user) => {
             return (
-              <Li>
+              <Li key={`user-${user._id}`}>
                 <UserCard user={user} />
               </Li>
             );
           })}
         </SearchResultsUl>
-      </div>
+      </Wrapper>
     );
   }
 };
+const fadeIn = keyframes`
+   0% {
+    opacity: 0;
+
+   }
+ 
+    100% {
+    opacity: 1;
+
+    }`;
+
+const Wrapper = styled.div`
+  margin: 60px;
+`;
 
 const SearchResultsUl = styled.ul`
   display: flex;
@@ -84,5 +94,6 @@ const SearchResultsUl = styled.ul`
 
 const Li = styled.li`
   margin: 20px;
+  animation: ${fadeIn} 0.3s ease-in;
 `;
 export default SearchResults;

@@ -5,6 +5,7 @@ import { FaUserCircle, FaReply } from "react-icons/fa";
 import { TiDelete } from "react-icons/ti";
 import { colors } from "../GlobalStyles";
 import moment from "moment";
+import { Link } from "react-router-dom";
 
 const Message = ({
   message,
@@ -12,16 +13,15 @@ const Message = ({
   senderId,
   senderAvatar,
   senderTitle,
-  senderStatus,
   senderName,
   setAlert,
-  isVisible,
-  setIsVisible,
+  element,
 }) => {
   const { currentLoggedInUser, setCurrentLoggedInUser, updated, setUpdated } =
     useContext(LoggedInUserContext);
   const [clickReply, setClickReply] = useState(false);
   const [replyMessage, setReplyMessage] = useState(null);
+  const [deleteMsg, setDeleteMsg] = useState("");
 
   const toggleClickReply = () => {
     setClickReply(!clickReply);
@@ -60,7 +60,7 @@ const Message = ({
   };
 
   const deleteMessageHandler = () => {
-    setIsVisible(!isVisible);
+    setDeleteMsg(element);
     fetch(`/api/users/${currentLoggedInUser._id}/message/delete`, {
       method: "PATCH",
       headers: {
@@ -94,15 +94,28 @@ const Message = ({
   };
 
   return (
-    <MessageWrapper>
+    <MessageWrapper
+      style={{
+        opacity: deleteMsg === element ? 0 : 1,
+      }}
+    >
       <RowWrapper>
         <AvatarAndName>
-          {senderAvatar !== null ? (
-            <Avatar src={senderAvatar} alt={`profile image`} />
-          ) : (
-            <StyledFaUserCircle />
-          )}
-          <p>From {senderName}</p> <SenderTitle>{senderTitle}</SenderTitle>
+          {" "}
+          <Link exact to={`/users/${senderId}`}>
+            {senderAvatar !== null ? (
+              <Avatar src={senderAvatar} alt={`profile image`} />
+            ) : (
+              <StyledFaUserCircle />
+            )}
+          </Link>
+          <p>
+            From{" "}
+            <Link exact to={`/users/${senderId}`}>
+              <FromSenderName>{senderName}</FromSenderName>
+            </Link>
+          </p>
+          <SenderTitle>{senderTitle}</SenderTitle>
         </AvatarAndName>
         {!clickReply && (
           <IconWrap>
@@ -194,7 +207,7 @@ const MessageWrapper = styled.div`
   background: rgb(224, 224, 224, 0.3);
   margin: 15px 0px;
   border: 1px solid rgb(224, 224, 224, 0.1);
-  transition: 0.2s ease-in-out;
+  transition: 0.3s ease-in-out;
   &:hover {
     background: rgb(224, 224, 224, 0.3);
     border: 1px solid ${colors.mediumPurple};
@@ -216,17 +229,16 @@ const AvatarAndName = styled.div`
   /* font-size: 20px; */
 `;
 
+const FromSenderName = styled.span`
+  text-decoration: underline;
+`;
+
 const SenderTitle = styled.span`
   text-transform: uppercase;
   font-size: 14px;
   color: ${colors.darkPurple};
   margin-left: 10px;
 `;
-
-// const NameAndTitle = styled.div`
-//   display: flex;
-//   flex-direction: column;
-// `;
 
 const RowWrapper = styled.div`
   display: flex;
@@ -257,6 +269,7 @@ const MessageP = styled.p`
 const DateStamp = styled.p`
   margin-left: 30px;
   margin-right: 30px;
+  font-style: italic;
 `;
 
 const ReplyDiv = styled.div`

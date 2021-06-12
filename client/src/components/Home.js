@@ -1,15 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
-import Header from "./Header";
 import Search from "./Search";
 import UserCard from "./UserCard";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import RecentPostLoading from "./Loaders/RecentPostLoading";
 import { UsersContext } from "./UsersContext";
-import { SearchContext } from "./SearchContext";
 
 const Home = () => {
   const { users, userStatus } = useContext(UsersContext);
-  const { query, setQuery } = useContext(SearchContext);
 
   const sortUsersByMostRecentStatus = users.sort((a, b) => {
     let dateTwo = Date.parse(a.statusDate);
@@ -18,7 +15,7 @@ const Home = () => {
   });
 
   return (
-    <div>
+    <Wrapper>
       <Search users={users} />
       <HeaderRecentPost>Recent Postings</HeaderRecentPost>
       {userStatus === "idle" ? (
@@ -40,9 +37,24 @@ const Home = () => {
           <RecentPostLoading />
         </RecentPostingUl>
       )}
-    </div>
+    </Wrapper>
   );
 };
+
+const fadeIn = keyframes`
+   0% {
+    opacity: 0;
+
+   }
+ 
+    100% {
+    opacity: 1;
+
+    }`;
+
+const Wrapper = styled.div`
+  animation: ${fadeIn} 0.3s ease-in;
+`;
 
 const HeaderRecentPost = styled.h3`
   margin-top: 50px;

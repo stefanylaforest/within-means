@@ -21,6 +21,11 @@ const GlobalStyles = createGlobalStyle`
     background: rgb(237, 238, 255); //temporary
     /* font-family: 'Open Sans', sans-serif; */
     font-family: 'Poppins', sans-serif;
+
+.item-exit-active {
+  opacity: 0;
+  transition: opacity 700ms ease-out;
+}
   }
 
   
@@ -55,6 +60,10 @@ const GlobalStyles = createGlobalStyle`
   a {
     text-decoration: none;
     color: ${colors.navy}
+  }
+
+  button {
+    transition: 0.3s ease-in-out;
   }
 `;
 

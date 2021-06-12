@@ -7,7 +7,6 @@ import { ImSearch, ImArrowRight2 } from "react-icons/im";
 import { FaUserCircle } from "react-icons/fa";
 import { SearchContext } from "./SearchContext";
 import { LoggedInUserContext } from "./LoggedInUserContext";
-import DropdownMenu from "../components/HeaderComponents/DropdownMenu";
 
 const SignInHeader = () => {
   const [newQuery, setNewQuery] = useState("");
@@ -144,12 +143,6 @@ const SignIn = styled.button`
 const Wrapper = styled.div`
   margin: 0px;
   position: relative;
-`;
-
-const LoggedInDisplay = styled.div`
-  display: flex;
-  flex-direction: row;
-  /* margin-right: 60px; */
 `;
 
 const DropdownBox = styled.div`

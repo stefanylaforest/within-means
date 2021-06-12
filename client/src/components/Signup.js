@@ -1,12 +1,13 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import GoogleLogin from "react-google-login";
-import styled from "styled-components";
+import { GoogleLogin } from "react-google-login";
+import styled, { keyframes } from "styled-components";
 import LoginSvg from "../assets/loginSvg";
 import { LoggedInUserContext } from "./LoggedInUserContext";
 import { useHistory } from "react-router-dom";
 import { colors } from "../GlobalStyles";
 import Loading from "./Loaders/Loading";
+import { FcGoogle } from "react-icons/fc";
 
 const Signup = () => {
   const [loadingComponent, setLoadingComponent] = useState(false);
@@ -24,7 +25,9 @@ const Signup = () => {
   } = useContext(LoggedInUserContext);
   let history = useHistory();
 
-  const handleLoginFailure = (response) => {};
+  const handleLoginFailure = async (response) => {
+    return;
+  };
 
   const handleLoginSuccess = async (response) => {
     console.log(response);
@@ -97,7 +100,7 @@ const Signup = () => {
         <SignUpModal>
           <h2>Sign Up To Within Means</h2>
           {errMsg !== "" && <ErrorMessage>{errMsg}</ErrorMessage>}
-          <Label for="password">Email</Label>
+          <Label htmlFor="password">Email</Label>
           <Input
             type="email"
             id="email"
@@ -107,7 +110,7 @@ const Signup = () => {
               setErrMsg("");
             }}
           />
-          <Label for="password">Password</Label>
+          <Label htmlFor="password">Password</Label>
           <Input
             type="password"
             placeholder="Your Password"
@@ -123,12 +126,15 @@ const Signup = () => {
           <Seperator>or</Seperator>
           <GoogleLogin
             clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-            // render={(renderProps) => (
-            //   <button onClick={renderProps.onClick} disabled={renderProps.disabled}>
-            //     Login with Google
-            //   </button>
-            // )}
-            buttonText="Continue with Google"
+            render={(renderProps) => (
+              <GoogleBtn
+                onClick={renderProps.onClick}
+                disabled={renderProps.disabled}
+              >
+                <FcGoogle style={{ marginRight: 15 }} /> Continue with Google
+              </GoogleBtn>
+            )}
+            // buttonText="Continue with Google"
             onSuccess={handleLoginSuccess}
             onFailure={handleLoginFailure}
             cookiePolicy={"single_host_origin"}
@@ -156,11 +162,23 @@ const Signup = () => {
   }
 };
 
+const fadeIn = keyframes`
+   0% {
+    opacity: 0;
+
+   }
+ 
+    100% {
+    opacity: 1;
+
+    }`;
+
 const Container = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
   align-items: center;
+  animation: ${fadeIn} 0.3s ease-in;
 `;
 
 const SignUpModal = styled.div`
@@ -248,6 +266,23 @@ const Seperator = styled.div`
 
   &:not(:empty)::after {
     margin-right: 0.25em;
+  }
+`;
+
+const GoogleBtn = styled.button`
+  font-size: 18px;
+  padding: 15px;
+  font-weight: 600;
+  border: 2px solid #f0f0f0;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    background-color: #f0f0f0;
   }
 `;
 

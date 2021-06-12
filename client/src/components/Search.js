@@ -19,8 +19,6 @@ const Search = () => {
     }
   };
 
-  console.log("query", query);
-
   return (
     <div>
       <Container>
@@ -104,6 +102,16 @@ const InputGroup = styled.div`
   background: white;
   width: auto;
   max-width: 584px;
+  border: 1px solid white;
+  transition: 0.3s ease-in-out;
+  &:hover {
+    border: 1px solid ${colors.mediumPurple};
+    background: white;
+    -webkit-box-shadow: 0px 0px 0px 4px rgb(68, 78, 229, 15%);
+    -moz-box-shadow: 0px 0px 0px 4px rgb(68, 78, 229, 15%);
+    box-shadow: 0px 0px 0px 4px rgb(68, 78, 229, 15%);
+    outline: none;
+  }
 `;
 
 const StyledSearchIcon = styled(ImSearch)`

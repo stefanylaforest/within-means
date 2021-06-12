@@ -1,12 +1,13 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import GoogleLogin from "react-google-login";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import JumpSvg from "../assets/JumpSvg";
 import { LoggedInUserContext } from "./LoggedInUserContext";
 import { useHistory } from "react-router-dom";
 import { colors } from "../GlobalStyles";
 import Loading from "./Loaders/Loading";
+import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
   const [loadingComponent, setLoadingComponent] = useState(false);
@@ -24,7 +25,9 @@ const Login = () => {
   } = useContext(LoggedInUserContext);
   let history = useHistory();
 
-  const handleLoginFailure = (response) => {};
+  const handleLoginFailure = (response) => {
+    return;
+  };
 
   const handleLoginSuccess = async (response) => {
     console.log(response);
@@ -95,10 +98,6 @@ const Login = () => {
       });
   };
 
-  console.log("emai", email, "pw", password);
-  console.log("errMsg", errMsg);
-  console.log("logged in", loggedIn, "user:", currentLoggedInUser);
-
   if (loadingComponent) {
     return <Loading />;
   } else {
@@ -115,7 +114,7 @@ const Login = () => {
           ) : (
             ""
           )}
-          <Label for="password">Email</Label>
+          <Label htmlFor="password">Email</Label>
           <Input
             type="email"
             id="email"
@@ -125,7 +124,7 @@ const Login = () => {
               setErrMsg("");
             }}
           />
-          <Label for="password">Password</Label>
+          <Label htmlFor="password">Password</Label>
           <Input
             type="password"
             placeholder="Your Password"
@@ -141,12 +140,12 @@ const Login = () => {
           <Seperator>or</Seperator>
           <GoogleLogin
             clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-            // render={(renderProps) => (
-            //   <button onClick={renderProps.onClick} disabled={renderProps.disabled}>
-            //     Login with Google
-            //   </button>
-            // )}
-            buttonText="Continue with Google"
+            render={(renderProps) => (
+              <GoogleBtn onClick={renderProps.onClick} disabled={false}>
+                <FcGoogle style={{ marginRight: 15 }} /> Continue with Google
+              </GoogleBtn>
+            )}
+            // buttonText="Continue with Google"
             onSuccess={handleLoginSuccess}
             onFailure={handleLoginFailure}
             cookiePolicy={"single_host_origin"}
@@ -180,11 +179,23 @@ const Login = () => {
   }
 };
 
+const fadeIn = keyframes`
+   0% {
+    opacity: 0;
+
+   }
+ 
+    100% {
+    opacity: 1;
+
+    }`;
+
 const Container = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
   align-items: center;
+  animation: ${fadeIn} 0.3s ease-in;
 `;
 
 const LogInModal = styled.div`
@@ -192,7 +203,6 @@ const LogInModal = styled.div`
   flex-direction: column;
   width: 100%;
   background-color: white;
-  /* align-items: center; */
   border-radius: 25px;
   margin: 60px;
   padding: 30px 50px;
@@ -273,6 +283,23 @@ const Seperator = styled.div`
 
   &:not(:empty)::after {
     margin-right: 0.25em;
+  }
+`;
+
+const GoogleBtn = styled.button`
+  font-size: 18px;
+  padding: 15px;
+  font-weight: 600;
+  border: 2px solid #f0f0f0;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    background-color: #f0f0f0;
   }
 `;
 

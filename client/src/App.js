@@ -13,7 +13,7 @@ import Saved from "./components/Saved";
 import { LoggedInUserContext } from "./components/LoggedInUserContext";
 
 function App() {
-  const { currentLoggedInUser, loggedIn } = useContext(LoggedInUserContext);
+  const { currentLoggedInUser } = useContext(LoggedInUserContext);
 
   return (
     <div>
