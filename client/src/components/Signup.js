@@ -56,8 +56,8 @@ const Signup = () => {
       });
   };
 
-  const regularSignUpHandler = (e) => {
-    e.preventDefault();
+  const regularSignUpHandler = () => {
+    // e.preventDefault();
     if (!email.includes("@")) {
       return setErrMsg("Please enter a valid email address");
     } else if (email.length === 0) {
@@ -75,10 +75,11 @@ const Signup = () => {
     })
       .then((res) => res.json())
       .then((json) => {
-        if (json.status === 200) {
+        if (json.status === 201) {
           setCurrentLoggedInUser(json.data);
           setLoggedIn(true);
-          history.push(`/users/${currentLoggedInUser._id}/edit`);
+
+          history.push(`/users/${json.data._id}/edit`);
         }
 
         if (json.status === 401) {

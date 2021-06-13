@@ -25,7 +25,7 @@ const initMongo = async () => {
 initMongo();
 
 const addUser = async (req, res) => {
-  const { _id, name, email } = req.body;
+  const { name, email } = req.body;
   const db = client.db("WithinMeans");
   const chosenPassword = await bcrypt.hash(req.body.password, saltRounds);
   const checkIfUserExists = await db
@@ -39,7 +39,7 @@ const addUser = async (req, res) => {
   } else {
     const newUser = await db.collection("users").insertOne({
       _id: uuidv4(),
-      name: name,
+      name: null,
       email: email,
       password: chosenPassword,
       title: null,
@@ -55,9 +55,10 @@ const addUser = async (req, res) => {
       inbox: [],
     });
     assert.strictEqual(1, newUser.insertedCount);
+    const grabNewUser = await db.collection("users").findOne({ email: email });
     res
       .status(201)
-      .json({ status: 201, message: `welcome ${name}`, data: req.body });
+      .json({ status: 201, message: `welcome ${email}`, data: grabNewUser });
   }
 };
 
@@ -79,8 +80,6 @@ const googleLogin = async (req, res) => {
         message: `welcome back ${name}`,
         data: user,
       });
-      console.log("existing user", user);
-      console.log("res", ticket.getPayload());
     } else {
       const newPassword = bcrypt.hash(email + uuidv4(), saltRounds);
       const newUser = db.collection("users").insertOne({
@@ -105,8 +104,7 @@ const googleLogin = async (req, res) => {
         .status(201)
         .json({ status: 201, message: `welcome ${name}`, data: newUser });
 
-      console.log("new user", newUser);
-      console.log("res", ticket.getPayload());
+      // console.log("res", ticket.getPayload());
     }
   }
 };
