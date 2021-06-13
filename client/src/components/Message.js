@@ -269,7 +269,8 @@ const MessageP = styled.p`
 const DateStamp = styled.p`
   margin-left: 30px;
   margin-right: 30px;
-  font-style: italic;
+  color: gray;
+  font-size: 0.8em;
 `;
 
 const ReplyDiv = styled.div`

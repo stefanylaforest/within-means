@@ -6,6 +6,7 @@ import styled, { keyframes } from "styled-components";
 import Loading from "./Loaders/Loading";
 import NoResultsSvg from "../assets/NoResultsFoundSvg";
 import { useParams } from "react-router-dom";
+import { colors } from "../GlobalStyles";
 
 const NoResultsFound = () => {
   const { users, userStatus } = useContext(UsersContext);
@@ -18,17 +19,27 @@ const NoResultsFound = () => {
 
   return (
     <div>
-      <CenteredContent>
-        <h2>Oops... No Matching Results Found For "{query}"</h2>
-        <p>Try a new search or view recommended below</p>
-        <NoResultsSvg />
-        <h2>Recommended</h2>
-      </CenteredContent>
+      <Content>
+        <LeftColumn>
+          <h2>
+            <Oops>Oops...</Oops> No Matching Results Found For "{query}"
+          </h2>
+          <p>Try a new search or view recommended below</p>
+        </LeftColumn>
+        <RightColumn>
+          <NoResultsSvg />
+        </RightColumn>
+      </Content>
       {userStatus === "loading" && (
         <CenteredContent>
           <Loading />
         </CenteredContent>
       )}
+      <CenteredContent>
+        {" "}
+        <h2>Recommended</h2>
+      </CenteredContent>
+
       <SearchResultsUl>
         {users.map((user) => {
           return (
@@ -46,12 +57,39 @@ const CenteredContent = styled.div`
   text-align: center;
 `;
 
+const Oops = styled.h2`
+  font-size: 3em;
+  color: ${colors.darkPurple};
+`;
+
+const Content = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+const LeftColumn = styled.div`
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  margin: 60px;
+`;
+
+const RightColumn = styled.div`
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  margin: 60px;
+`;
+
 const SearchResultsUl = styled.ul`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 40px;
+  margin: 40px 60px 60px 60px;
   flex-wrap: wrap;
+  @media screen and (max-width: 550px) {
+    margin: 40px 10px 10px 10px;
+  }
 `;
 
 const fadeIn = keyframes`

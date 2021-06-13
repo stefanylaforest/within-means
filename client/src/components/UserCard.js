@@ -61,7 +61,7 @@ const UserCard = ({ user, setRemoveSaved }) => {
   };
 
   return (
-    <Link exact to={`/users/${userId}`}>
+    <Link exact to={currentLoggedInUser ? `/users/${userId}` : `/register`}>
       <Wrapper
         style={{
           boxShadow:
@@ -106,15 +106,16 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  height: 300px;
+  height: 320px;
   width: 230px;
   padding: 25px;
   border-radius: 15px;
-  transition: 0.3s ease-in;
   cursor: pointer;
   margin-top: 30px;
+  transition: 0.5s ease-in-out;
   &:hover {
-    background-color: #f9f9f9;
+    margin-top: -2px;
+    /* background-color: #f9f9f9; */
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
       rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   }
@@ -125,15 +126,9 @@ const Avatar = styled.img`
   width: 100px;
   height: 100px;
   align-self: center;
-  margin-top: -70px;
+  margin-top: -100px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-`;
-
-const pulse = keyframes`
-  0% { box-shadow: 0 0 0 0 ${colors.coral}; }
-  50% { box-shadow: 0 0 0 0 ${colors.coral}; }
-  100% { box-shadow: 0 0 7 7 ${colors.coral}; }
 `;
 
 const LikeContainer = styled.div`
@@ -170,6 +165,10 @@ const FilledHeart = styled(HiHeart)`
 
 const Status = styled.h3`
   text-align: center;
+  height: 56px;
+  padding: 10px;
+  margin: 20px 0px;
+  overflow: hidden;
 `;
 
 const OfferedSkills = styled.h4`
@@ -188,6 +187,7 @@ const ViewBtn = styled.button`
   align-self: center;
   width: 60%;
   margin-top: 20px;
+  font-size: 14px;
 `;
 
 const SkillsContainer = styled.ul`

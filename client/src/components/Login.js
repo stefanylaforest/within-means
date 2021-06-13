@@ -46,6 +46,9 @@ const Login = () => {
         setLoggedIn(true);
         localStorage.setItem("currentLoggedInUser", JSON.stringify(json.data));
         history.push(`/`);
+        if (errMsg !== "") {
+          setErrMsg("");
+        }
       });
   };
 
@@ -84,6 +87,9 @@ const Login = () => {
             JSON.stringify(json.data)
           );
           history.push(`/`);
+          if (errMsg !== "") {
+            setErrMsg("");
+          }
           return;
         } else if (json.status === 404) {
           setErrMsg("No account found");
@@ -137,7 +143,7 @@ const Login = () => {
           <LoginBtn type="submit" onClick={regularLogInHandler}>
             Log In
           </LoginBtn>
-          <Seperator>or</Seperator>
+          <Seperator> or </Seperator>
           <GoogleLogin
             clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
             render={(renderProps) => (
@@ -201,7 +207,7 @@ const Container = styled.div`
 const LogInModal = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  flex: 1;
   background-color: white;
   border-radius: 25px;
   margin: 60px;
@@ -212,12 +218,12 @@ const LogInModal = styled.div`
 `;
 
 const GraphicsDiv = styled.div`
-  width: 100%;
   margin-right: 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex: 1;
   @media screen and (max-width: 1000px) {
     display: none;
   }
@@ -298,8 +304,9 @@ const GoogleBtn = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #f0f0f0;
   &:hover {
-    background-color: #f0f0f0;
+    background-color: white;
   }
 `;
 

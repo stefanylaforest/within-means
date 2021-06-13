@@ -244,6 +244,7 @@ const Wrapper = styled.div`
   background-color: white;
   border-radius: 25px;
   animation: ${fadeIn} 0.3s ease-in;
+  margin-bottom: 100px;
 `;
 
 const EmptyHeart = styled(HiOutlineHeart)`
@@ -296,12 +297,14 @@ const Bio = styled.h3`
 const Column = styled.div`
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
 `;
 
 const Row = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  min-width: 600px;
   margin: 0px 100px 0px 30px;
 `;
 

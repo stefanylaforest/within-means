@@ -11,6 +11,7 @@ import Offers from "./components/Offers";
 import SignInHeader from "./components/SignInHeader";
 import Saved from "./components/Saved";
 import { LoggedInUserContext } from "./components/LoggedInUserContext";
+import Footer from "./components/Footer";
 
 function App() {
   const { currentLoggedInUser } = useContext(LoggedInUserContext);
@@ -45,6 +46,8 @@ function App() {
           <SearchResults />
         </Route>
       </Switch>
+
+      <Footer />
     </div>
   );
 }

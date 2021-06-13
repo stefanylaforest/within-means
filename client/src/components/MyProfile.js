@@ -37,54 +37,54 @@ const MyProfile = () => {
       });
   };
 
-  if (fetching) {
-    return (
-      <>
-        <Loading />
-      </>
-    );
-  } else
-    return (
-      <Wrapper>
-        <Sidebar>
-          <AvatarAndName>
-            {currentLoggedInUser.avatar !== null && currentLoggedInUser ? (
-              <div>
-                <Profile src={currentLoggedInUser.avatar} />
-              </div>
-            ) : (
-              <div>
-                <StyledFaUserCircle />
-              </div>
-            )}
+  // if (fetching) {
+  //   return (
+  //     <>
+  //       <Loading />
+  //     </>
+  //   );
+  // }
+  return (
+    <Wrapper>
+      <Sidebar>
+        <AvatarAndName>
+          {currentLoggedInUser.avatar !== null && currentLoggedInUser ? (
             <div>
-              <h2>{currentLoggedInUser.name}</h2>
-              <ProfileId>profile id: {currentLoggedInUser._id}</ProfileId>
+              <Profile src={currentLoggedInUser.avatar} />
             </div>
-          </AvatarAndName>
-          <StatusSection>
-            <h2>
-              <label htmlFor="status">Update your status</label>
-            </h2>
-            <StatusTextArea
-              defaultValue={currentLoggedInUser.status}
-              onChange={(ev) => setNewStatus(ev.target.value)}
-            />
-            <UpdateStatusBtn onClick={updateStatusHandler}>
-              Update Status
-            </UpdateStatusBtn>
+          ) : (
+            <div>
+              <StyledFaUserCircle />
+            </div>
+          )}
+          <div>
+            <h2>{currentLoggedInUser.name}</h2>
+            <ProfileId>profile id: {currentLoggedInUser._id}</ProfileId>
+          </div>
+        </AvatarAndName>
+        <StatusSection>
+          <h2>
+            <label htmlFor="status">Update your status</label>
+          </h2>
+          <StatusTextArea
+            defaultValue={currentLoggedInUser.status}
+            onChange={(ev) => setNewStatus(ev.target.value)}
+          />
+          <UpdateStatusBtn onClick={updateStatusHandler}>
+            Update Status
+          </UpdateStatusBtn>
 
-            {/* {currentLoggedInUser.status && (
+          {/* {currentLoggedInUser.status && (
             <p>Status last updated on {currentLoggedInUser.status}</p>
           )} */}
-            <Notif>{successMsg}</Notif>
-          </StatusSection>
-        </Sidebar>
-        <HalfContainer>
-          <EditProfile />
-        </HalfContainer>
-      </Wrapper>
-    );
+          <Notif>{successMsg}</Notif>
+        </StatusSection>
+      </Sidebar>
+      <HalfContainer>
+        <EditProfile />
+      </HalfContainer>
+    </Wrapper>
+  );
 };
 
 const fadeIn = keyframes`

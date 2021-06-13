@@ -10,7 +10,6 @@ import Loading from "./Loaders/Loading";
 import { FcGoogle } from "react-icons/fc";
 
 const Signup = () => {
-  const [loadingComponent, setLoadingComponent] = useState(false);
   const {
     currentLoggedInUser,
     setCurrentLoggedInUser,
@@ -92,74 +91,70 @@ const Signup = () => {
       });
   };
 
-  if (loadingComponent) {
-    return <Loading />;
-  } else {
-    return (
-      <Container>
-        <SignUpModal>
-          <h2>Sign Up To Within Means</h2>
-          {errMsg !== "" && <ErrorMessage>{errMsg}</ErrorMessage>}
-          <Label htmlFor="password">Email</Label>
-          <Input
-            type="email"
-            id="email"
-            placeholder="email@email.com"
-            onChange={(e) => {
-              setEmail(e.target.value);
-              setErrMsg("");
-            }}
-          />
-          <Label htmlFor="password">Password</Label>
-          <Input
-            type="password"
-            placeholder="Your Password"
-            id="password"
-            onChange={(e) => {
-              setPassword(e.target.value);
-              setErrMsg("");
-            }}
-          />
-          <SignUpBtn type="submit" onClick={regularSignUpHandler}>
-            Sign Up
-          </SignUpBtn>
-          <Seperator>or</Seperator>
-          <GoogleLogin
-            clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-            render={(renderProps) => (
-              <GoogleBtn
-                onClick={renderProps.onClick}
-                disabled={renderProps.disabled}
-              >
-                <FcGoogle style={{ marginRight: 15 }} /> Continue with Google
-              </GoogleBtn>
-            )}
-            // buttonText="Continue with Google"
-            onSuccess={handleLoginSuccess}
-            onFailure={handleLoginFailure}
-            cookiePolicy={"single_host_origin"}
-          />
-          <SignUp>
-            Already a member?{" "}
-            <StyledLink exact to="/login">
-              Log In
-            </StyledLink>
-          </SignUp>
-        </SignUpModal>
-        <GraphicsDiv>
-          <h1>
-            Connect with real professionals and make your entrepreneurial
-            journey less lonely
-          </h1>
-          <p>
-            Within Means' platform allows you to connect with like-minded people
-            and trade expertise for free! No money exchanged ever.
-          </p>
-          <LoginSvg />
-        </GraphicsDiv>
-      </Container>
-    );
-  }
+  return (
+    <Container>
+      <SignUpModal>
+        <h2>Sign Up To Within Means</h2>
+        {errMsg !== "" && <ErrorMessage>{errMsg}</ErrorMessage>}
+        <Label htmlFor="password">Email</Label>
+        <Input
+          type="email"
+          id="email"
+          placeholder="email@email.com"
+          onChange={(e) => {
+            setEmail(e.target.value);
+            setErrMsg("");
+          }}
+        />
+        <Label htmlFor="password">Password</Label>
+        <Input
+          type="password"
+          placeholder="Your Password"
+          id="password"
+          onChange={(e) => {
+            setPassword(e.target.value);
+            setErrMsg("");
+          }}
+        />
+        <SignUpBtn type="submit" onClick={regularSignUpHandler}>
+          Sign Up
+        </SignUpBtn>
+        <Seperator>or</Seperator>
+        <GoogleLogin
+          clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+          render={(renderProps) => (
+            <GoogleBtn
+              onClick={renderProps.onClick}
+              disabled={renderProps.disabled}
+            >
+              <FcGoogle style={{ marginRight: 15 }} /> Continue with Google
+            </GoogleBtn>
+          )}
+          // buttonText="Continue with Google"
+          onSuccess={handleLoginSuccess}
+          onFailure={handleLoginFailure}
+          cookiePolicy={"single_host_origin"}
+        />
+        <SignUp>
+          Already a member?{" "}
+          <StyledLink exact to="/login">
+            Log In
+          </StyledLink>
+        </SignUp>
+      </SignUpModal>
+      <GraphicsDiv>
+        <h1>
+          Connect with real professionals and make your entrepreneurial journey
+          less lonely
+        </h1>
+        <p>
+          Within Means' platform allows you to connect with like-minded people
+          and trade expertise for free! No money exchanged ever.
+        </p>
+        <LoginSvg />
+      </GraphicsDiv>
+    </Container>
+  );
 };
 
 const fadeIn = keyframes`
@@ -274,18 +269,17 @@ const GoogleBtn = styled.button`
   padding: 15px;
   font-weight: 600;
   border: 2px solid #f0f0f0;
-  background-color: white;
   cursor: pointer;
   border-radius: 10px;
   transition: 0.3s ease-in-out;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #f0f0f0;
   &:hover {
-    background-color: #f0f0f0;
+    background-color: white;
   }
 `;
-
 const SignUp = styled.p`
   margin-top: 30px;
 `;

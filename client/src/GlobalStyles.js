@@ -15,12 +15,14 @@ const GlobalStyles = createGlobalStyle`
       scroll-behavior: smooth;
   }
 
+
   body {
     margin: 0;
     padding: 0;
-    background: rgb(237, 238, 255); //temporary
-    /* font-family: 'Open Sans', sans-serif; */
+    background: rgb(237, 238, 255); 
     font-family: 'Poppins', sans-serif;
+
+    
 
 .item-exit-active {
   opacity: 0;

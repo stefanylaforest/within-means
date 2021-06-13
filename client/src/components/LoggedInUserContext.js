@@ -6,7 +6,7 @@ export const LoggedInUserProvider = ({ children }) => {
   const [currentLoggedInUser, setCurrentLoggedInUser] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [errMsg, setErrMsg] = useState("");
-  const [fetching, setFetching] = useState(true);
+  // const [fetching, setFetching] = useState(true);
   const [isSaved, setIsSaved] = useState(false);
   //handle form values
   const [email, setEmail] = useState("");
@@ -23,7 +23,6 @@ export const LoggedInUserProvider = ({ children }) => {
       fetch(`/api/users/${foundUser._id}`)
         .then((rest) => rest.json())
         .then((json) => {
-          setFetching(false);
           setCurrentLoggedInUser(json.data);
           setLoggedIn(true);
         })
@@ -46,8 +45,8 @@ export const LoggedInUserProvider = ({ children }) => {
         setEmail,
         password,
         setPassword,
-        fetching,
-        setFetching,
+        // fetching,
+        // setFetching,
         updated,
         setUpdated,
         isLiked,

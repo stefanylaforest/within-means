@@ -112,6 +112,7 @@ const SiteName = styled.span`
 `;
 
 const Greeting = styled.p`
+  font-size: 14px;
   @media screen and (max-width: 1000px) {
     display: none;
   }
@@ -125,19 +126,22 @@ const Wrapper = styled.div`
 const LoggedInDisplay = styled.div`
   display: flex;
   flex-direction: row;
-  /* margin-right: 60px; */
+  border-radius: 50px;
+  align-items: center;
+  padding: 10px;
 `;
 
 const DropdownBox = styled.div`
   margin-top: -5px;
-  margin-right: 100px;
   background-color: rgb(255, 255, 255, 100%);
   border-radius: 25px;
   width: 100%;
   position: absolute;
-  left: -55px;
+  left: -255px;
   display: none;
   z-index: 1;
+  min-height: 425px;
+  min-width: 300px;
   padding: 10px 20px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
@@ -147,9 +151,6 @@ const Hover = styled.div`
   &:hover {
     ${DropdownBox} {
       display: block;
-      /* @media screen and (max-width: 650px) {
-        display: none;
-      } */
     }
   }
 `;
@@ -159,7 +160,7 @@ const Profile = styled.img`
   width: 50px;
   height: 50px;
   cursor: pointer;
-  margin: 0px 20px;
+  margin: 0px 10px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   z-index: 1;

@@ -4,6 +4,7 @@ import UserCard from "./UserCard";
 import styled, { keyframes } from "styled-components";
 import RecentPostLoading from "./Loaders/RecentPostLoading";
 import { UsersContext } from "./UsersContext";
+import About from "./About";
 
 const Home = () => {
   const { users, userStatus } = useContext(UsersContext);
@@ -37,6 +38,7 @@ const Home = () => {
           <RecentPostLoading />
         </RecentPostingUl>
       )}
+      <About />
     </Wrapper>
   );
 };
@@ -66,6 +68,9 @@ const RecentPostingUl = styled.ul`
   flex-direction: row;
   justify-content: center;
   margin-top: 40px;
+  @media screen and (max-width: 920px) {
+    flex-wrap: wrap;
+  }
 `;
 
 const RecentPostLi = styled.li`

@@ -9,9 +9,9 @@ const Offers = () => {
   const { currentLoggedInUser, fetching } = useContext(LoggedInUserContext);
   const [alert, setAlert] = useState(null);
 
-  if (fetching) {
-    return <Loading />;
-  }
+  // if (fetching) {
+  //   return <Loading />;
+  // }
   return (
     <div>
       <Wrapper>

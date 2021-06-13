@@ -151,10 +151,10 @@ const Suggested = styled.div`
 `;
 
 const SuggestedBtn = styled.button`
-  border: 3px solid ${colors.darkPurple};
+  border: 2px solid ${colors.darkPurple};
   border-radius: 40px;
   font-size: 14px;
-  padding: 0px 10px;
+  padding: 5px 15px;
   margin: 10px;
   background-color: transparent;
   color: ${colors.darkPurple};
