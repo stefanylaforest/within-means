@@ -9,9 +9,6 @@ const Offers = () => {
   const { currentLoggedInUser, fetching } = useContext(LoggedInUserContext);
   const [alert, setAlert] = useState(null);
 
-  // if (fetching) {
-  //   return <Loading />;
-  // }
   return (
     <div>
       <Wrapper>
@@ -62,6 +59,7 @@ const Wrapper = styled.div`
   margin: 60px;
   border-radius: 25px;
   animation: ${fadeIn} 0.3s ease-in;
+  min-height: 70vh;
   @media screen and (max-width: 720px) {
     margin: 50px;
   }

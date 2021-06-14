@@ -1,43 +1,146 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { colors } from "../GlobalStyles";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import learn from "../assets/learn.jpg";
+import learn2 from "../assets/learn-2.jpg";
 
 const About = () => {
   return (
-    <div>
-      <h2>Your Talent Is Someone's Weakness</h2>
-      <p>We know as a small buisness owner, it's hard to learn it all.</p>
-      <p>
-        Within Means is a space for you to swap your services for free in return
-        for another, as we understand that sometimes, specific services can be
-        outside of your budget.
-      </p>
-      <h2>Grow Bigger, Faster</h2>
-      <p>Exchange knowledge and build a community</p>
+    <Wrapper>
+      <Section>
+        <Image src={learn} alt="man sitting on a computer" />
 
-      <div>
-        <h2>How It Works</h2>
-        <ul>
-          <li>Sign up for an account</li>
-          <li>Search for something you feel your business needs</li>
-          <li>Reach out to the person</li>
-          <li>and discuss how you can help one another</li>
-        </ul>
-      </div>
+        <WritingDiv>
+          <Headlines>Your Talent Is Someone's Weakness</Headlines>
+          <p>We know as a small buisness owner, it's hard to learn it all.</p>
+          <p>
+            Within Means is a space for you to swap your services for free in
+            return for another, as we understand that sometimes, specific
+            services can be outside of your budget.
+          </p>
+        </WritingDiv>
+      </Section>
+      <SectionTwo>
+        <WritingDivTwo>
+          <Headlines>The currency here is your skill set. </Headlines>
+          <p>
+            Pay with what you can do, rather than with what you can afford.{" "}
+          </p>
+        </WritingDivTwo>
+        <Image2 src={learn2} alt="two people laughing" />
+      </SectionTwo>
 
-      <p>
-        The currency here is your skill set. Pay with what you can do, rather
-        than with what you can afford
-      </p>
-
-      <h3>
-        You no longer need to wait for your business to be profitable to be able
-        to scale.
-      </h3>
-      <div>SIGN UP</div>
-    </div>
+      <CallToAction>
+        <div>
+          <h2>
+            You no longer need to wait for your business to be profitable to be
+            able to scale.
+          </h2>
+          <Link exact to="/register">
+            <SignUp>Start Swapping</SignUp>
+          </Link>
+        </div>
+      </CallToAction>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Section = styled.div`
+  display: flex;
+  flex-direction: row;
+  font-size: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 50px 100px;
+  @media screen and (max-width: 785px) {
+    text-align: center;
+    margin: 0 auto;
+  }
+`;
+
+const SectionTwo = styled.div`
+  display: flex;
+  flex-direction: row;
+  font-size: 20px;
+  align-items: center;
+  flex-wrap: wrap-reverse;
+  margin: 50px 100px;
+
+  @media screen and (max-width: 785px) {
+    text-align: center;
+    margin: 0 auto;
+  }
+`;
+
+const Image = styled.img`
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 28px -12px;
+  @media screen and (max-width: 785px) {
+    margin: 0 auto;
+  }
+`;
+
+const Image2 = styled.img`
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 28px -12px;
+  @media screen and (max-width: 785px) {
+    width: 400px;
+    margin: 0 auto;
+  }
+`;
+
+const Headlines = styled.h2`
+  color: ${colors.darkPurple};
+`;
+
+const WritingDiv = styled.div`
+  flex: 2;
+  padding: 0px 40px;
+`;
+
+const SignUp = styled.button`
+  margin: 0px 20px;
+  border-radius: 6px;
+  padding: 25px 40px;
+  font-size: 1.2em;
+  border: none;
+  cursor: pointer;
+  background-color: ${colors.darkPurple};
+  color: white;
+  font-weight: bold;
+  transition: 1s ease;
+  background-size: 200% auto;
+  &:hover {
+    background-position: right center;
+    background-image: linear-gradient(
+      to right,
+      #3641e7 0%,
+      #7279de 51%,
+      #3641e7 100%
+    );
+    color: white;
+  }
+`;
+
+const WritingDivTwo = styled.div`
+  flex: 1;
+  padding: 0px 40px;
+`;
+
+const CallToAction = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 100px;
+  padding: 100px;
+  border-radius: 20px;
+`;
 
 export default About;

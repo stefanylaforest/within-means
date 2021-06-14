@@ -58,34 +58,35 @@ const Header = () => {
           </SearchBtn>
         </InputDiv>
       )}
+      {currentLoggedInUser && (
+        <LoggedInDisplay>
+          <Greeting>Hi, {currentLoggedInUser.name}</Greeting>
 
-      <LoggedInDisplay>
-        <Greeting>Hi, {currentLoggedInUser.name}</Greeting>
-
-        {currentLoggedInUser.avatar !== null ? (
-          <div>
-            <Wrapper>
-              <Hover>
-                <Profile src={currentLoggedInUser.avatar} />
-                <DropdownBox>
-                  <DropdownMenu />
-                </DropdownBox>
-              </Hover>
-            </Wrapper>
-          </div>
-        ) : (
-          <div>
-            <Wrapper>
-              <Hover>
-                <StyledFaUserCircle />
-                <DropdownBox>
-                  <DropdownMenu />
-                </DropdownBox>
-              </Hover>
-            </Wrapper>
-          </div>
-        )}
-      </LoggedInDisplay>
+          {currentLoggedInUser.avatar !== null ? (
+            <div>
+              <Wrapper>
+                <Hover>
+                  <Profile src={currentLoggedInUser.avatar} />
+                  <DropdownBox>
+                    <DropdownMenu />
+                  </DropdownBox>
+                </Hover>
+              </Wrapper>
+            </div>
+          ) : (
+            <div>
+              <Wrapper>
+                <Hover>
+                  <StyledFaUserCircle />
+                  <DropdownBox>
+                    <DropdownMenu />
+                  </DropdownBox>
+                </Hover>
+              </Wrapper>
+            </div>
+          )}
+        </LoggedInDisplay>
+      )}
     </LogoWrapper>
   );
 };

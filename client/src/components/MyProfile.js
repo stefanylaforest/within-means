@@ -37,13 +37,6 @@ const MyProfile = () => {
       });
   };
 
-  // if (fetching) {
-  //   return (
-  //     <>
-  //       <Loading />
-  //     </>
-  //   );
-  // }
   return (
     <Wrapper>
       <Sidebar>

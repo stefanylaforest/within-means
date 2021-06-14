@@ -65,6 +65,7 @@ const UserCard = ({ user, setRemoveSaved }) => {
       <Wrapper
         style={{
           boxShadow:
+            currentLoggedInUser &&
             location.pathname === `/users/${currentLoggedInUser._id}/saved`
               ? "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px"
               : " ",
@@ -114,7 +115,6 @@ const Wrapper = styled.div`
   margin-top: 30px;
   transition: 0.5s ease-in-out;
   &:hover {
-    margin-top: -2px;
     /* background-color: #f9f9f9; */
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
       rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;

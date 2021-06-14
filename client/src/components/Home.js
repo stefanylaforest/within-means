@@ -5,9 +5,12 @@ import styled, { keyframes } from "styled-components";
 import RecentPostLoading from "./Loaders/RecentPostLoading";
 import { UsersContext } from "./UsersContext";
 import About from "./About";
+import Categories from "./Categories";
+import { LoggedInUserContext } from "./LoggedInUserContext";
 
 const Home = () => {
   const { users, userStatus } = useContext(UsersContext);
+  const { currentLoggedInUser } = useContext(LoggedInUserContext);
 
   const sortUsersByMostRecentStatus = users.sort((a, b) => {
     let dateTwo = Date.parse(a.statusDate);
@@ -38,7 +41,8 @@ const Home = () => {
           <RecentPostLoading />
         </RecentPostingUl>
       )}
-      <About />
+      <Categories />
+      {!currentLoggedInUser && <About />}
     </Wrapper>
   );
 };

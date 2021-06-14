@@ -35,7 +35,7 @@ const SearchResults = () => {
         });
         if (
           matchSkill === true ||
-          user.bio.toLowerCase().includes(query.toLowerCase())
+          user.bio?.toLowerCase().includes(query.toLowerCase())
         ) {
           return user;
         }

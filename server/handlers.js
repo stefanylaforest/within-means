@@ -25,7 +25,7 @@ const initMongo = async () => {
 initMongo();
 
 const addUser = async (req, res) => {
-  const { name, email } = req.body;
+  const { email } = req.body;
   const db = client.db("WithinMeans");
   const chosenPassword = await bcrypt.hash(req.body.password, saltRounds);
   const checkIfUserExists = await db

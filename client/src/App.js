@@ -12,6 +12,7 @@ import SignInHeader from "./components/SignInHeader";
 import Saved from "./components/Saved";
 import { LoggedInUserContext } from "./components/LoggedInUserContext";
 import Footer from "./components/Footer";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   const { currentLoggedInUser } = useContext(LoggedInUserContext);
@@ -33,15 +34,15 @@ function App() {
         <Route exact path="/users/:userId">
           <UserDetails />
         </Route>
-        <Route exact path="/users/:userId/edit">
+        <PrivateRoute exact path="/users/:userId/edit">
           <MyProfile />
-        </Route>
-        <Route exact path="/users/:userId/offers">
+        </PrivateRoute>
+        <PrivateRoute exact path="/users/:userId/offers">
           <Offers />
-        </Route>
-        <Route exact path="/users/:userId/saved">
+        </PrivateRoute>
+        <PrivateRoute exact path="/users/:userId/saved">
           <Saved />
-        </Route>
+        </PrivateRoute>
         <Route exact path="/search/:searchQuery">
           <SearchResults />
         </Route>

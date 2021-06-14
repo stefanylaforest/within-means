@@ -7,7 +7,6 @@ import { colors } from "../GlobalStyles";
 const Footer = () => {
   return (
     <Wrapper>
-      {/* <Divider /> */}
       <Link to="/">
         <h1>
           <LogoSpan>
@@ -27,13 +26,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   padding: 40px;
   text-align: center;
-`;
-
-const Divider = styled.hr`
-  border: 1px solid ${colors.darkPurple};
-  width: 100%;
-  margin-bottom: 30px;
-  margin-top: 30px;
 `;
 
 const AllRightsReserved = styled.p`

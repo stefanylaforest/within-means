@@ -3,8 +3,10 @@ import { createGlobalStyle } from "styled-components";
 export const colors = {
   darkPurple: "#4650E5",
   mediumPurple: "#8F90F2",
+
   navy: "#151627",
-  coral: "#FF6C6C",
+  // coral: "#FF6C6C",
+  coral: "#ff5757",
 };
 
 const GlobalStyles = createGlobalStyle`
@@ -24,10 +26,7 @@ const GlobalStyles = createGlobalStyle`
 
     
 
-.item-exit-active {
-  opacity: 0;
-  transition: opacity 700ms ease-out;
-}
+
   }
 
   

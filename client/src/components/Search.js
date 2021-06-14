@@ -2,12 +2,11 @@ import React, { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
 import { colors } from "../GlobalStyles";
 import { ImSearch, ImArrowRight2 } from "react-icons/im";
-import { UsersContext } from "./UsersContext";
+
 import { SearchContext } from "./SearchContext";
 import { useHistory, useParams } from "react-router-dom";
 
 const Search = () => {
-  const { users } = useContext(UsersContext);
   const { query, setQuery, matchedUsers, setMatchedUsers } =
     useContext(SearchContext);
   const history = useHistory();
@@ -20,13 +19,14 @@ const Search = () => {
   };
 
   return (
-    <div>
+    <Wrapper>
       <Container>
-        <p>
+        <Intro>
           Break the barriers that are stopping you from growing your business.
-        </p>
+        </Intro>
         <Heading>Trade Talent on Within Means</Heading>
       </Container>
+
       <Form>
         <InputGroup>
           <StyledSearchIcon />
@@ -75,19 +75,25 @@ const Search = () => {
           </SuggestedBtn>
         </Suggested>
       </Form>
-    </div>
+    </Wrapper>
   );
 };
 
+const Wrapper = styled.div``;
+
 const Container = styled.div`
   text-align: center;
-  justify-content: center;
+  margin: 60px;
 `;
 
 const Heading = styled.h2`
   color: ${colors.darkPurple};
   margin-bottom: 40px;
-  font-size: 30px;
+  font-size: 40px;
+`;
+
+const Intro = styled.form`
+  font-size: 20px;
 `;
 
 const Form = styled.form``;
@@ -151,7 +157,7 @@ const Suggested = styled.div`
 `;
 
 const SuggestedBtn = styled.button`
-  border: 2px solid ${colors.darkPurple};
+  border: 3px solid ${colors.darkPurple};
   border-radius: 40px;
   font-size: 14px;
   padding: 5px 15px;
