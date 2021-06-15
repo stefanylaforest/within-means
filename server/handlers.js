@@ -54,7 +54,6 @@ const addUser = async (req, res) => {
       rating: null,
       inbox: [],
     });
-    assert.strictEqual(1, newUser.insertedCount);
     const grabNewUser = await db.collection("users").findOne({ email: email });
     res
       .status(201)
@@ -72,38 +71,39 @@ const googleLogin = async (req, res) => {
   });
   const { email_verified, name, email, picture } = ticket.getPayload();
 
-  if (email_verified) {
-    const user = await db.collection("users").findOne({ email: email });
-    if (user) {
-      res.status(200).json({
-        status: 200,
-        message: `welcome back ${name}`,
-        data: user,
-      });
-    } else {
-      const newUser = db.collection("users").insertOne({
-        _id: uuidv4(),
-        name: name,
-        email: email,
-        title: null,
-        skills: [],
-        avatar: picture,
-        website: null,
-        bio: null,
-        status: null,
-        statusDate: null,
-        saved: [],
-        swaps: null,
-        rating: null,
-        inbox: [],
-      });
-      const grabNewUser = await db
-        .collection("users")
-        .findOne({ email: email });
-      res
-        .status(201)
-        .json({ status: 201, message: `welcome ${name}`, data: grabNewUser });
-    }
+  if (!email_verified) {
+    return res.status(401).json({ status: 401, message: "unauthorized" });
+  }
+
+  const user = await db.collection("users").findOne({ email: email });
+
+  if (user) {
+    res.status(200).json({
+      status: 200,
+      message: `welcome back ${name}`,
+      data: user,
+    });
+  } else {
+    const newUser = db.collection("users").insertOne({
+      _id: uuidv4(),
+      name: name,
+      email: email,
+      title: null,
+      skills: [],
+      avatar: picture,
+      website: null,
+      bio: null,
+      status: null,
+      statusDate: null,
+      saved: [],
+      swaps: null,
+      rating: null,
+      inbox: [],
+    });
+    const grabNewUser = await db.collection("users").findOne({ email: email });
+    res
+      .status(201)
+      .json({ status: 201, message: `welcome ${name}`, data: grabNewUser });
   }
 };
 
