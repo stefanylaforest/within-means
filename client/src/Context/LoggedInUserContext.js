@@ -6,8 +6,7 @@ export const LoggedInUserProvider = ({ children }) => {
   const [currentLoggedInUser, setCurrentLoggedInUser] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [errMsg, setErrMsg] = useState("");
-  // const [fetching, setFetching] = useState(true);
-  const [isSaved, setIsSaved] = useState(false);
+
   //handle form values
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

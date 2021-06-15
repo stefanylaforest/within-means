@@ -11,8 +11,8 @@ import DropdownMenu from "../components/HeaderComponents/DropdownMenu";
 
 const Header = () => {
   const [newQuery, setNewQuery] = useState("");
-  const { query, setQuery } = useContext(SearchContext);
-  const { currentLoggedInUser, loggedIn } = useContext(LoggedInUserContext);
+  const { setQuery } = useContext(SearchContext);
+  const { currentLoggedInUser } = useContext(LoggedInUserContext);
   const location = useLocation();
   const history = useHistory();
 

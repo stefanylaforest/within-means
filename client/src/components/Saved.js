@@ -6,8 +6,7 @@ import UserCard from "./UserCard";
 
 const Saved = () => {
   const { users } = useContext(UsersContext);
-  const { currentLoggedInUser, setCurrentLoggedInUser } =
-    useContext(LoggedInUserContext);
+  const { currentLoggedInUser } = useContext(LoggedInUserContext);
   const [savedUsers, setSavedUsers] = useState(null);
   //for fadeout effect
   const [removeSaved, setRemoveSaved] = useState("");

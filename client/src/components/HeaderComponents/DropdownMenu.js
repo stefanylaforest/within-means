@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { BsFillEnvelopeFill } from "react-icons/bs";
 import { HiOutlineHeart } from "react-icons/hi";
@@ -8,18 +8,8 @@ import { colors } from "../../GlobalStyles";
 import { LoggedInUserContext } from "../../Context/LoggedInUserContext";
 
 const DropdownMenu = () => {
-  const {
-    currentLoggedInUser,
-    setCurrentLoggedInUser,
-    loggedIn,
-    setLoggedIn,
-    errMsg,
-    setErrMsg,
-    email,
-    setEmail,
-    password,
-    setPassword,
-  } = useContext(LoggedInUserContext);
+  const { currentLoggedInUser, setCurrentLoggedInUser, setLoggedIn } =
+    useContext(LoggedInUserContext);
   let history = useHistory();
 
   const handleLogOut = (e) => {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { UsersContext } from "../Context/UsersContext";
 import UserCard from "./UserCard";
 import styled, { keyframes } from "styled-components";

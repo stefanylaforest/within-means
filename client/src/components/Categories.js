@@ -1,7 +1,7 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { SearchContext } from "../Context/SearchContext";
 import { colors } from "../GlobalStyles";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { FaPenFancy, FaPhotoVideo } from "react-icons/fa";
 import { DiGoogleAnalytics } from "react-icons/di";
@@ -9,8 +9,7 @@ import { BiCodeBlock } from "react-icons/bi";
 import { GiSpellBook } from "react-icons/gi";
 
 const Categories = () => {
-  const { query, setQuery, matchedUsers, setMatchedUsers } =
-    useContext(SearchContext);
+  const { setQuery } = useContext(SearchContext);
   const history = useHistory();
 
   return (

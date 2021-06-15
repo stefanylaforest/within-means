@@ -12,9 +12,7 @@ import { FcGoogle } from "react-icons/fc";
 const Login = () => {
   const [loadingComponent, setLoadingComponent] = useState(false);
   const {
-    currentLoggedInUser,
     setCurrentLoggedInUser,
-    loggedIn,
     setLoggedIn,
     errMsg,
     setErrMsg,

@@ -13,7 +13,6 @@ const Signup = () => {
   const {
     currentLoggedInUser,
     setCurrentLoggedInUser,
-    loggedIn,
     setLoggedIn,
     errMsg,
     setErrMsg,

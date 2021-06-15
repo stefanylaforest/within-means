@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { LoggedInUserContext } from "../Context/LoggedInUserContext";
 import styled from "styled-components";
 import { FaUserCircle, FaReply } from "react-icons/fa";
@@ -17,7 +17,7 @@ const Message = ({
   setAlert,
   element,
 }) => {
-  const { currentLoggedInUser, setCurrentLoggedInUser, updated, setUpdated } =
+  const { currentLoggedInUser, updated, setUpdated } =
     useContext(LoggedInUserContext);
   const [clickReply, setClickReply] = useState(false);
   const [replyMessage, setReplyMessage] = useState(null);

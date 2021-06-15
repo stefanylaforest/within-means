@@ -1,13 +1,12 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { LoggedInUserContext } from "../Context/LoggedInUserContext";
 import EditProfile from "./EditProfile";
 import styled, { keyframes } from "styled-components";
 import { FaUserCircle } from "react-icons/fa";
 import { colors } from "../GlobalStyles";
-import Loading from "./Loaders/Loading";
 
 const MyProfile = () => {
-  const { currentLoggedInUser, setCurrentLoggedInUser, fetching } =
+  const { currentLoggedInUser, setCurrentLoggedInUser } =
     useContext(LoggedInUserContext);
   const [newStatus, setNewStatus] = useState();
   const [successMsg, setSuccessMsg] = useState();

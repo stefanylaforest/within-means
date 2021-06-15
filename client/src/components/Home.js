@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import Search from "./Search";
 import UserCard from "./UserCard";
 import styled, { keyframes } from "styled-components";
@@ -11,13 +11,6 @@ import { LoggedInUserContext } from "../Context/LoggedInUserContext";
 const Home = () => {
   const { users, userStatus } = useContext(UsersContext);
   const { currentLoggedInUser } = useContext(LoggedInUserContext);
-
-  // const sortUsersByMostRecentStatus = users.sort((a, b) => {
-  //   let dateTwo = Date.parse(a.statusDate);
-  //   let dateOne = Date.parse(b.statusDate);
-  //   return dateOne - dateTwo;
-  // });
-
   return (
     <Wrapper>
       <Search users={users} />

@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { LoggedInUserContext } from "../Context/LoggedInUserContext";
 import styled, { keyframes } from "styled-components";
 import { colors } from "../GlobalStyles";
