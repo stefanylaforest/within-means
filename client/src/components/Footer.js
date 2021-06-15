@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import WithinMeansLogo from "../assets/WithinMeansLogo";
 import { Link } from "react-router-dom";
-import { colors } from "../GlobalStyles";
 
 const Footer = () => {
   return (

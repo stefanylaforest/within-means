@@ -1,17 +1,15 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import WithinMeansLogo from "../assets/WithinMeansLogo";
 import { colors } from "../GlobalStyles";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import { ImSearch, ImArrowRight2 } from "react-icons/im";
-import { FaUserCircle } from "react-icons/fa";
-import { SearchContext } from "./SearchContext";
-import { LoggedInUserContext } from "./LoggedInUserContext";
+import { SearchContext } from "../Context/SearchContext";
 
 const SignInHeader = () => {
   const [newQuery, setNewQuery] = useState("");
-  const { query, setQuery } = useContext(SearchContext);
-  const { currentLoggedInUser, loggedIn } = useContext(LoggedInUserContext);
+  const { setQuery } = useContext(SearchContext);
+
   const location = useLocation();
   const history = useHistory();
 
@@ -98,12 +96,6 @@ const SiteName = styled.span`
   }
 `;
 
-const Greeting = styled.p`
-  @media screen and (max-width: 1000px) {
-    display: none;
-  }
-`;
-
 const SignUp = styled.button`
   margin: 0px 20px;
   border-radius: 6px;
@@ -136,54 +128,6 @@ const SignIn = styled.button`
   background-color: transparent;
   color: ${colors.darkPurple};
   font-weight: bold;
-`;
-
-const Wrapper = styled.div`
-  margin: 0px;
-  position: relative;
-`;
-
-const DropdownBox = styled.div`
-  margin-top: -5px;
-  margin-right: 100px;
-  background-color: rgb(255, 255, 255, 100%);
-  border-radius: 25px;
-  width: 100%;
-  position: absolute;
-  left: -55px;
-  display: none;
-  z-index: 1;
-  padding: 10px 20px;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-`;
-
-const Hover = styled.div`
-  &:hover {
-    ${DropdownBox} {
-      display: block;
-    }
-  }
-`;
-
-const Profile = styled.img`
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-  margin: 0px 20px;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-  z-index: 1;
-`;
-
-const StyledFaUserCircle = styled(FaUserCircle)`
-  font-size: 50px;
-  fill: ${colors.mediumPurple};
-  cursor: pointer;
-  margin: 0px 20px;
-  border-radius: 50%;
-  z-index: 1;
 `;
 
 const InputDiv = styled.div`

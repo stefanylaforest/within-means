@@ -10,7 +10,7 @@ import MyProfile from "./components/MyProfile";
 import Offers from "./components/Offers";
 import SignInHeader from "./components/SignInHeader";
 import Saved from "./components/Saved";
-import { LoggedInUserContext } from "./components/LoggedInUserContext";
+import { LoggedInUserContext } from "./Context/LoggedInUserContext";
 import Footer from "./components/Footer";
 import PrivateRoute from "./components/PrivateRoute";
 

@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { LoggedInUserContext } from "./LoggedInUserContext";
+import { LoggedInUserContext } from "../Context/LoggedInUserContext";
 import styled, { keyframes } from "styled-components";
 import { colors } from "../GlobalStyles";
 

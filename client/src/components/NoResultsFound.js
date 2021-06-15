@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
-import { UsersContext } from "./UsersContext";
-import { SearchContext } from "./SearchContext";
+import { UsersContext } from "../Context/UsersContext";
+import { SearchContext } from "../Context/SearchContext";
 import UserCard from "./UserCard";
 import styled, { keyframes } from "styled-components";
 import Loading from "./Loaders/Loading";

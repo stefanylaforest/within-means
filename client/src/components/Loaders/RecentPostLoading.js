@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { colors } from "../../GlobalStyles";
-import { HiOutlineHeart, HiHeart } from "react-icons/hi";
+import { HiOutlineHeart } from "react-icons/hi";
 
 const UserCard = ({ user }) => {
   return (

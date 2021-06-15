@@ -1,5 +1,4 @@
 import React from "react";
-import WithinMeansLogo from "../../assets/WithinMeansLogo";
 import styled, { keyframes } from "styled-components";
 
 const Loading = () => {

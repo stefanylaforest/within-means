@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { SearchContext } from "./SearchContext";
+import { SearchContext } from "../Context/SearchContext";
 import { colors } from "../GlobalStyles";
 import styled, { keyframes } from "styled-components";
 import { useHistory } from "react-router-dom";

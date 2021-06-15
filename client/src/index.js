@@ -3,9 +3,9 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import GlobalStyles from "./GlobalStyles";
-import { UsersProvider } from "./components/UsersContext";
-import { SearchProvider } from "./components/SearchContext";
-import { LoggedInUserProvider } from "./components/LoggedInUserContext";
+import { UsersProvider } from "./Context/UsersContext";
+import { SearchProvider } from "./Context/SearchContext";
+import { LoggedInUserProvider } from "./Context/LoggedInUserContext";
 
 ReactDOM.render(
   <LoggedInUserProvider>

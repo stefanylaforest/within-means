@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import styled, { keyframes } from "styled-components";
-import { UsersContext } from "./UsersContext";
-import { LoggedInUserContext } from "./LoggedInUserContext";
+import { UsersContext } from "../Context/UsersContext";
+import { LoggedInUserContext } from "../Context/LoggedInUserContext";
 import UserCard from "./UserCard";
 
 const Saved = () => {

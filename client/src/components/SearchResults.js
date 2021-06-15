@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
-import { UsersContext } from "./UsersContext";
+import { UsersContext } from "../Context/UsersContext";
 import UserCard from "./UserCard";
 import styled, { keyframes } from "styled-components";
-import { SearchContext } from "./SearchContext";
+import { SearchContext } from "../Context/SearchContext";
 import { useParams } from "react-router-dom";
 import NoResultsFound from "./NoResultsFound";
 

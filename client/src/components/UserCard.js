@@ -3,7 +3,7 @@ import styled, { keyframes } from "styled-components";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { colors } from "../GlobalStyles";
 import { HiOutlineHeart, HiHeart } from "react-icons/hi";
-import { LoggedInUserContext } from "./LoggedInUserContext";
+import { LoggedInUserContext } from "../Context/LoggedInUserContext";
 
 const UserCard = ({ user, setRemoveSaved }) => {
   let userId = user._id;

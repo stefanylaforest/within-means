@@ -1,14 +1,12 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { colors } from "../GlobalStyles";
 import { ImSearch, ImArrowRight2 } from "react-icons/im";
-
-import { SearchContext } from "./SearchContext";
-import { useHistory, useParams } from "react-router-dom";
+import { SearchContext } from "../Context/SearchContext";
+import { useHistory } from "react-router-dom";
 
 const Search = () => {
-  const { query, setQuery, matchedUsers, setMatchedUsers } =
-    useContext(SearchContext);
+  const { query, setQuery } = useContext(SearchContext);
   const history = useHistory();
 
   const mainQueryHandler = (e) => {

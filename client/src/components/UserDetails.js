@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import styled, { keyframes } from "styled-components";
-import { LoggedInUserContext } from "./LoggedInUserContext";
+import { LoggedInUserContext } from "../Context/LoggedInUserContext";
 import { useParams, useHistory } from "react-router-dom";
 import { colors } from "../GlobalStyles";
 import Loading from "./Loaders/Loading";

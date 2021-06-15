@@ -5,7 +5,7 @@ import { HiOutlineHeart } from "react-icons/hi";
 import { MdSettings, MdPowerSettingsNew } from "react-icons/md";
 import { Link, useHistory } from "react-router-dom";
 import { colors } from "../../GlobalStyles";
-import { LoggedInUserContext } from "../LoggedInUserContext";
+import { LoggedInUserContext } from "../../Context/LoggedInUserContext";
 
 const DropdownMenu = () => {
   const {

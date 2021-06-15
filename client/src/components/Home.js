@@ -3,10 +3,10 @@ import Search from "./Search";
 import UserCard from "./UserCard";
 import styled, { keyframes } from "styled-components";
 import RecentPostLoading from "./Loaders/RecentPostLoading";
-import { UsersContext } from "./UsersContext";
+import { UsersContext } from "../Context/UsersContext";
 import About from "./About";
 import Categories from "./Categories";
-import { LoggedInUserContext } from "./LoggedInUserContext";
+import { LoggedInUserContext } from "../Context/LoggedInUserContext";
 
 const Home = () => {
   const { users, userStatus } = useContext(UsersContext);

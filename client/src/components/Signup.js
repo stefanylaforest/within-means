@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { GoogleLogin } from "react-google-login";
 import styled, { keyframes } from "styled-components";
 import LoginSvg from "../assets/loginSvg";
-import { LoggedInUserContext } from "./LoggedInUserContext";
+import { LoggedInUserContext } from "../Context/LoggedInUserContext";
 import { useHistory } from "react-router-dom";
 import { colors } from "../GlobalStyles";
 import Loading from "./Loaders/Loading";

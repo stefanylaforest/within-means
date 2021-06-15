@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { LoggedInUserContext } from "./LoggedInUserContext";
+import { LoggedInUserContext } from "../Context/LoggedInUserContext";
 import styled from "styled-components";
 import { FaUserCircle, FaReply } from "react-icons/fa";
 import { TiDelete } from "react-icons/ti";

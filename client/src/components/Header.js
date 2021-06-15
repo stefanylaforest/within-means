@@ -5,8 +5,8 @@ import { colors } from "../GlobalStyles";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import { ImSearch, ImArrowRight2 } from "react-icons/im";
 import { FaUserCircle } from "react-icons/fa";
-import { SearchContext } from "./SearchContext";
-import { LoggedInUserContext } from "./LoggedInUserContext";
+import { SearchContext } from "../Context/SearchContext";
+import { LoggedInUserContext } from "../Context/LoggedInUserContext";
 import DropdownMenu from "../components/HeaderComponents/DropdownMenu";
 
 const Header = () => {

@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { LoggedInUserContext } from "./LoggedInUserContext";
+import { LoggedInUserContext } from "../Context/LoggedInUserContext";
 import EditProfile from "./EditProfile";
 import styled, { keyframes } from "styled-components";
 import { FaUserCircle } from "react-icons/fa";
