@@ -34,7 +34,8 @@ Endpoints have been documented in server/README.md
    Writing
 - If you are not logged in yet, you will have a introduction to what the project is about with a call to action for sign up. 
 
-<img width="1150" alt="Screen Shot 2021-06-15 at 21 11 49" src="https://user-images.githubusercontent.com/66086002/122119003-9e987900-ce20-11eb-88ed-d4e4137801a8.png"> <img width="1150" alt="Screen Shot 2021-06-15 at 21 11 49" src="https://user-images.githubusercontent.com/66086002/122119015-a22c0000-ce20-11eb-9d14-d2a4821ced1a.png"><img width="337" alt="Screen Shot 2021-06-15 at 21 11 40" src="https://user-images.githubusercontent.com/66086002/122119082-b3750c80-ce20-11eb-828c-0137a0599ee0.png">
+<img width="1435" alt="Screen Shot 2021-06-15 at 21 06 42" src="https://user-images.githubusercontent.com/66086002/122119442-1c5c8480-ce21-11eb-8ab5-71b5177ec23e.png">
+<img width="1150" alt="Screen Shot 2021-06-15 at 21 11 49" src="https://user-images.githubusercontent.com/66086002/122119015-a22c0000-ce20-11eb-9d14-d2a4821ced1a.png"><img width="337" alt="Screen Shot 2021-06-15 at 21 11 40" src="https://user-images.githubusercontent.com/66086002/122119082-b3750c80-ce20-11eb-828c-0137a0599ee0.png">
 
 ## Login & Sign Up 
 
