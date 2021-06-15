@@ -36,6 +36,13 @@ Endpoints have been documented in server/README.md
 
 <img width="1435" alt="Screen Shot 2021-06-15 at 21 06 42" src="https://user-images.githubusercontent.com/66086002/122119442-1c5c8480-ce21-11eb-8ab5-71b5177ec23e.png">
 <img width="1150" alt="Screen Shot 2021-06-15 at 21 11 49" src="https://user-images.githubusercontent.com/66086002/122119015-a22c0000-ce20-11eb-9d14-d2a4821ced1a.png">
+<img width="1420" alt="Screen Shot 2021-06-15 at 21 36 46" src="https://user-images.githubusercontent.com/66086002/122120114-e966c080-ce21-11eb-90bd-0e9c36bc8bf1.png">
+<img width="1422" alt="Screen Shot 2021-06-15 at 21 36 53" src="https://user-images.githubusercontent.com/66086002/122120123-eb308400-ce21-11eb-855c-f5faf5ca4077.png">
+<img width="1431" alt="Screen Shot 2021-06-15 at 21 37 21" src="https://user-images.githubusercontent.com/66086002/122120130-ecfa4780-ce21-11eb-88cf-442e68b42b7e.png">
+
+## Dropdown Menu
+<img width="172" alt="Screen Shot 2021-06-15 at 21 38 13" src="https://user-images.githubusercontent.com/66086002/122120176-000d1780-ce22-11eb-8d24-799afda1cd62.png">
+
 
 ## Login & Sign Up 
 
