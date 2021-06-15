@@ -252,8 +252,10 @@ const deleteMessage = async (req, res) => {
       $pull: updateRequest,
     }
   );
-  const user = await db.collection("users").findOne({ _id: userId });
-  res.status(200).json({ status: 200, message: `message deleted`, data: user });
+  const updatedUser = await db.collection("users").findOne({ _id: userId });
+  res
+    .status(200)
+    .json({ status: 200, message: `message deleted`, data: updatedUser });
 };
 
 const removeFromFavorites = async (req, res) => {

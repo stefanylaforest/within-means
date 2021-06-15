@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { LoggedInUserContext } from "../Context/LoggedInUserContext";
 import styled from "styled-components";
 import { FaUserCircle, FaReply } from "react-icons/fa";
@@ -17,7 +17,7 @@ const Message = ({
   setAlert,
   element,
 }) => {
-  const { currentLoggedInUser, updated, setUpdated } =
+  const { currentLoggedInUser, setCurrentLoggedInUser, updated, setUpdated } =
     useContext(LoggedInUserContext);
   const [clickReply, setClickReply] = useState(false);
   const [replyMessage, setReplyMessage] = useState(null);
@@ -47,6 +47,7 @@ const Message = ({
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log("success", data);
         setClickReply(!clickReply);
         setAlert("message sent!");
         setTimeout(() => {
@@ -68,19 +69,21 @@ const Message = ({
       },
       body: JSON.stringify({
         inbox: {
-          message: message || "",
-          date: date || null,
-          senderId: senderId || null,
-          senderName: senderName || "",
-          senderAvatar: senderAvatar || null,
-          senderTitle: senderTitle || "",
+          message: message,
+          date: date,
+          senderId: senderId,
+          senderName: senderName,
+          senderAvatar: senderAvatar,
+          senderTitle: senderTitle,
         },
       }),
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log("success", data);
         setAlert("message deleted!");
         localStorage.setItem("currentLoggedInUser", JSON.stringify(data.data));
+        console.log("delete");
         setUpdated(!updated);
         setTimeout(() => {
           setAlert(null);
@@ -88,7 +91,6 @@ const Message = ({
       })
       .catch((err) => {
         console.log("delete", err);
-        //send to error page
       });
   };
 

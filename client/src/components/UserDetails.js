@@ -16,7 +16,9 @@ const UserDetails = () => {
   const [toggleMsgInput, setToggleMsgInput] = useState(false);
   const [message, setMessage] = useState(null);
 
-  window.scrollTo(0, 0);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const { currentLoggedInUser, setCurrentLoggedInUser } =
     useContext(LoggedInUserContext);
