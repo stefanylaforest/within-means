@@ -31,3 +31,27 @@ Endpoints have been documented in server/README.md
    Writing
 - If you are not logged in yet, you will have a introduction to what the project is about with a call to action for sign up. 
 
+## Login & Sign Up 
+
+- Log In and Sign up with Google and the local way. 
+- Bcrypt encryption
+
+## Edit your profile
+
+User can edit their profile and update their status. 
+
+The status is used to update what the user is seeking. 
+
+The user can list their skills, have a bio, post their website, and their title
+
+## Messaging
+
+User can send messages to eachother to send offers and delete messages from their inbox.
+
+## Search 
+
+The search function is implemented on the homepage and as well in the navigation bar.
+
+## Save users to your favorites
+
+Users can save their favorite users to a list to come back to later.
