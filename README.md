@@ -34,10 +34,14 @@ Endpoints have been documented in server/README.md
    Writing
 - If you are not logged in yet, you will have a introduction to what the project is about with a call to action for sign up. 
 
+<img width="1150" alt="Screen Shot 2021-06-15 at 21 11 49" src="https://user-images.githubusercontent.com/66086002/122119003-9e987900-ce20-11eb-88ed-d4e4137801a8.png"> <img width="1150" alt="Screen Shot 2021-06-15 at 21 11 49" src="https://user-images.githubusercontent.com/66086002/122119015-a22c0000-ce20-11eb-9d14-d2a4821ced1a.png"><img width="337" alt="Screen Shot 2021-06-15 at 21 11 40" src="https://user-images.githubusercontent.com/66086002/122119082-b3750c80-ce20-11eb-828c-0137a0599ee0.png">
+
 ## Login & Sign Up 
 
 - Log In and Sign up with Google and the local way. 
 - Bcrypt encryption
+
+<img width="1426" alt="Screen Shot 2021-06-15 at 21 13 54" src="https://user-images.githubusercontent.com/66086002/122119128-bff96500-ce20-11eb-80c8-7eec0ad7dfa9.png">
 
 ## Edit your profile
 
@@ -47,14 +51,29 @@ The status is used to update what the user is seeking.
 
 The user can list their skills, have a bio, post their website, and their title
 
+<img width="1428" alt="Screen Shot 2021-06-15 at 21 12 52" src="https://user-images.githubusercontent.com/66086002/122119158-c5ef4600-ce20-11eb-945d-1804c3388e4a.png">
+
 ## Messaging
 
 User can send messages to eachother to send offers and delete messages from their inbox.
+
+<img width="1428" alt="Screen Shot 2021-06-15 at 21 26 15" src="https://user-images.githubusercontent.com/66086002/122119220-d69fbc00-ce20-11eb-8142-b60ef798f1ae.png">
+<img width="1430" alt="Screen Shot 2021-06-15 at 21 27 26" src="https://user-images.githubusercontent.com/66086002/122119201-d1427180-ce20-11eb-8dde-2eec8f528042.png">
+<img width="1433" alt="Screen Shot 2021-06-15 at 21 27 42" src="https://user-images.githubusercontent.com/66086002/122119209-d30c3500-ce20-11eb-9906-c5b1a4a46d83.png">
+
 
 ## Search 
 
 The search function is implemented on the homepage and as well in the navigation bar.
 
+<img width="1431" alt="Screen Shot 2021-06-15 at 21 12 16" src="https://user-images.githubusercontent.com/66086002/122119266-e28b7e00-ce20-11eb-93b8-adced555fe63.png">
+<img width="1430" alt="Screen Shot 2021-06-15 at 21 13 15" src="https://user-images.githubusercontent.com/66086002/122119307-f0410380-ce20-11eb-9ce7-15e168a5e785.png">
+
+
+
 ## Save users to your favorites
 
 Users can save their favorite users to a list to come back to later.
+
+<img width="1424" alt="Screen Shot 2021-06-15 at 21 13 37" src="https://user-images.githubusercontent.com/66086002/122119280-e7503200-ce20-11eb-932d-5427a590e184.png">
+
