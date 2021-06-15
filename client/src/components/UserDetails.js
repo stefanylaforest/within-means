@@ -33,7 +33,7 @@ const UserDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [currentUser.status, userId]);
 
   const handleSave = (e) => {
     e.preventDefault();
@@ -163,8 +163,7 @@ const UserDetails = () => {
             <Row>
               <div>
                 <LastUpdated>
-                  Last updated{" "}
-                  {moment(currentUser.date).startOf("day").fromNow()}
+                  Last updated {moment(currentUser.statusDate).format("LLL")}
                 </LastUpdated>
                 <NameTitleWeb>👋 I'm {currentUser.name}</NameTitleWeb>
                 <NameTitleWeb>💻 I am a {currentUser.title}</NameTitleWeb>

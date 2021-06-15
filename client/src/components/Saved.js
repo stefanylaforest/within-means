@@ -59,6 +59,7 @@ const Wrapper = styled.div`
   padding: 30px;
   margin: 60px;
   border-radius: 25px;
+  min-height: 70vh;
   animation: ${fadeIn} 0.3s ease-in;
   @media screen and (max-width: 720px) {
     margin: 50px;

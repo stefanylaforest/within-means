@@ -9,7 +9,7 @@ const UserCard = ({ user, setRemoveSaved }) => {
   let userId = user._id;
   const history = useHistory();
   const location = useLocation();
-  const { currentLoggedInUser, setCurrentLoggedInUser, setUpdated, updated } =
+  const { currentLoggedInUser, setCurrentLoggedInUser } =
     useContext(LoggedInUserContext);
 
   const handleSave = (e) => {
@@ -165,7 +165,7 @@ const FilledHeart = styled(HiHeart)`
 
 const Status = styled.h3`
   text-align: center;
-  height: 56px;
+  height: 55px;
   padding: 10px;
   margin: 20px 0px;
   overflow: hidden;

@@ -4,7 +4,7 @@ import styled, { keyframes } from "styled-components";
 import { colors } from "../GlobalStyles";
 
 const EditProfile = () => {
-  const { currentLoggedInUser, setCurrentLoggedInUser } =
+  const { currentLoggedInUser, setCurrentLoggedInUser, updated, setUpdated } =
     useContext(LoggedInUserContext);
 
   let defaultValueOne = currentLoggedInUser.skills
@@ -66,6 +66,7 @@ const EditProfile = () => {
         setTimeout(() => {
           setAlert(null);
         }, 8000);
+        setUpdated(!updated);
       });
   };
 

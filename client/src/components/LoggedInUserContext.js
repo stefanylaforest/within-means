@@ -12,7 +12,6 @@ export const LoggedInUserProvider = ({ children }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [updated, setUpdated] = useState(false);
-
   const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
@@ -45,8 +44,6 @@ export const LoggedInUserProvider = ({ children }) => {
         setEmail,
         password,
         setPassword,
-        // fetching,
-        // setFetching,
         updated,
         setUpdated,
         isLiked,

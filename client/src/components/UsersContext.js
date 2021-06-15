@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 
 export const UsersContext = createContext();
 
@@ -12,10 +12,15 @@ export const UsersProvider = ({ children }) => {
     fetch("/api/users")
       .then((res) => res.json())
       .then((json) => {
-        setUsers(json.data);
+        const sortUsersByMostRecentStatus = json.data.sort((a, b) => {
+          let dateTwo = Date.parse(a.statusDate);
+          let dateOne = Date.parse(b.statusDate);
+          return dateOne - dateTwo;
+        });
+        setUsers(sortUsersByMostRecentStatus);
         setUserStatus("idle");
       });
-  }, []);
+  }, [users.statusDate, users.status]);
 
   return (
     <UsersContext.Provider

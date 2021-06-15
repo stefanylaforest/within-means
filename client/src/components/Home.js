@@ -12,11 +12,11 @@ const Home = () => {
   const { users, userStatus } = useContext(UsersContext);
   const { currentLoggedInUser } = useContext(LoggedInUserContext);
 
-  const sortUsersByMostRecentStatus = users.sort((a, b) => {
-    let dateTwo = Date.parse(a.statusDate);
-    let dateOne = Date.parse(b.statusDate);
-    return dateOne - dateTwo;
-  });
+  // const sortUsersByMostRecentStatus = users.sort((a, b) => {
+  //   let dateTwo = Date.parse(a.statusDate);
+  //   let dateOne = Date.parse(b.statusDate);
+  //   return dateOne - dateTwo;
+  // });
 
   return (
     <Wrapper>
@@ -25,7 +25,7 @@ const Home = () => {
       {userStatus === "idle" ? (
         <RecentPostingUl>
           {users &&
-            sortUsersByMostRecentStatus.slice(0, 3).map((user, i) => {
+            users.slice(0, 3).map((user, i) => {
               console.log("from map", user);
               return (
                 <RecentPostLi key={`user-${user._id}`}>

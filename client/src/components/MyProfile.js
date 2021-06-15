@@ -59,6 +59,8 @@ const MyProfile = () => {
           <h2>
             <label htmlFor="status">Update your status</label>
           </h2>
+          <Divider />
+          <p>What does your business need?</p>
           <StatusTextArea
             defaultValue={currentLoggedInUser.status}
             onChange={(ev) => setNewStatus(ev.target.value)}
@@ -145,6 +147,12 @@ const StatusSection = styled.div`
   @media screen and (max-width: 950px) {
     margin: 10px 50px;
   }
+`;
+
+const Divider = styled.hr`
+  border: 1px solid #f0f0f0;
+  width: 100%;
+  margin-top: -10px;
 `;
 
 const Profile = styled.img`
