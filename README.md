@@ -4,7 +4,7 @@
    <p align="center"> 
  An online platform for small business owners/entrepreneurs to swap their skill set in return for another utilizing the concept of bartering. </p>
  
- ##Setup instructions
+ ## Setup instructions
  
 1. Fork the repository
 2. Clone the repository
