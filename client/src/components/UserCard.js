@@ -54,7 +54,6 @@ const UserCard = ({ user, setRemoveSaved }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("success", data);
         setCurrentLoggedInUser(data.data);
         localStorage.setItem("currentLoggedInUser", JSON.stringify(data.data));
       });

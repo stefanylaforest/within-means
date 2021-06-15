@@ -23,8 +23,6 @@ const SignInHeader = () => {
     }
   };
 
-  console.log(loggedIn);
-
   return (
     <Container>
       <Link to="/">

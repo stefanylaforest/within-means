@@ -26,7 +26,6 @@ const MyProfile = () => {
     })
       .then((res) => res.json())
       .then((json) => {
-        console.log("success", json);
         setCurrentLoggedInUser(json.data);
         setSuccessMsg("Status Updated Successfully");
         localStorage.setItem("currentLoggedInUser", JSON.stringify(json.data));

@@ -58,7 +58,6 @@ const EditProfile = () => {
     })
       .then((res) => res.json())
       .then((json) => {
-        console.log("success", json);
         setCurrentLoggedInUser(json.data);
         setAlert("Profile Updated Successfully");
         localStorage.setItem("currentLoggedInUser", JSON.stringify(json.data));
@@ -69,8 +68,6 @@ const EditProfile = () => {
         setUpdated(!updated);
       });
   };
-
-  console.log(currentLoggedInUser.skills);
 
   return (
     <FormGroup>

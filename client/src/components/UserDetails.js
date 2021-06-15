@@ -32,6 +32,7 @@ const UserDetails = () => {
       })
       .catch((err) => {
         console.log(err);
+        //send to error page
       });
   }, [currentUser.status, userId]);
 
@@ -53,7 +54,6 @@ const UserDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("success", data);
         setCurrentLoggedInUser(data.data);
         localStorage.setItem("currentLoggedInUser", JSON.stringify(data.data));
       });
@@ -74,7 +74,6 @@ const UserDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("success", data);
         setCurrentLoggedInUser(data.data);
         localStorage.setItem("currentLoggedInUser", JSON.stringify(data.data));
       });
@@ -82,17 +81,11 @@ const UserDetails = () => {
 
   const goBackHandler = () => {
     history.goBack();
-    console.log(history);
   };
-
-  console.log("viewing user", currentUser);
-  console.log("skills", userSkills);
 
   const handleSendMessageInput = () => {
     setToggleMsgInput(!toggleMsgInput);
   };
-
-  console.log("msg", message);
 
   const sendMessageHandler = () => {
     fetch(`/api/users/${userId}/message`, {
@@ -116,7 +109,6 @@ const UserDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("success", data);
         setToggleMsgInput(!toggleMsgInput);
         setAlert("message sent!");
         setTimeout(() => {
@@ -128,7 +120,6 @@ const UserDetails = () => {
       });
   };
 
-  console.log("currentUser88", currentUser);
   if (currentUserStatus) {
     return (
       <div>

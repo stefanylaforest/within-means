@@ -21,8 +21,6 @@ const Saved = () => {
     }
   }, [currentLoggedInUser.saved]);
 
-  console.log("savedUsers", savedUsers);
-
   return (
     <Wrapper>
       <h1>Users Saved</h1>

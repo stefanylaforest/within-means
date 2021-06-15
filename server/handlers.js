@@ -115,10 +115,8 @@ const authenticateUser = async (req, res) => {
     const user = await db
       .collection("users")
       .findOne({ email: req.body.email });
-    console.log(user);
 
     if (!user) {
-      console.log(res.status);
       return res.status(404).json({
         status: 404,
         message: "no account to this email",
@@ -144,7 +142,6 @@ const authenticateUser = async (req, res) => {
       }
     }
   } catch (error) {
-    console.log(error);
     res.status(500).send("internal server error :(");
   }
 };
@@ -241,7 +238,6 @@ const addToFavorites = async (req, res) => {
     console.timeEnd("getUser");
     res.status(200).json({ status: 200, message: `message sent`, data: user });
   } catch (error) {
-    console.log(error);
     res.status(500).send("internal server error :(");
   }
 };
@@ -271,7 +267,7 @@ const removeFromFavorites = async (req, res) => {
     }
   );
   const user = await db.collection("users").findOne({ _id: userId });
-  console.log("AFTERREMOVED", user);
+
   res.status(200).json({ status: 200, message: `message deleted`, data: user });
 };
 

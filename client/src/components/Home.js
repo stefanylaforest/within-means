@@ -26,7 +26,6 @@ const Home = () => {
         <RecentPostingUl>
           {users &&
             users.slice(0, 3).map((user, i) => {
-              console.log("from map", user);
               return (
                 <RecentPostLi key={`user-${user._id}`}>
                   <UserCard user={user} />

@@ -30,7 +30,6 @@ const Login = () => {
   };
 
   const handleLoginSuccess = async (response) => {
-    console.log(response);
     fetch("/api/googlelogin", {
       method: "POST",
       body: JSON.stringify({

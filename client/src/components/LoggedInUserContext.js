@@ -16,7 +16,7 @@ export const LoggedInUserProvider = ({ children }) => {
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem("currentLoggedInUser");
-    console.log("loggedInuser", loggedInUser);
+
     if (loggedInUser) {
       const foundUser = JSON.parse(loggedInUser);
       fetch(`/api/users/${foundUser._id}`)
@@ -27,6 +27,7 @@ export const LoggedInUserProvider = ({ children }) => {
         })
         .catch((err) => {
           console.log(err);
+          //send to error page
         });
     }
   }, [updated]);

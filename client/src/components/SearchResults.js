@@ -18,7 +18,6 @@ const SearchResults = () => {
   } = useContext(SearchContext);
 
   let { searchQuery } = useParams();
-  console.log("query", query);
 
   useEffect(() => {
     setQuery(searchQuery);

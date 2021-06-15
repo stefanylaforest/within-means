@@ -47,7 +47,6 @@ const Message = ({
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("success", data);
         setClickReply(!clickReply);
         setAlert("message sent!");
         setTimeout(() => {
@@ -80,7 +79,6 @@ const Message = ({
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("success", data);
         setAlert("message deleted!");
         localStorage.setItem("currentLoggedInUser", JSON.stringify(data.data));
         setUpdated(!updated);
@@ -90,6 +88,7 @@ const Message = ({
       })
       .catch((err) => {
         console.log("delete", err);
+        //send to error page
       });
   };
 
