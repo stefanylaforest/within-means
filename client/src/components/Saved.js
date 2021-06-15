@@ -18,7 +18,7 @@ const Saved = () => {
       );
       setSavedUsers(filteredUsers);
     }
-  }, [currentLoggedInUser.saved]);
+  }, [currentLoggedInUser.saved, users]);
 
   return (
     <Wrapper>

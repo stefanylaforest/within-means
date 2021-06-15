@@ -7,6 +7,13 @@ const Offers = () => {
   const { currentLoggedInUser } = useContext(LoggedInUserContext);
   const [alert, setAlert] = useState(null);
 
+  const currentInbox = Object.values(currentLoggedInUser.inbox);
+  const sortedInbox = currentInbox.sort((a, b) => {
+    let dateTwo = Date.parse(a.date);
+    let dateOne = Date.parse(b.date);
+    return dateOne - dateTwo;
+  });
+
   return (
     <div>
       <Wrapper>
@@ -18,7 +25,8 @@ const Offers = () => {
         {!currentLoggedInUser.inbox || currentLoggedInUser.inbox.length < 1 ? (
           <Empty>your inbox is empty 😞</Empty>
         ) : (
-          currentLoggedInUser.inbox?.reverse().map((e) => {
+          currentLoggedInUser.inbox &&
+          sortedInbox.map((e) => {
             return (
               <Message
                 key={e.date}
@@ -58,6 +66,7 @@ const Wrapper = styled.div`
   margin: 60px;
   border-radius: 25px;
   animation: ${fadeIn} 0.3s ease-in;
+  min-height: 70vh;
   @media screen and (max-width: 720px) {
     margin: 50px;
   }
