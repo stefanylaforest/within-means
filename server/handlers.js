@@ -81,12 +81,10 @@ const googleLogin = async (req, res) => {
         data: user,
       });
     } else {
-      const newPassword = bcrypt.hash(email + uuidv4(), saltRounds);
       const newUser = db.collection("users").insertOne({
         _id: uuidv4(),
         name: name,
         email: email,
-        password: newPassword,
         title: null,
         skills: [],
         avatar: picture,
@@ -99,12 +97,12 @@ const googleLogin = async (req, res) => {
         rating: null,
         inbox: [],
       });
-      assert.strictEqual(1, newUser.insertedCount);
+      const grabNewUser = await db
+        .collection("users")
+        .findOne({ email: email });
       res
         .status(201)
-        .json({ status: 201, message: `welcome ${name}`, data: newUser });
-
-      // console.log("res", ticket.getPayload());
+        .json({ status: 201, message: `welcome ${name}`, data: grabNewUser });
     }
   }
 };

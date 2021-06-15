@@ -25,7 +25,7 @@ const Signup = () => {
   window.scrollTo(0, 0);
 
   const handleLoginFailure = async (response) => {
-    return;
+    console.log(response);
   };
 
   const handleLoginSuccess = async (response) => {
@@ -50,7 +50,8 @@ const Signup = () => {
           setErrMsg("");
           setCurrentLoggedInUser(json.data);
           setLoggedIn(true);
-          history.push(`/users/${currentLoggedInUser._id}/edit`);
+          history.push(`/users/${json.data._id}/edit`);
+          console.log("from success");
         }
       });
   };

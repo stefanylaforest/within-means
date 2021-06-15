@@ -2,8 +2,8 @@
 <svg width="102px" height="67px" viewBox="0 0 102 67" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
         <linearGradient x1="50%" y1="0%" x2="-204.62167%" y2="109.852636%" id="linearGradient-1">
-            <stop stop-color="#3641E7" stop-opacity="0.629561844" offset="0%"></stop>
-            <stop stop-color="#E8CAFF" stop-opacity="0.633085664" offset="100%"></stop>
+            <stop stop-color="#3641E7" stopOpacity="0.629561844" offset="0%"></stop>
+            <stop stop-color="#E8CAFF" stopOpacity="0.633085664" offset="100%"></stop>
         </linearGradient>
         <path d="M39.5970135,43.5 C37.9263663,45.2863691 36.8907588,46.2582589 35.9586229,47.93567 C33.0592143,53.1532574 40.5816006,53.2845196 43.0760418,52.8357007 C43.3196325,52.791872 43.2642305,52.342801 43.2249016,52.0934696 L41.8134728,50.7805784 C41.5282191,48.9721682 42.4190097,47.1077935 42.1527454,45.2963671 C42.0595968,44.6626667 41.230348,44.1207667 40.8093537,43.9494414 C40.5286908,43.8352246 40.1245774,43.6854108 39.5970135,43.5 Z" id="path-2"></path>
         <filter x="-188.5%" y="-94.7%" width="477.1%" height="415.8%" filterUnits="objectBoundingBox" id="filter-3">
@@ -13,8 +13,8 @@
             <feColorMatrix values="0 0 0 0 0.799837676   0 0 0 0 0.602153201   0 0 0 0 1  0 0 0 0.15 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
         </filter>
         <linearGradient x1="50%" y1="0%" x2="-56.6012121%" y2="109.852636%" id="linearGradient-4">
-            <stop stop-color="#3641E7" stop-opacity="0.629561844" offset="0%"></stop>
-            <stop stop-color="#E8CAFF" stop-opacity="0.633085664" offset="100%"></stop>
+            <stop stop-color="#3641E7" stopOpacity="0.629561844" offset="0%"></stop>
+            <stop stop-color="#E8CAFF" stopOpacity="0.633085664" offset="100%"></stop>
         </linearGradient>
         <path d="M23.0780113,33.5718077 C29.555577,32.2805404 29.6955841,41.841456 29.7004086,43.5880245 C29.7029309,44.5065902 29.3708586,45.212202 28.7041918,45.7048598 L28.7016284,45.701391 C28.4452654,45.8908398 28.1603081,46.0381571 27.8575091,46.1377841 C25.883018,46.7874315 24.5964507,46.3034231 23.9978072,44.6857588 C22.6728263,41.1053736 22.2994333,33.727013 23.0780113,33.5718077 Z" id="path-5"></path>
         <filter x="-213.5%" y="-69.4%" width="527.0%" height="331.4%" filterUnits="objectBoundingBox" id="filter-6">
@@ -24,8 +24,8 @@
             <feColorMatrix values="0 0 0 0 0.799837676   0 0 0 0 0.602153201   0 0 0 0 1  0 0 0 0.15 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
         </filter>
         <linearGradient x1="50%" y1="0%" x2="-88.8532175%" y2="109.852636%" id="linearGradient-7">
-            <stop stop-color="#3641E7" stop-opacity="0.629561844" offset="0%"></stop>
-            <stop stop-color="#E8CAFF" stop-opacity="0.633085664" offset="100%"></stop>
+            <stop stop-color="#3641E7" stopOpacity="0.629561844" offset="0%"></stop>
+            <stop stop-color="#E8CAFF" stopOpacity="0.633085664" offset="100%"></stop>
         </linearGradient>
         <path d="M29.9808469,39.9355537 C34.7042863,37.073105 35.5157453,42.5357718 35.9010161,46.4681047 C36.0207062,47.6897427 36.8336634,48.577414 36.8348139,48.9914005 C36.8379599,50.1361648 36.1236601,50.7986523 34.6919144,50.9788632 L34.6919143,50.9788627 C34.639154,50.9855035 34.5865796,50.993546 34.5342468,51.0029816 C32.1884003,51.4259363 30.8196952,51.1083688 30.4281316,50.0502793 C29.1031507,46.4698941 29.1398016,40.445235 29.9808469,39.9355537 Z" id="path-8"></path>
         <filter x="-201.3%" y="-74.7%" width="502.7%" height="349.0%" filterUnits="objectBoundingBox" id="filter-9">
@@ -52,8 +52,8 @@
             <feColorMatrix values="0 0 0 0 0.799837676   0 0 0 0 0.602153201   0 0 0 0 1  0 0 0 0.241067526 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
         </filter>
         <linearGradient x1="50%" y1="7.5179934%" x2="-313.056936%" y2="100.853201%" id="linearGradient-15">
-            <stop stop-color="#3641E7" stop-opacity="0.629561844" offset="0%"></stop>
-            <stop stop-color="#E8CAFF" stop-opacity="0.633085664" offset="100%"></stop>
+            <stop stop-color="#3641E7" stopOpacity="0.629561844" offset="0%"></stop>
+            <stop stop-color="#E8CAFF" stopOpacity="0.633085664" offset="100%"></stop>
         </linearGradient>
         <path d="M14.3389138,36.5156759 C14.8362494,36.3628859 14.9198944,37.3600677 15.8549192,38.0681509 C16.392089,38.4749433 17.5712043,39.1649322 19.3922652,40.1381177 C18.8692991,40.9753309 18.363964,41.4928225 17.8762598,41.6905928 C16.7340731,42.153764 14.8391868,42.0492082 14.3389138,41.6905928 C13.0432754,40.7618281 13.2011076,36.8652292 14.3389138,36.5156759 Z" id="path-16"></path>
         <filter x="-251.4%" y="-163.6%" width="602.8%" height="645.5%" filterUnits="objectBoundingBox" id="filter-17">
