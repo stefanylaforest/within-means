@@ -1,12 +1,10 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { LoggedInUserContext } from "../Context/LoggedInUserContext";
 import styled, { keyframes } from "styled-components";
 import Message from "./Message";
-import { colors } from "../GlobalStyles";
-import Loading from "./Loaders/Loading";
 
 const Offers = () => {
-  const { currentLoggedInUser, fetching } = useContext(LoggedInUserContext);
+  const { currentLoggedInUser } = useContext(LoggedInUserContext);
   const [alert, setAlert] = useState(null);
 
   return (
@@ -23,6 +21,7 @@ const Offers = () => {
           currentLoggedInUser.inbox?.reverse().map((e) => {
             return (
               <Message
+                key={e.date}
                 message={e.message}
                 date={e.date}
                 senderId={e.senderId}
@@ -65,7 +64,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const Header = styled.p`
+const Header = styled.div`
   display: flex;
   flex-direction: row;
   align-items: baseline;

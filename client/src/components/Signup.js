@@ -23,6 +23,7 @@ const Signup = () => {
     setPassword,
   } = useContext(LoggedInUserContext);
   let history = useHistory();
+  window.scrollTo(0, 0);
 
   const handleLoginFailure = async (response) => {
     return;
