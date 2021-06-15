@@ -3,7 +3,7 @@
 </h1>
    <p align="center"> 
  An online platform for small business owners/entrepreneurs to swap their skill set in return for another utilizing the concept of bartering. </p>
- <h3>React, Node.js, Express, MongoDB, Styled-Components</h3>
+ <h3 align="center">React, Node.js, Express, MongoDB, Styled-Components</h3>
  
  <img align="center" width="1435" alt="Screen Shot 2021-06-15 at 21 06 42" src="https://user-images.githubusercontent.com/66086002/122116527-a276cc00-ce1d-11eb-9b14-49483c259752.png">
  
