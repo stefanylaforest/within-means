@@ -21,7 +21,7 @@ const {
 
 // // const users = require("./data/users.json");
 
-const PORT = process.env.PORT || 8001;
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 
