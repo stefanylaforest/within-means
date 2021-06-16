@@ -3,6 +3,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
+const res = await fetch("https://withinmeans.herokuapp.com");
 
 const {
   addUser,

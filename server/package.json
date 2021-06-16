@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "An online platform for small business owners/entrepreneurs to swap their skill set in return for another utilizing the concept of bartering.",
   "main": "server.js",
+  "engines": {
+    "node": "v15.11.0",
+    "npm": "7.6.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js"
