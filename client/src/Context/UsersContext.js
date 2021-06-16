@@ -9,7 +9,7 @@ export const UsersProvider = ({ children }) => {
   //matched users based on the query
 
   useEffect(() => {
-    fetch("/api/users")
+    fetch("https://secure-journey-19068.herokuapp.com/api/users")
       .then((res) => res.json())
       .then((json) => {
         const sortUsersByMostRecentStatus = json.data.sort((a, b) => {

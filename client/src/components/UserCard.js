@@ -18,16 +18,19 @@ const UserCard = ({ user, setRemoveSaved }) => {
     if (!currentLoggedInUser) {
       return history.push(`/login`);
     }
-    fetch(`/api/users/${currentLoggedInUser._id}/save`, {
-      method: "PATCH",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        saved: userId,
-      }),
-    })
+    fetch(
+      `https://secure-journey-19068.herokuapp.com/api/users/${currentLoggedInUser._id}/save`,
+      {
+        method: "PATCH",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          saved: userId,
+        }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         setCurrentLoggedInUser(data.data);
@@ -42,16 +45,19 @@ const UserCard = ({ user, setRemoveSaved }) => {
 
     e.preventDefault();
     e.stopPropagation();
-    fetch(`/api/users/${currentLoggedInUser._id}/save/remove`, {
-      method: "PATCH",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        saved: userId,
-      }),
-    })
+    fetch(
+      `https://secure-journey-19068.herokuapp.com/api/users/${currentLoggedInUser._id}/save/remove`,
+      {
+        method: "PATCH",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          saved: userId,
+        }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         setCurrentLoggedInUser(data.data);

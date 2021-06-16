@@ -41,21 +41,24 @@ const EditProfile = () => {
   const [skillThree, setSkillThree] = useState(defaultValueThree);
 
   const editProfile = () => {
-    fetch(`/api/users/${currentLoggedInUser._id}/edit`, {
-      method: "PATCH",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        email: newEmail,
-        title,
-        website,
-        bio,
-        skills: [skillOne, skillTwo, skillThree],
-      }),
-    })
+    fetch(
+      `https://secure-journey-19068.herokuapp.com/api/users/${currentLoggedInUser._id}/edit`,
+      {
+        method: "PATCH",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email: newEmail,
+          title,
+          website,
+          bio,
+          skills: [skillOne, skillTwo, skillThree],
+        }),
+      }
+    )
       .then((res) => res.json())
       .then((json) => {
         setCurrentLoggedInUser(json.data);

@@ -29,7 +29,7 @@ const Signup = () => {
   };
 
   const handleLoginSuccess = async (response) => {
-    fetch("/api/googlelogin", {
+    fetch("https://secure-journey-19068.herokuapp.com/api/googlelogin", {
       method: "POST",
       body: JSON.stringify({
         token: response.tokenId,
@@ -66,7 +66,7 @@ const Signup = () => {
       return setErrMsg("Please enter a password");
     }
 
-    fetch("/api/register", {
+    fetch("https://secure-journey-19068.herokuapp.com/api/register", {
       method: "POST",
       body: JSON.stringify({ email: email, password: password }),
       headers: {

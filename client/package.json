@@ -2,12 +2,11 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://withinmeans.herokuapp.com",
+  "proxy": "https://secure-journey-19068.herokuapp.com",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
-    "axios": "^0.21.1",
     "i": "^0.3.6",
     "moment": "^2.29.1",
     "npm": "^7.14.0",

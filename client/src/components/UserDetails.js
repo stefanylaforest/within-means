@@ -27,7 +27,7 @@ const UserDetails = () => {
   let { userId } = useParams();
 
   useEffect(() => {
-    fetch(`/api/users/${userId}`)
+    fetch(`https://secure-journey-19068.herokuapp.com/api/users/${userId}`)
       .then((rest) => rest.json())
       .then((json) => {
         setCurrentUser(json.data);
@@ -46,16 +46,19 @@ const UserDetails = () => {
     if (!currentLoggedInUser) {
       return history.push(`/login`);
     }
-    fetch(`/api/users/${currentLoggedInUser._id}/save`, {
-      method: "PATCH",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        saved: userId,
-      }),
-    })
+    fetch(
+      `https://secure-journey-19068.herokuapp.com/api/users/${currentLoggedInUser._id}/save`,
+      {
+        method: "PATCH",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          saved: userId,
+        }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         setCurrentLoggedInUser(data.data);
@@ -66,16 +69,19 @@ const UserDetails = () => {
   const handleRemoveSave = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    fetch(`/api/users/${currentLoggedInUser._id}/save/remove`, {
-      method: "PATCH",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        saved: userId,
-      }),
-    })
+    fetch(
+      `https://secure-journey-19068.herokuapp.com/api/users/${currentLoggedInUser._id}/save/remove`,
+      {
+        method: "PATCH",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          saved: userId,
+        }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         setCurrentLoggedInUser(data.data);
@@ -92,25 +98,28 @@ const UserDetails = () => {
   };
 
   const sendMessageHandler = () => {
-    fetch(`/api/users/${userId}/message`, {
-      method: "PATCH",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        inbox: {
-          message: message,
-          date: new Date(),
-          senderId: currentLoggedInUser._id,
-          senderName: currentLoggedInUser.name,
-          senderAvatar: currentLoggedInUser.avatar,
-          senderTitle: currentLoggedInUser.title,
-          senderStatus: currentLoggedInUser.status,
-          senderInbox: currentLoggedInUser.inbox,
+    fetch(
+      `https://secure-journey-19068.herokuapp.com/api/users/${userId}/message`,
+      {
+        method: "PATCH",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
-      }),
-    })
+        body: JSON.stringify({
+          inbox: {
+            message: message,
+            date: new Date(),
+            senderId: currentLoggedInUser._id,
+            senderName: currentLoggedInUser.name,
+            senderAvatar: currentLoggedInUser.avatar,
+            senderTitle: currentLoggedInUser.title,
+            senderStatus: currentLoggedInUser.status,
+            senderInbox: currentLoggedInUser.inbox,
+          },
+        }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         setToggleMsgInput(!toggleMsgInput);

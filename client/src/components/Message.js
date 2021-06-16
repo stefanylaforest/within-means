@@ -28,23 +28,26 @@ const Message = ({
   };
 
   const sendMessageHandler = () => {
-    fetch(`/api/users/${senderId}/message`, {
-      method: "PATCH",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        inbox: {
-          message: replyMessage,
-          date: new Date(),
-          senderId: currentLoggedInUser._id,
-          senderName: currentLoggedInUser.name,
-          senderAvatar: currentLoggedInUser.avatar,
-          senderTitle: currentLoggedInUser.title,
+    fetch(
+      `https://secure-journey-19068.herokuapp.com/api/users/${senderId}/message`,
+      {
+        method: "PATCH",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
-      }),
-    })
+        body: JSON.stringify({
+          inbox: {
+            message: replyMessage,
+            date: new Date(),
+            senderId: currentLoggedInUser._id,
+            senderName: currentLoggedInUser.name,
+            senderAvatar: currentLoggedInUser.avatar,
+            senderTitle: currentLoggedInUser.title,
+          },
+        }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log("success", data);
@@ -61,23 +64,26 @@ const Message = ({
 
   const deleteMessageHandler = () => {
     setDeleteMsg(element);
-    fetch(`/api/users/${currentLoggedInUser._id}/message/delete`, {
-      method: "PATCH",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        inbox: {
-          message: message,
-          date: date,
-          senderId: senderId,
-          senderName: senderName,
-          senderAvatar: senderAvatar,
-          senderTitle: senderTitle,
+    fetch(
+      `https://secure-journey-19068.herokuapp.com/api/users/${currentLoggedInUser._id}/message/delete`,
+      {
+        method: "PATCH",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
-      }),
-    })
+        body: JSON.stringify({
+          inbox: {
+            message: message,
+            date: date,
+            senderId: senderId,
+            senderName: senderName,
+            senderAvatar: senderAvatar,
+            senderTitle: senderTitle,
+          },
+        }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log("success", data);

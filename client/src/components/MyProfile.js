@@ -12,17 +12,20 @@ const MyProfile = () => {
   const [successMsg, setSuccessMsg] = useState();
 
   const updateStatusHandler = () => {
-    fetch(`/api/users/${currentLoggedInUser._id}/update-status`, {
-      method: "PATCH",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        status: newStatus,
-        statusDate: new Date(),
-      }),
-    })
+    fetch(
+      `https://secure-journey-19068.herokuapp.com/api/users/${currentLoggedInUser._id}/update-status`,
+      {
+        method: "PATCH",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          status: newStatus,
+          statusDate: new Date(),
+        }),
+      }
+    )
       .then((res) => res.json())
       .then((json) => {
         setCurrentLoggedInUser(json.data);

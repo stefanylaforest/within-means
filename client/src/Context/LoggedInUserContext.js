@@ -18,7 +18,9 @@ export const LoggedInUserProvider = ({ children }) => {
 
     if (loggedInUser) {
       const foundUser = JSON.parse(loggedInUser);
-      fetch(`/api/users/${foundUser._id}`)
+      fetch(
+        `https://secure-journey-19068.herokuapp.com/api/users/${foundUser._id}`
+      )
         .then((rest) => rest.json())
         .then((json) => {
           setCurrentLoggedInUser(json.data);
