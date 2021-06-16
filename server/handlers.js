@@ -9,8 +9,6 @@ const { OAuth2Client } = require("google-auth-library");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
-const res = await fetch("https://withinmeans.herokuapp.com");
-
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,

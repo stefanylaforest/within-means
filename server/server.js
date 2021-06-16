@@ -3,7 +3,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
-const res = await fetch("https://withinmeans.herokuapp.com");
+const cors = require("cors");
 
 const {
   addUser,
@@ -26,7 +26,8 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(morgan("tiny"));
-app.use(bodyParser.json());
+app.use(express.json());
+app.use(cors());
 app.use(express.static("public"));
 
 // // endpoint below
