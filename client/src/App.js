@@ -13,9 +13,7 @@ import Saved from "./components/Saved";
 import { LoggedInUserContext } from "./Context/LoggedInUserContext";
 import Footer from "./components/Footer";
 import PrivateRoute from "./components/PrivateRoute";
-import axios from "axios";
 
-axios.defaults.baseURL = "https://withinmeans.herokuapp.com";
 function App() {
   const { currentLoggedInUser } = useContext(LoggedInUserContext);
 
