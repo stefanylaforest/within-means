@@ -20,6 +20,11 @@ const SearchResults = () => {
   let { searchQuery } = useParams();
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+      transition: "all 0.5s ease 0s",
+    });
     setQuery(searchQuery);
     const matches = users.map((user) => {
       let matchSkill = false;

@@ -4,9 +4,16 @@ import WithinMeansLogo from "../assets/WithinMeansLogo";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
+  const handleScrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+      transition: "all 0.5s ease 0s",
+    });
+  };
   return (
     <Wrapper>
-      <Link to="/">
+      <Link onClick={handleScrollToTop} to="/">
         <h1>
           <LogoSpan>
             <WithinMeansLogo />
@@ -14,7 +21,10 @@ const Footer = () => {
         </h1>
       </Link>
       <AllRightsReserved>
-        © 2021 Within Means. All rights reserved.
+        © 2021 Within Means. All rights reserved. - Made with ❤️ by{" "}
+        <a href="https://www.github.com/stefanylaforest" target="blank">
+          Stefany Laforest
+        </a>
       </AllRightsReserved>
     </Wrapper>
   );
