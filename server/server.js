@@ -19,9 +19,7 @@ const {
   removeFromFavorites,
 } = require("./handlers");
 
-// // const users = require("./data/users.json");
-
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 
 const app = express();
 
@@ -34,7 +32,9 @@ app.use(express.static("public"));
 // //---------------
 
 app.get("/hello", (req, res) => {
-  res.json({ message: "Hello Stef, this is a test from server!" });
+  res.json({
+    message: "Hey there, nice seeing you here! This is a test from the server.",
+  });
 });
 
 app.post("/api/register", addUser);
