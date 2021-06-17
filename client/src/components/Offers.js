@@ -70,6 +70,9 @@ const Wrapper = styled.div`
   @media screen and (max-width: 720px) {
     margin: 50px;
   }
+  @media screen and (max-width: 525px) {
+    margin: 10px;
+  }
 `;
 
 const Header = styled.div`

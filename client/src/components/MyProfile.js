@@ -4,12 +4,29 @@ import EditProfile from "./EditProfile";
 import styled, { keyframes } from "styled-components";
 import { FaUserCircle } from "react-icons/fa";
 import { colors } from "../GlobalStyles";
+import { Link, useHistory } from "react-router-dom";
+import { MdPowerSettingsNew } from "react-icons/md";
 
 const MyProfile = () => {
-  const { currentLoggedInUser, setCurrentLoggedInUser } =
+  const { currentLoggedInUser, setCurrentLoggedInUser, setLoggedIn } =
     useContext(LoggedInUserContext);
   const [newStatus, setNewStatus] = useState();
   const [successMsg, setSuccessMsg] = useState();
+
+  let history = useHistory();
+
+  const handleLogOut = (e) => {
+    e.preventDefault();
+    setCurrentLoggedInUser("");
+    setLoggedIn(false);
+    localStorage.clear();
+    history.push("/");
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+      transition: "all 0.5s ease 0s",
+    });
+  };
 
   const updateStatusHandler = () => {
     fetch(
@@ -41,21 +58,24 @@ const MyProfile = () => {
   return (
     <Wrapper>
       <Sidebar>
-        <AvatarAndName>
-          {currentLoggedInUser.avatar !== null && currentLoggedInUser ? (
+        <Link exact to={`/users/${currentLoggedInUser._id}`}>
+          <AvatarAndName>
+            {currentLoggedInUser.avatar !== null && currentLoggedInUser ? (
+              <div>
+                <Profile src={currentLoggedInUser.avatar} />
+              </div>
+            ) : (
+              <div>
+                <StyledFaUserCircle />
+              </div>
+            )}
             <div>
-              <Profile src={currentLoggedInUser.avatar} />
+              <h2>{currentLoggedInUser.name}</h2>
+              <ProfileId>profile id: {currentLoggedInUser._id}</ProfileId>
+              <View>View Your Public Profile </View>
             </div>
-          ) : (
-            <div>
-              <StyledFaUserCircle />
-            </div>
-          )}
-          <div>
-            <h2>{currentLoggedInUser.name}</h2>
-            <ProfileId>profile id: {currentLoggedInUser._id}</ProfileId>
-          </div>
-        </AvatarAndName>
+          </AvatarAndName>
+        </Link>
         <StatusSection>
           <h2>
             <label htmlFor="status">Update your status</label>
@@ -70,15 +90,23 @@ const MyProfile = () => {
             Update Status
           </UpdateStatusBtn>
 
-          {/* {currentLoggedInUser.status && (
-            <p>Status last updated on {currentLoggedInUser.status}</p>
-          )} */}
+          {currentLoggedInUser.status && (
+            <p>Status last updated on {currentLoggedInUser.statusDate}</p>
+          )}
           <Notif>{successMsg}</Notif>
         </StatusSection>
       </Sidebar>
       <HalfContainer>
         <EditProfile />
       </HalfContainer>
+      <LogOutDiv>
+        <h3>End Session</h3>
+        <Divider />
+        <LogOutButton onClick={handleLogOut}>
+          <StyledMdPowerSettingsNew />
+          Log Out
+        </LogOutButton>
+      </LogOutDiv>
     </Wrapper>
   );
 };
@@ -127,8 +155,13 @@ const AvatarAndName = styled.div`
   border-radius: 20px;
   display: flex;
   flex-direction: row;
+  align-items: center;
   @media screen and (max-width: 950px) {
     margin: 10px 50px;
+  }
+
+  @media screen and (max-width: 525px) {
+    margin: 10px;
   }
 `;
 
@@ -136,6 +169,11 @@ const ProfileId = styled.p`
   color: gray;
   font-size: 0.8em;
   margin-top: -15px;
+`;
+
+const View = styled.div`
+  margin-top: -10px;
+  color: ${colors.darkPurple};
 `;
 
 const StatusSection = styled.div`
@@ -147,6 +185,9 @@ const StatusSection = styled.div`
   flex-direction: column;
   @media screen and (max-width: 950px) {
     margin: 10px 50px;
+  }
+  @media screen and (max-width: 525px) {
+    margin: 10px;
   }
 `;
 
@@ -213,6 +254,35 @@ const UpdateStatusBtn = styled.button`
   &:hover {
     background-color: ${colors.mediumPurple};
   }
+`;
+
+const LogOutDiv = styled.div`
+  display: none;
+  @media screen and (max-width: 525px) {
+    display: block;
+    background-color: white;
+    margin: 10px;
+    border-radius: 20px;
+    padding: 35px;
+  }
+`;
+
+const LogOutButton = styled.button`
+  @media screen and (max-width: 525px) {
+    display: block;
+    background-color: #f0f0f0;
+    color: ${colors.navy};
+    font-size: 18px;
+    padding: 15px;
+    border-radius: 10px;
+    width: 100%;
+    margin: 30px auto;
+    border: none;
+  }
+`;
+
+const StyledMdPowerSettingsNew = styled(MdPowerSettingsNew)`
+  margin: 0px 5px -2px 0px;
 `;
 
 export default MyProfile;

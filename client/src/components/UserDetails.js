@@ -186,7 +186,7 @@ const UserDetails = () => {
           </Column>
         </UserSpecs>
         <Bio>Bio</Bio>
-        <p>{currentUser.bio}</p>
+        <BioDescription>{currentUser.bio}</BioDescription>
         {toggleMsgInput ? (
           <>
             <Textarea
@@ -194,8 +194,8 @@ const UserDetails = () => {
               onChange={(e) => setMessage(e.target.value)}
             ></Textarea>
             <SendMsgBtnDiv>
-              <Cancel onClick={handleSendMessageInput}>cancel</Cancel>
               <SendMsgBtn onClick={sendMessageHandler}>Send</SendMsgBtn>
+              <Cancel onClick={handleSendMessageInput}>cancel</Cancel>
             </SendMsgBtnDiv>
           </>
         ) : (
@@ -219,6 +219,9 @@ const GoBack = styled.p`
   width: 200px;
   cursor: pointer;
   margin: 60px;
+  @media screen and (max-width: 525px) {
+    margin: 30px;
+  }
 `;
 
 const GoBackIcon = styled(ImArrowLeft2)`
@@ -243,11 +246,19 @@ const Wrapper = styled.div`
   flex-direction: column;
   max-width: 1000px;
   padding: 50px 70px 70px 70px;
-  margin: 0 auto;
+  margin: 20px auto;
   background-color: white;
   border-radius: 25px;
   animation: ${fadeIn} 0.3s ease-in;
   margin-bottom: 100px;
+  @media screen and (max-width: 1015px) {
+    padding: 20px;
+    margin: 20px auto;
+  }
+  @media screen and (max-width: 525px) {
+    margin: 10px;
+    padding: 15px;
+  }
 `;
 
 const EmptyHeart = styled(HiOutlineHeart)`
@@ -277,12 +288,19 @@ const UserSpecs = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  @media screen and (max-width: 1015px) {
+    flex-direction: column;
+  }
 `;
 
 const LastUpdated = styled.p`
   color: gray;
   font-size: 0.8em;
   margin-bottom: -10px;
+  @media screen and (max-width: 525px) {
+    margin-top: -10px;
+    margin-bottom: 30px;
+  }
 `;
 
 const NameTitleWeb = styled.p`
@@ -291,12 +309,27 @@ const NameTitleWeb = styled.p`
 
 const SkillsTitle = styled.h3`
   color: ${colors.darkPurple};
+  @media screen and (max-width: 525px) {
+    margin-top: 50px;
+  }
 `;
 
 const Bio = styled.h3`
   margin-bottom: -10px;
+  color: ${colors.darkPurple};
+  @media screen and (max-width: 525px) {
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 30px;
+  }
 `;
 
+const BioDescription = styled.p`
+  @media screen and (max-width: 525px) {
+    margin: 10px;
+    text-align: center;
+  }
+`;
 const Column = styled.div`
   display: flex;
   flex-direction: column;
@@ -309,6 +342,17 @@ const Row = styled.div`
   justify-content: space-between;
   min-width: 600px;
   margin: 0px 100px 0px 30px;
+
+  @media screen and (max-width: 1015px) {
+    min-width: 100%;
+    margin: 10px auto;
+  }
+  @media screen and (max-width: 525px) {
+    flex-direction: column;
+    margin: 0 auto;
+    min-width: 100%;
+    text-align: center;
+  }
 `;
 
 const SaveBtn = styled.div`
@@ -327,6 +371,11 @@ const Status = styled.h1`
   font-size: 1.5em;
   margin: 0px 30px;
   color: ${colors.darkPurple};
+  width: 100%;
+  @media screen and (max-width: 1015px) {
+    margin: 20px auto;
+    text-align: center;
+  }
 `;
 
 const SendOfferBtn = styled.button`
@@ -340,6 +389,11 @@ const SendOfferBtn = styled.button`
   transition: 0.3s ease-in-out;
   &:hover {
     background-color: ${colors.mediumPurple};
+  }
+
+  @media screen and (max-width: 525px) {
+    margin: 20px;
+    padding: 15px;
   }
 `;
 
@@ -368,6 +422,10 @@ const SendMsgBtnDiv = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  @media screen and (max-width: 525px) {
+    flex-direction: column;
+    justify-content: center;
+  }
 `;
 
 const SendMsgBtn = styled.button`
@@ -382,6 +440,10 @@ const SendMsgBtn = styled.button`
   width: 100px;
   &:hover {
     background-color: #5b9e82;
+  }
+  @media screen and (max-width: 525px) {
+    width: 90%;
+    margin: 0 auto;
   }
 `;
 
@@ -398,6 +460,11 @@ const Cancel = styled.button`
   transition: 0.3s ease-in-out;
   &:hover {
     background-color: #ee7257;
+  }
+
+  @media screen and (max-width: 525px) {
+    width: 90%;
+    margin: 10px auto;
   }
 `;
 

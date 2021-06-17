@@ -24,7 +24,10 @@ const GlobalStyles = createGlobalStyle`
     background: rgb(237, 238, 255); 
     font-family: 'Poppins', sans-serif;
 
-    
+    @media screen and (min-width: 1920px) {
+    margin: 0 auto;
+    max-width: 1920px;
+  }
 
 
   }

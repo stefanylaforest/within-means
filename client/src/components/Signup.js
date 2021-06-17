@@ -189,6 +189,11 @@ const SignUpModal = styled.div`
   text-align: center;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+
+  @media screen and (max-width: 525px) {
+    margin: 10px;
+    padding: 20px 30px;
+  }
 `;
 
 const GraphicsDiv = styled.div`
@@ -213,7 +218,7 @@ const Label = styled.label`
 
 const Input = styled.input`
   margin: 3px 0px 30px 0px;
-  padding: 10px;
+  padding: 10px 15px;
   font-size: 18px;
   border-radius: 10px;
   border: 1px solid ${colors.navy};

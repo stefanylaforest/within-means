@@ -61,6 +61,10 @@ const Wrapper = styled.div`
   @media screen and (max-width: 720px) {
     margin: 50px;
   }
+
+  @media screen and (max-width: 562px) {
+    margin: 10px;
+  }
 `;
 
 const Divider = styled.hr`

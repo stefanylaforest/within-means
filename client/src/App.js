@@ -13,6 +13,7 @@ import Saved from "./components/Saved";
 import { LoggedInUserContext } from "./Context/LoggedInUserContext";
 import Footer from "./components/Footer";
 import PrivateRoute from "./components/PrivateRoute";
+import MobileMenu from "./components/HeaderComponents/MobileMenu";
 
 function App() {
   const { currentLoggedInUser } = useContext(LoggedInUserContext);
@@ -47,8 +48,8 @@ function App() {
           <SearchResults />
         </Route>
       </Switch>
-
       <Footer />
+      <MobileMenu />
     </div>
   );
 }

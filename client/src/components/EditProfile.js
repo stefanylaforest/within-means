@@ -175,6 +175,9 @@ const FormGroup = styled.div`
   @media screen and (max-width: 950px) {
     margin: 0px 50px 50px 50px;
   }
+  @media screen and (max-width: 525px) {
+    margin: 10px;
+  }
 `;
 
 const Divider = styled.hr`
@@ -201,11 +204,12 @@ const Input = styled.input`
   background: #f0f0f0;
   border-radius: 10px;
   border: 1px solid #f0f0f0;
-  margin-bottom: 30px;
-  margin-top: 3px;
+  margin-bottom: 15px;
+  margin-top: 15px;
   font-size: 16px;
   padding: 10px 16px;
   transition: 0.3s ease-in-out;
+  overflow: hidden;
   &:focus,
   &:hover {
     border: 1px solid ${colors.mediumPurple};

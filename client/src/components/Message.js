@@ -164,7 +164,7 @@ const IconWrap = styled.div`
   flex-direction: row;
   align-items: center;
   margin-right: 28px;
-  @media screen and (max-width: 720px) {
+  @media screen and (max-width: 735px) {
     display: none;
   }
 `;
@@ -175,7 +175,7 @@ const IconWrapMobile = styled.div`
   align-items: center;
   justify-content: center;
   margin-right: 28px;
-  @media screen and (min-width: 720px) {
+  @media screen and (min-width: 735px) {
     display: none;
   }
 `;
@@ -190,7 +190,7 @@ const ReplyIcon = styled(FaReply)`
   &:hover {
     fill: #53bb8f;
   }
-  @media screen and (max-width: 720px) {
+  @media screen and (max-width: 735px) {
     display: block;
   }
 `;
@@ -203,7 +203,7 @@ const DeleteIcon = styled(TiDelete)`
   &:hover {
     fill: ${colors.coral};
   }
-  @media screen and (max-width: 720px) {
+  @media screen and (max-width: 735px) {
     display: block;
   }
 `;
@@ -233,7 +233,7 @@ const AvatarAndName = styled.div`
   flex-direction: row;
   align-items: center;
   margin-left: 28px;
-  /* font-size: 20px; */
+  flex-wrap: wrap;
 `;
 
 const FromSenderName = styled.span`
@@ -245,6 +245,14 @@ const SenderTitle = styled.span`
   font-size: 14px;
   color: ${colors.darkPurple};
   margin-left: 10px;
+  @media screen and (max-width: 562px) {
+    margin-left: 50px;
+    margin-top: -10px;
+  }
+
+  @media screen and (max-width: 336px) {
+    margin: 0 auto;
+  }
 `;
 
 const RowWrapper = styled.div`
@@ -265,12 +273,18 @@ const Avatar = styled.img`
   height: 40px;
   border-radius: 50%;
   margin-right: 10px;
+  @media screen and (max-width: 562px) {
+    margin-bottom: -25px;
+  }
 `;
 
 const MessageP = styled.p`
   font-weight: 500;
   margin-left: 30px;
   margin-right: 30px;
+  @media screen and (max-width: 562px) {
+    margin: 10px;
+  }
 `;
 
 const DateStamp = styled.p`
@@ -283,6 +297,10 @@ const DateStamp = styled.p`
 const ReplyDiv = styled.div`
   margin-left: 30px;
   margin-right: 30px;
+
+  @media screen and (max-width: 562px) {
+    margin: 0 auto;
+  }
 `;
 
 const Textarea = styled.textarea`
@@ -303,12 +321,20 @@ const Textarea = styled.textarea`
   &:hover {
     outline: none;
   }
+
+  @media screen and (max-width: 562px) {
+    margin: 0 auto;
+    max-width: 85%;
+  }
 `;
 
 const SendMsgBtnDiv = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  @media screen and (max-width: 562px) {
+    flex-direction: column-reverse;
+  }
 `;
 
 const SendBtn = styled.button`
@@ -324,6 +350,11 @@ const SendBtn = styled.button`
   &:hover {
     background-color: #5b9e82;
   }
+
+  @media screen and (max-width: 562px) {
+    width: 100%;
+    margin: 5px auto;
+  }
 `;
 
 const Cancel = styled.button`
@@ -338,6 +369,11 @@ const Cancel = styled.button`
   width: 100px;
   &:hover {
     background-color: #ee7257;
+  }
+
+  @media screen and (max-width: 562px) {
+    width: 100%;
+    margin: 5px auto;
   }
 `;
 

@@ -35,6 +35,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   padding: 40px;
   text-align: center;
+  margin-bottom: 60px;
 `;
 
 const AllRightsReserved = styled.p`

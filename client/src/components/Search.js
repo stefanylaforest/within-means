@@ -43,7 +43,7 @@ const Search = () => {
           </SearchBtn>
         </InputGroup>
         <Suggested>
-          <p>Popular: </p>
+          <PopularLabel>Popular: </PopularLabel>
           <SuggestedBtn
             onClick={(e) => {
               e.preventDefault();
@@ -82,6 +82,9 @@ const Wrapper = styled.div``;
 const Container = styled.div`
   text-align: center;
   margin: 60px;
+  @media screen and (max-width: 525px) {
+    margin: 60px 20px;
+  }
 `;
 
 const Heading = styled.h2`
@@ -115,6 +118,12 @@ const InputGroup = styled.div`
     -moz-box-shadow: 0px 0px 0px 4px rgb(68, 78, 229, 15%);
     box-shadow: 0px 0px 0px 4px rgb(68, 78, 229, 15%);
     outline: none;
+  }
+
+  @media screen and (max-width: 525px) {
+    margin: 20px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+      rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   }
 `;
 
@@ -152,6 +161,17 @@ const SearchBtn = styled.button`
 const Suggested = styled.div`
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+  @media screen and (max-width: 525px) {
+    flex-direction: column;
+    margin: 20px;
+  }
+`;
+
+const PopularLabel = styled.p`
+  @media screen and (max-width: 525px) {
+    margin: 0 auto;
+  }
 `;
 
 const SuggestedBtn = styled.button`
@@ -166,6 +186,12 @@ const SuggestedBtn = styled.button`
   font-family: "Poppins", sans-serif;
   &:hover {
     background-color: ${colors.darkPurple};
+    color: white;
+  }
+
+  @media screen and (max-width: 525px) {
+    background-color: ${colors.darkPurple};
+    border: 3px solid ${colors.darkPurple};
     color: white;
   }
 `;

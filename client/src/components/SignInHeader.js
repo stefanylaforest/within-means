@@ -49,6 +49,7 @@ const SignInHeader = () => {
             </SearchBtn>
           </InputDiv>
         )}
+
       {location.pathname !== "/login" && location.pathname !== "/register" && (
         <div>
           <Link exact to="/login">
@@ -60,6 +61,25 @@ const SignInHeader = () => {
         </div>
       )}
 
+      {location.pathname !== "/" &&
+        location.pathname !== "/login" &&
+        location.pathname !== "/register" && (
+          <InputDivMobile>
+            <StyledSearchIcon />
+            <SearchBar
+              type="text"
+              placeholder="search services"
+              onChange={(e) => setNewQuery(e.target.value)}
+            />
+            <SearchBtn
+              onClick={(e) => {
+                headerQueryHandler(e);
+              }}
+            >
+              <ImArrowRight2 />
+            </SearchBtn>
+          </InputDivMobile>
+        )}
       {location.pathname === "/login" && (
         <Link exact to="/register">
           <SignUp>Start Swapping</SignUp>
@@ -81,6 +101,9 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 10px;
+  @media screen and (max-width: 525px) {
+    flex-wrap: wrap;
+  }
 `;
 
 const LogoSpan = styled.div`
@@ -117,6 +140,11 @@ const SignUp = styled.button`
     );
     color: white;
   }
+
+  @media screen and (max-width: 782px) {
+    padding: 15px 5px;
+    margin: 0px;
+  }
 `;
 
 const SignIn = styled.button`
@@ -128,6 +156,13 @@ const SignIn = styled.button`
   background-color: transparent;
   color: ${colors.darkPurple};
   font-weight: bold;
+  @media screen and (max-width: 525px) {
+    display: none;
+  }
+
+  @media screen and (max-width: 772px) {
+    margin: 0;
+  }
 `;
 
 const InputDiv = styled.div`
@@ -139,6 +174,27 @@ const InputDiv = styled.div`
   border-radius: 40px;
   background: white;
   width: 400px;
+
+  @media screen and (max-width: 525px) {
+    display: none;
+  }
+`;
+
+const InputDivMobile = styled.div`
+  display: none;
+  @media screen and (max-width: 525px) {
+    display: block;
+    width: 300px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+      rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    margin: 10px auto;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 40px;
+    background: white;
+  }
 `;
 
 const StyledSearchIcon = styled(ImSearch)`

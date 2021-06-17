@@ -25,7 +25,7 @@ const Header = () => {
   };
 
   return (
-    <LogoWrapper>
+    <HeaderWrapper>
       <Link to="/">
         <h1>
           <LogoSpan>
@@ -79,16 +79,20 @@ const Header = () => {
           )}
         </LoggedInDisplay>
       )}
-    </LogoWrapper>
+    </HeaderWrapper>
   );
 };
 
-const LogoWrapper = styled.div`
+const HeaderWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin: 10px;
+
+  @media screen and (max-width: 525px) {
+    flex-direction: column;
+  }
 `;
 
 const LogoSpan = styled.div`
@@ -96,11 +100,20 @@ const LogoSpan = styled.div`
   flex-direction: row;
   align-items: center;
   font-size: 20px;
+
+  @media screen and (max-width: 525px) {
+    flex-direction: column;
+  }
 `;
 
 const SiteName = styled.span`
   @media screen and (max-width: 1000px) {
     display: none;
+  }
+
+  @media screen and (max-width: 525px) {
+    display: block;
+    margin-top: 10px;
   }
 `;
 
@@ -122,6 +135,10 @@ const LoggedInDisplay = styled.div`
   border-radius: 50px;
   align-items: center;
   padding: 10px;
+
+  @media screen and (max-width: 525px) {
+    display: none;
+  }
 `;
 
 const DropdownBox = styled.div`
@@ -186,6 +203,13 @@ const InputDiv = styled.div`
     -moz-box-shadow: 0px 0px 0px 4px rgb(68, 78, 229, 15%);
     box-shadow: 0px 0px 0px 4px rgb(68, 78, 229, 15%);
     outline: none;
+  }
+
+  @media screen and (max-width: 525px) {
+    width: 300px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+      rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    margin-bottom: 10px;
   }
 `;
 

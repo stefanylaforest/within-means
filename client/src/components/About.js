@@ -49,6 +49,10 @@ const About = () => {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  @media screen and (max-width: 525px) {
+    margin: 20px;
+    margin: 0 auto;
+  }
 `;
 
 const Section = styled.div`
@@ -61,6 +65,10 @@ const Section = styled.div`
   @media screen and (max-width: 785px) {
     text-align: center;
     margin: 0 auto;
+  }
+
+  @media screen and (max-width: 525px) {
+    margin: 100px 10px;
   }
 `;
 
@@ -84,6 +92,10 @@ const Image = styled.img`
   @media screen and (max-width: 785px) {
     margin: 0 auto;
   }
+
+  @media screen and (max-width: 525px) {
+    width: 80vw;
+  }
 `;
 
 const Image2 = styled.img`
@@ -92,6 +104,10 @@ const Image2 = styled.img`
   @media screen and (max-width: 785px) {
     width: 400px;
     margin: 0 auto;
+  }
+
+  @media screen and (max-width: 525px) {
+    width: 80vw;
   }
 `;
 
@@ -141,6 +157,10 @@ const CallToAction = styled.div`
   margin: 100px;
   padding: 100px;
   border-radius: 20px;
+  @media screen and (max-width: 525px) {
+    margin: 100px 30px;
+    padding: 0px;
+  }
 `;
 
 export default About;

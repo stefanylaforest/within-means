@@ -93,6 +93,9 @@ const Cats = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   margin: 100px 0px;
+  @media screen and (max-width: 525px) {
+    margin: 20px 0px;
+  }
 `;
 
 const Odd = styled.div`
@@ -113,6 +116,11 @@ const Odd = styled.div`
     color: ${colors.mediumPurple};
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
       rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  }
+
+  @media screen and (max-width: 525px) {
+    margin: 10px 5px;
+    padding: 30px 30px 20px 30px;
   }
 `;
 
@@ -154,12 +162,15 @@ const Even = styled.div`
   border-radius: 20px;
   transition: 0.3s ease;
   cursor: pointer;
-  /* box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px; */
   &:hover {
     color: ${colors.mediumPurple};
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
       rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  }
+
+  @media screen and (max-width: 525px) {
+    margin: 10px 5px;
+    padding: 30px 30px 20px 30px;
   }
 `;
 
