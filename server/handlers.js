@@ -223,17 +223,16 @@ const addToFavorites = async (req, res) => {
     const { userId } = req.params;
     const db = client.db("WithinMeans");
     const updateRequest = req.body;
-    console.time("update");
+
     let updatedProfile = await db.collection("users").findOneAndUpdate(
       { _id: userId },
       {
         $push: updateRequest,
       }
     );
-    console.timeEnd("update");
-    console.time("getUser");
+
     const user = await db.collection("users").findOne({ _id: userId });
-    console.timeEnd("getUser");
+
     res.status(200).json({ status: 200, message: `message sent`, data: user });
   } catch (error) {
     res.status(500).send("internal server error :(");
