@@ -194,8 +194,9 @@ const SignUpModal = styled.div`
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 
   @media screen and (max-width: 525px) {
-    margin: 15px;
+    margin: 5px;
     padding: 20px;
+    max-width: 515px;
   }
 `;
 

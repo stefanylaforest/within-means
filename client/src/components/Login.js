@@ -196,12 +196,16 @@ const fadeIn = keyframes`
 const Container = styled.div`
   display: flex;
   flex-direction: row;
-  width: 100%;
   align-items: center;
   animation: ${fadeIn} 0.3s ease-in;
 `;
 
 const LogInModal = styled.div`
+  @media screen and (max-width: 525px) {
+    margin: 5px;
+    padding: 20px;
+    max-width: 515px;
+  }
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -212,11 +216,6 @@ const LogInModal = styled.div`
   text-align: center;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-
-  @media screen and (max-width: 525px) {
-    margin: 15px;
-    padding: 20px;
-  }
 `;
 
 const GraphicsDiv = styled.div`
