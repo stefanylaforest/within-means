@@ -175,6 +175,10 @@ const Container = styled.div`
   width: 100%;
   align-items: center;
   animation: ${fadeIn} 0.3s ease-in;
+
+  @media screen and (min-width: 320px) and (max-width: 525px) {
+    margin: 0;
+  }
 `;
 
 const SignUpModal = styled.div`
@@ -182,7 +186,6 @@ const SignUpModal = styled.div`
   flex-direction: column;
   width: 100%;
   background-color: white;
-  /* align-items: center; */
   border-radius: 25px;
   margin: 60px;
   padding: 30px 50px;
@@ -190,8 +193,8 @@ const SignUpModal = styled.div`
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 
-  @media screen and (max-width: 525px) {
-    margin: 10px;
+  @media screen and (min-width: 320px) and (max-width: 525px) {
+    margin: 15px;
     padding: 20px 30px;
   }
 `;
