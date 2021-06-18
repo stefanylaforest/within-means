@@ -1,14 +1,16 @@
 <h1 align="center"> 
    Within Means
 </h1>
+<div align="center">
    <h4 align="center"> 
  An online platform for small business owners/entrepreneurs to swap their skill set in return for another utilizing the concept of bartering. </h4>
  <h3 align="center">React, Node.js, Express, MongoDB, Styled-Components</h3>
  
  <h3 align="center"> <strong>Demo:</strong> https://withinmeans.netlify.app/ </h3>
+   <p>Frontend deployed on Netlify & Backend deployed on Heroku</p>
  
  <img align="center" width="600" alt="within means' user interface on desktop and mobile" src="https://user-images.githubusercontent.com/66086002/122539708-cace1880-d01f-11eb-9648-0d25fcae3caf.png">
-
+</div>
 
  
  ## Setup instructions
@@ -48,6 +50,7 @@
 
 - Log In and Sign up with Google and the local way.
 - Bcrypt encryption
+- Stays logged in on page refresh
 
 <img width="1426" alt="Screen Shot 2021-06-15 at 21 13 54" src="https://user-images.githubusercontent.com/66086002/122119128-bff96500-ce20-11eb-80c8-7eec0ad7dfa9.png">
 
