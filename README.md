@@ -7,8 +7,8 @@
  
  <h3 align="center"> <strong>Demo:</strong> https://withinmeans.netlify.app/ </h3>
  
+ <img align="center" width="1200" alt="within means' user interface on desktop and mobile" src="https://user-images.githubusercontent.com/66086002/122539708-cace1880-d01f-11eb-9648-0d25fcae3caf.png">
 
- ![within-means-ui](https://user-images.githubusercontent.com/66086002/122539708-cace1880-d01f-11eb-9648-0d25fcae3caf.png)
 
  
  ## Setup instructions
