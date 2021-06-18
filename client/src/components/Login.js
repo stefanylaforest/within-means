@@ -51,7 +51,7 @@ const Login = () => {
 
   const regularLogInHandler = async (e) => {
     e.preventDefault();
-    const currentLoggedInUser = { email, password };
+
     if (email.length === 0 && password.length === 0) {
       setErrMsg("Please enter your log in information");
       return;

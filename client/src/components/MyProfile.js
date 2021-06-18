@@ -6,6 +6,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { colors } from "../GlobalStyles";
 import { Link, useHistory } from "react-router-dom";
 import { MdPowerSettingsNew } from "react-icons/md";
+import moment from "moment";
 
 const MyProfile = () => {
   const { currentLoggedInUser, setCurrentLoggedInUser, setLoggedIn } =
@@ -91,7 +92,10 @@ const MyProfile = () => {
           </UpdateStatusBtn>
 
           {currentLoggedInUser.status && (
-            <p>Status last updated on {currentLoggedInUser.statusDate}</p>
+            <LastUpdated>
+              Status last updated on{" "}
+              {moment(currentLoggedInUser.statusDate).format("LLL")}
+            </LastUpdated>
           )}
           <Notif>{successMsg}</Notif>
         </StatusSection>
@@ -189,6 +193,12 @@ const StatusSection = styled.div`
   @media screen and (max-width: 525px) {
     margin: 10px;
   }
+`;
+
+const LastUpdated = styled.p`
+  color: gray;
+  font-size: 0.8em;
+  margin: 20px auto;
 `;
 
 const Divider = styled.hr`

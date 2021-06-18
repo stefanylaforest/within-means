@@ -4,13 +4,12 @@ import { BsFillEnvelopeFill } from "react-icons/bs";
 import { HiOutlineHeart } from "react-icons/hi";
 import { ImSearch } from "react-icons/im";
 import { CgProfile } from "react-icons/cg";
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { colors } from "../../GlobalStyles";
 import { LoggedInUserContext } from "../../Context/LoggedInUserContext";
 
 const MobileMenu = () => {
   const { currentLoggedInUser, loggedIn } = useContext(LoggedInUserContext);
-  let history = useHistory();
 
   const handleScrollToTop = () => {
     window.scrollTo({
@@ -36,7 +35,11 @@ const MobileMenu = () => {
         </BtnWrapper>
       </NavLink>
 
-      <NavLink exact to={`/users/${currentLoggedInUser._id}/saved`}>
+      <NavLink
+        exact
+        to={`/users/${currentLoggedInUser._id}/saved`}
+        onClick={handleScrollToTop}
+      >
         <BtnWrapper>
           <IconDiv>
             <StyledHiOutlineHeart />
@@ -45,7 +48,11 @@ const MobileMenu = () => {
         </BtnWrapper>
       </NavLink>
 
-      <NavLink exact to={`/users/${currentLoggedInUser._id}/offers`}>
+      <NavLink
+        exact
+        to={`/users/${currentLoggedInUser._id}/offers`}
+        onClick={handleScrollToTop}
+      >
         <BtnWrapper>
           <IconDiv>
             <StyledBsFillEnvelopeFill />
@@ -57,6 +64,7 @@ const MobileMenu = () => {
       <NavLink
         exact
         to={loggedIn ? `/users/${currentLoggedInUser._id}/edit` : "/login"}
+        onClick={handleScrollToTop}
       >
         <BtnWrapper>
           <IconDiv>

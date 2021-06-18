@@ -21,10 +21,14 @@ const Footer = () => {
         </h1>
       </Link>
       <AllRightsReserved>
-        © 2021 Within Means. All rights reserved. - Made with ❤️ by{" "}
-        <a href="https://www.github.com/stefanylaforest" target="blank">
-          Stefany Laforest
-        </a>
+        © 2021 Within Means. All rights reserved.{" "}
+        <p>
+          {" "}
+          Made with ❤️ by{" "}
+          <a href="https://www.github.com/stefanylaforest" target="blank">
+            Stefany Laforest
+          </a>
+        </p>
       </AllRightsReserved>
     </Wrapper>
   );

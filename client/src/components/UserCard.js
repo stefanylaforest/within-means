@@ -96,7 +96,7 @@ const UserCard = ({ user, setRemoveSaved }) => {
         )}
         <OfferedSkills>Skills I Can Offer:</OfferedSkills>
         <SkillsContainer>
-          {user.skills.length > 0 &&
+          {user.skills?.length > 0 &&
             user.skills?.map((skill) => {
               return <SkillLi key={`id-${skill}`}>{skill}</SkillLi>;
             })}
