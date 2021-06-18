@@ -7,7 +7,9 @@
  
  <h3 align="center"> <strong>Demo:</strong> https://withinmeans.netlify.app/ </h3>
  
- <img align="center" width="1435" alt="Screen Shot 2021-06-15 at 21 06 42" src="https://user-images.githubusercontent.com/66086002/122116527-a276cc00-ce1d-11eb-9b14-49483c259752.png">
+
+ ![within-means-ui](https://user-images.githubusercontent.com/66086002/122539708-cace1880-d01f-11eb-9648-0d25fcae3caf.png)
+
  
  ## Setup instructions
  
