@@ -26,24 +26,29 @@ const SearchResults = () => {
       transition: "all 0.5s ease 0s",
     });
     setQuery(searchQuery);
-    let matches = [];
-    users.forEach((user) => {
+    const matches = users.map((user) => {
+      let matchSkill = false;
+      //filtering out the ones that didn't complete their profiles
       if (user.skills.length > 0) {
         user.skills.forEach((userSkill) => {
-          if (userSkill.toLowerCase().includes(query.toLowerCase())) {
-            matches.push(user);
+          if (userSkill?.toLowerCase().includes(query.toLowerCase())) {
+            matchSkill = true;
+          } else {
+            matchSkill = false;
           }
         });
-      }
-      if (
-        user.bio?.toLowerCase().includes(query.toLowerCase()) &&
-        !matches.includes(user)
-      ) {
-        matches.push(user);
+        if (
+          matchSkill === true ||
+          user.bio?.toLowerCase().includes(query.toLowerCase())
+        ) {
+          return user;
+        }
       }
     });
+    console.log(matches);
+    const matchedFilter = matches.filter((match) => match !== undefined);
 
-    setMatchedUsers(matches);
+    setMatchedUsers(matchedFilter);
     setQueryStatus("idle");
 
     if (query !== searchQuery) {
