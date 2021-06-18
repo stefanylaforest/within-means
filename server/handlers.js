@@ -109,11 +109,9 @@ const googleLogin = async (req, res) => {
 
 const authenticateUser = async (req, res) => {
   try {
+    const { email, password } = req.body;
     const db = client.db("WithinMeans");
-    const user = await db
-      .collection("users")
-      .findOne({ email: req.body.email });
-
+    const user = await db.collection("users").findOne({ email: email });
     if (!user) {
       return res.status(404).json({
         status: 404,
@@ -122,10 +120,7 @@ const authenticateUser = async (req, res) => {
       });
     }
     if (user) {
-      const checkForMatchingPw = await bcrypt.compare(
-        req.body.password,
-        user.password
-      );
+      const checkForMatchingPw = await bcrypt.compare(password, user.password);
       if (checkForMatchingPw) {
         res.status(200).json({
           status: 200,
@@ -140,7 +135,7 @@ const authenticateUser = async (req, res) => {
       }
     }
   } catch (error) {
-    res.status(500).send("internal server error :(");
+    res.status(500).json({ status: 500, message: "internal server error :(" });
   }
 };
 
@@ -235,7 +230,7 @@ const addToFavorites = async (req, res) => {
 
     res.status(200).json({ status: 200, message: `message sent`, data: user });
   } catch (error) {
-    res.status(500).send("internal server error :(");
+    res.status(500).json({ status: 500, message: "internal server error :(" });
   }
 };
 
