@@ -43,11 +43,13 @@ const NoResultsFound = () => {
       <SearchResultsUl>
         {users
           .filter((userStatus) => userStatus.status !== null)
-          .map((user) => (
-            <Li>
-              <UserCard key={user._id} user={user} />
-            </Li>
-          ))}
+          .map((user) => {
+            return (
+              <Li>
+                <UserCard key={user._id} user={user} />
+              </Li>
+            );
+          })}
       </SearchResultsUl>
     </div>
   );
