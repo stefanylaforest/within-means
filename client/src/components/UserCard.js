@@ -92,7 +92,7 @@ const UserCard = ({ user, setRemoveSaved }) => {
         {user.status ? (
           <Status>{user.status.slice(0, 58)}...</Status>
         ) : (
-          <Status>I need help with my social media</Status>
+          <Status>No Status</Status>
         )}
         <OfferedSkills>Skills I Can Offer:</OfferedSkills>
         <SkillsContainer>

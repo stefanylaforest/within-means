@@ -41,13 +41,13 @@ const NoResultsFound = () => {
       </CenteredContent>
 
       <SearchResultsUl>
-        {users.map((user) => {
-          return (
+        {users
+          .filter((userStatus) => userStatus.status !== null)
+          .map((user) => (
             <Li>
               <UserCard key={user._id} user={user} />
             </Li>
-          );
-        })}
+          ))}
       </SearchResultsUl>
     </div>
   );

@@ -46,10 +46,20 @@ const SearchResults = () => {
         matches.push(user);
       }
     });
+    //removes duplicate objects
+    let newMatches = [];
+    let uniqueObject = {};
+    let objTitle;
+    for (let i in matches) {
+      objTitle = matches[i]["_id"];
+      uniqueObject[objTitle] = matches[i];
+    }
 
-    setMatchedUsers(matches);
+    for (let i in uniqueObject) {
+      newMatches.push(uniqueObject[i]);
+    }
+    setMatchedUsers(newMatches);
     setQueryStatus("idle");
-
     if (query !== searchQuery) {
       setQuery(query);
     }
@@ -64,7 +74,7 @@ const SearchResults = () => {
         <SearchResultsUl>
           {matchedUsers.map((user) => {
             return (
-              <Li key={`user-${user._id}`}>
+              <Li key={user._id}>
                 <UserCard user={user} />
               </Li>
             );
