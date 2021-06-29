@@ -81,6 +81,9 @@ const RightColumn = styled.div`
   flex: 1;
   justify-content: center;
   margin: 60px;
+  @media screen and (max-width: 550px) {
+    overflow-y: hidden;
+  }
 `;
 
 const SearchResultsUl = styled.ul`
