@@ -17,9 +17,11 @@
  
 1. Fork the repository
 2. Clone the repository
-3. Open a terminal and change directories into server by typing `cd server`, then run `yarn install` to install dependencies. Run `yarn dev` to start the server.
-4. Open another terminal and change directories into client by typing `cd client`, then run `yarn install` to install dependencies. Run `yarn start` to start the client.
+3. Go to [Google's Developer Console](https://console.cloud.google.com/apis/dashboard) create an account if you don't have one already, create a new project -> add `https://localhost` to Authorised JavaScript origins and `http://localhost:3000/login` +  `http://localhost:3000/register` to Authorised redirect URIs. 
+4. Grab your client id from Google's Developer Console, create a .env file and add this line `REACT_APP_GOOGLE_CLIENT_ID=InsertYourCLientIdHere` with of course placing your client id after the `=`
+5. Open a terminal and change directories into client by typing `cd client`, then run `yarn install` to install dependencies. Run `yarn start` to start the client.
 5. Head to https://localhost:3000 to view my project!
+
 
 ## What has been implemented in this project
 
