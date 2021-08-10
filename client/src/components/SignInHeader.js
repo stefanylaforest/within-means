@@ -39,6 +39,7 @@ const SignInHeader = () => {
               type="text"
               placeholder="search services"
               onChange={(e) => setNewQuery(e.target.value)}
+              onKeyPress={(e) => e.key === "Enter" && headerQueryHandler(e)}
             />
             <SearchBtn
               onClick={(e) => {
